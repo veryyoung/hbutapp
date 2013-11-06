@@ -24,7 +24,7 @@ public class ChoseActivity extends BaseActivity{
 		
 		upDateSecondTitle();
 	}
-	
+	//可以更新
 	public void upDateSecondTitle(){
 		choseText.setText(secondTitle);
 		choseList.setAdapter(myAdapter);

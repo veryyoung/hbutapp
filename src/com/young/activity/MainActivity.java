@@ -23,11 +23,11 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Log.v("this","this is ok1");
+//		Log.v("this","this is ok1");
 		listView = (ListView)findViewById(R.id.main_list_title);
-		Log.v("this","this is ok2");
+//		Log.v("this","this is ok2");
 		AdapterForMain adapter = new AdapterForMain(this);
-		Log.v("this","this is ok3");
+//		Log.v("this","this is ok3");
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				switch(arg2){
-				case 0:Intent intent =  new Intent(MainActivity.this,ScheduleActivity.class);
+				case 0:Intent intent =  new Intent(MainActivity.this,ChoseActivity.class);
 						MainActivity.this.startActivity(intent);break;
 				default:break;
 					
