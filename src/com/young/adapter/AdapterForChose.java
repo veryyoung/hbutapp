@@ -1,17 +1,29 @@
+/**
+ * 
+ * this class has been wasted
+ * 
+
 package com.young.adapter;
 
 import java.util.ArrayList;
 
+import com.young.R;
+
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class AdapterForChose extends MyBaseAdapter{
 
 	private ArrayList<String> listData;
 	private LayoutInflater inflater;
+	private Context context;
 	
 	public AdapterForChose(Context context){
-		inflater = LayoutInflater.form(context);
+		this.context = context;
+		inflater = LayoutInflater.from(context);
 		listData = getData();
 	}
 	
@@ -36,19 +48,26 @@ public class AdapterForChose extends MyBaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		TextView textView ;
 		if(null==convertView){
-			convertView = inflater.inflate(R.layout.);
+			textView = new TextView(context);
+			convertView = inflater.inflate(R.layout.activity_chose_item, null);
+			textView = (TextView) convertView.findViewById(R.id.chose_item_text);
+				
 		}
+		
+//		textView.setText(listData.get(position));
 		return null;
 	}
 	
 	
 	public ArrayList<String> getData(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("¸öÈË¿Î±í");
-		list.add("ÆäËû¿Î±í");
+		list.add("ï¿½ï¿½ï¿½Ë¿Î±ï¿½");
+		list.add("ï¿½ï¿½ï¿½ï¿½Î±ï¿½");
 		return list;
 		
 	}
 
 }
+*/
