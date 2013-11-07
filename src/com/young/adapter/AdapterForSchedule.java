@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,19 +51,26 @@ public class AdapterForSchedule extends MyBaseAdapter{
 			convertView = inflater.inflate(R.layout.activity_schedule_item, null);
 			course.courseName = (TextView)convertView.findViewById(R.id.text_for_course);
 			course.courseTime = (TextView)convertView.findViewById(R.id.text_for_coursetime);
+			course.courseTeacher = (TextView)convertView.findViewById(R.id.schedule_text_teacher);
 			convertView.setTag(course);
 		}else{
 			course = (MyListCourse) convertView.getTag();
 		}
 		String name = data.get(position).get("name");
 		String time = data.get(position).get("time");
-		if(!"".equals(name)){
+		String teacher = data.get(position).get("teacher");
+		Log.v("name",name);
+		Log.v("time",time);
+		Log.v("teacher",teacher);
+//		if("".equals(name)&&"".equals(time)&&"".equals(teacher)){
+//			course.courseName.setHeight(5);
+//			course.courseTime.setHeight(5);
+//			course.courseTeacher.setHeight(5);
+//		}else{
 			course.courseName.setText(name);
-		}
-		if(!"".equals(time)){
 			course.courseTime.setText(time);
-		}
-		
+			course.courseTeacher.setText(teacher);
+//		}
 		
 		return convertView;
 	}
@@ -70,17 +78,37 @@ public class AdapterForSchedule extends MyBaseAdapter{
 	private ArrayList<HashMap<String,String>> getSchedule(){
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
 		HashMap<String,String> map = null;
-		for(int i =0;i<3;i++){
+	
 			map = new HashMap<String,String>();
-			map.put("name", "courseName"+i);
-			map.put("time", "course time"+i);
+			map.put("name", "计算机组成原理");
+			map.put("time", "2-005 第3-15周 ");
+			map.put("teacher", "邵雄凯-主讲");
 			list.add(map);
-		}
+			
+			map = new HashMap<String,String>();
+			map.put("name", "");
+			map.put("time", "");
+			map.put("teacher", "");
+			list.add(map);
+			
+			map = new HashMap<String,String>();
+			map.put("name", "");
+			map.put("time", "");
+			map.put("teacher", "");
+			list.add(map);
+			
+			map = new HashMap<String,String>();
+			map.put("name", "软件设计模式");
+			map.put("time", "2-412 第7-14周 ");
+			map.put("teacher", "王华东-主讲");
+			list.add(map);
+			System.out.println(list);
 		return list;
 	}
 	
 	private final class MyListCourse{
 		public TextView courseName;
+		public TextView courseTeacher;
 		public TextView courseTime;
 	}
 	

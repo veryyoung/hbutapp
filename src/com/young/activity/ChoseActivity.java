@@ -6,8 +6,12 @@ package com.young.activity;
 import java.util.ArrayList;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,13 +30,27 @@ public class ChoseActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chose);
 		choseText = (TextView)this.findViewById(R.id.chose_title);
+		
 		choseList = (ListView)this.findViewById(R.id.chose_list);
-		secondTitle = "please chose";
+		secondTitle = "课表";
 		//这里需要添加一个switch用来添加不同的数据
 		setMyAdatper();
 		upDateSecondTitle();
+		choseList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				switch(arg2){
+				case 0:Intent intent = new Intent(ChoseActivity.this,ScheduleActivity.class);
+					startActivity(intent);break;
+				default:break;
+				}
+			}
+		});
 	}
-	//���Ը���
+	//更新数据
 	public void upDateSecondTitle(){
 		choseText.setText(secondTitle);
 		choseList.setAdapter(myAdapter);
@@ -57,8 +75,8 @@ public class ChoseActivity extends BaseActivity{
 	
 	private ArrayList<String> getSecondList(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("personal schedule");
-		list.add("other schedule");
+		list.add("个人课表");
+		list.add("其他班级课表");
 		return list;
 	}
 
