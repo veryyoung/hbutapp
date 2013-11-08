@@ -18,7 +18,7 @@ public class PersonalMessageActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_personal_schedule);
 		listView = (ListView)findViewById(R.id.list_personal_schedule);
-		AdapterForSchedule mAdapter = new AdapterForSchedule(this);
+		AdapterForSchedule mAdapter = new AdapterForSchedule(this,3);
 		listView.setAdapter(mAdapter);
 	}
 	

@@ -23,7 +23,7 @@ public class ScheduleActivity extends Activity {
 		textView = (TextView)this.findViewById(R.id.text_schedule_title);
 		listView = (ListView)this.findViewById(R.id.list_schedule_course);
 		text = "星期一";
-		adapter = new AdapterForSchedule(this);
+		adapter = new AdapterForSchedule(this,3);
 		upDate();
 	}
 	
