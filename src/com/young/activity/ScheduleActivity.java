@@ -36,9 +36,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		textView = (TextView)this.findViewById(R.id.text_schedule_title);
 		listView = (ListView)this.findViewById(R.id.list_schedule_course);
 		mDetector = new GestureDetector(this,this);
+		mDetector.setIsLongpressEnabled(true);
 //		listView.setEnabled(false);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.Schedule_relative_layout);
 		layout.setOnTouchListener(this);
+		layout.setLongClickable(true);
+		layout.setFocusable(true);
+		layout.setClickable(true);
 		layout.setLongClickable(true);
 //		listView.setOnTouchListener(this);
 //		listView.setLongClickable(true);
@@ -55,6 +59,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		return text;
 	}
 
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		mDetector.onTouchEvent(ev);
+		return super.dispatchTouchEvent(ev);
+	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
