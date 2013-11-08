@@ -1,7 +1,9 @@
 package com.young.adapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,17 +13,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.young.R;
+import com.young.business.HBUT;
 
-public class AdapterForSchedule extends MyBaseAdapter{
+public class AdapterForSchedule extends MyBaseAdapter implements Runnable{
 	
 //	private Context context;
 	private LayoutInflater inflater;
 	private ArrayList<HashMap<String,String>> data;
+	private LinkedList<String> list;
+	
+	private ArrayList<HashMap<String,String>> monday;
+	private ArrayList<HashMap<String,String>> tuesday;
+	private ArrayList<HashMap<String,String>> wednesday;
+	private ArrayList<HashMap<String,String>> thursday;
+	private ArrayList<HashMap<String,String>> friday;
+	private ArrayList<HashMap<String,String>> saturday;
+	private ArrayList<HashMap<String,String>> sunday;
 	
 	public AdapterForSchedule(Context context){
 //		this.context = context;
 		inflater = LayoutInflater.from(context);
 		data = getSchedule();
+		Thread thread = new Thread(this);
+		thread.start();
+		
+//		monday = getMonday();
 	}
 
 	@Override
@@ -59,9 +75,9 @@ public class AdapterForSchedule extends MyBaseAdapter{
 		String name = data.get(position).get("name");
 		String time = data.get(position).get("time");
 		String teacher = data.get(position).get("teacher");
-		Log.v("name",name);
-		Log.v("time",time);
-		Log.v("teacher",teacher);
+//		Log.v("name",name);
+//		Log.v("time",time);
+//		Log.v("teacher",teacher);
 //		if("".equals(name)&&"".equals(time)&&"".equals(teacher)){
 //			course.courseName.setHeight(5);
 //			course.courseTime.setHeight(5);
@@ -102,14 +118,46 @@ public class AdapterForSchedule extends MyBaseAdapter{
 			map.put("time", "2-412 第7-14周 ");
 			map.put("teacher", "王华东-主讲");
 			list.add(map);
-			System.out.println(list);
+//			System.out.println(list);
 		return list;
+	}
+	
+	private ArrayList<HashMap<String,String>> getMonday() {
+			HashMap<String,String> map;
+				for(int i = 0;i<list.size();i+=7){
+					map = new HashMap<String,String>();
+					String total = list.get(i);
+					map.put("name", "");
+					map.put("time", "");
+					map.put("teacher",total);
+					
+					System.out.println(total);
+					Log.v("total",total);
+					data.add(map);
+				}
+				return data;
 	}
 	
 	private final class MyListCourse{
 		public TextView courseName;
 		public TextView courseTeacher;
 		public TextView courseTime;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try{
+			HBUT hbut = HBUT.getInstance();
+			list =(LinkedList<String>)  hbut.myselfSchedule();
+			System.out.println("the size \n is "+list.size());
+			for(int i=0;i<list.size();i++){
+				System.out.println(list.get(i)+"    "+i);
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+
 	}
 	
 

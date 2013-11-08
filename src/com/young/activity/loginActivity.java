@@ -33,7 +33,7 @@ public class loginActivity extends Activity {
 		                String password = passwordEditText.getText().toString();
 		                Log.d("username", username);
 		                Log.d("password", password);
-		                HBUT hbut = new HBUT();
+		                HBUT hbut = HBUT.getInstance();
 		                try {
 		                	
 		                    Boolean loginFlag = hbut.login(username,password);

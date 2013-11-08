@@ -11,7 +11,7 @@ import com.young.entry.SubjectScore;
 
 public class TestBusiness {
 	public static void main(String[] args) throws IOException, JSONException {
-		HBUT hbut = new HBUT();
+		HBUT hbut = HBUT.getInstance();
 	    if(hbut.login("1110321229","005685")){
 	    	System.out.println("登录成功");
 	    }

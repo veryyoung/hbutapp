@@ -37,6 +37,21 @@ import com.young.verycode.CrashCode;
 import com.young.verycode.Tools;
 
 public class HBUT {
+	
+	private static HBUT hbut = null;
+	
+	private HBUT(){
+		
+	}
+	
+	public static HBUT getInstance(){
+		if(null==hbut){
+			hbut = new HBUT();
+		}
+		return hbut;
+	}
+	
+	
 	private HttpClient httpClient = new DefaultHttpClient();
 	private String username;
 	 
@@ -138,13 +153,16 @@ public class HBUT {
 		HttpEntity entity = response.getEntity();
 		String html = EntityUtils.toString(entity, "utf-8");
 		httpget.abort();
-
+		html = html.replace("<br />", "|");
+		
 		// find the schedule
 		Document doc = Jsoup.parse(html);
 
 		Elements resultElements = doc.select("td");
 		List<String> classInfo = new LinkedList<String>();
 		for (Element element : resultElements) {
+//			System.out.println("in HBUT");
+//			System.out.println(element.text());
 			classInfo.add(element.text());
 		}
 		return classInfo;
