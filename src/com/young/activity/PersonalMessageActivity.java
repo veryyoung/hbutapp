@@ -16,10 +16,8 @@ public class PersonalMessageActivity extends BaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_personal_schedule);
-		listView = (ListView)findViewById(R.id.list_personal_schedule);
-		AdapterForSchedule mAdapter = new AdapterForSchedule(this);
-		listView.setAdapter(mAdapter);
+//		setContentView(R.layout.activity_personal_schedule);
+		
 	}
 	
 	
