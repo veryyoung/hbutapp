@@ -30,14 +30,53 @@ public class AdapterForSchedule extends MyBaseAdapter implements Runnable{
 	private ArrayList<HashMap<String,String>> saturday;
 	private ArrayList<HashMap<String,String>> sunday;
 	
-	public AdapterForSchedule(Context context){
+	public AdapterForSchedule(Context context,int n){
 //		this.context = context;
 		inflater = LayoutInflater.from(context);
 		data = getSchedule();
 		Thread thread = new Thread(this);
 		thread.start();
-		
+		switch(n){
+		case 1:data = getMonday();break;
+		case 2:data = getTuesday();break;
+		case 3:data = getWednesday();break;
+		case 4:data = getThursday();break;
+		case 5:data = getFriday();break;
+		case 6:data = getSaturday();break;
+		case 7:data = getSunday();break;
+		default:break;
+		}
 //		monday = getMonday();
+	}
+
+	private ArrayList<HashMap<String, String>> getSunday() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<HashMap<String, String>> getSaturday() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<HashMap<String, String>> getFriday() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<HashMap<String, String>> getThursday() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<HashMap<String, String>> getWednesday() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ArrayList<HashMap<String, String>> getTuesday() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -150,10 +189,10 @@ public class AdapterForSchedule extends MyBaseAdapter implements Runnable{
 		try{
 			HBUT hbut = HBUT.getInstance();
 			list =(LinkedList<String>)  hbut.myselfSchedule();
-			System.out.println("the size \n is "+list.size());
-			for(int i=0;i<list.size();i++){
-				System.out.println(list.get(i)+"    "+i);
-			}
+//			System.out.println("the size \n is "+list.size());
+//			for(int i=0;i<list.size();i++){
+//				System.out.println(list.get(i)+"    "+i);
+//			}
 		}catch(IOException e){
 			e.printStackTrace();
 		}
