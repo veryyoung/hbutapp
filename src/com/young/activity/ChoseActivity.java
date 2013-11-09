@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+//import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,9 +69,9 @@ public class ChoseActivity extends BaseActivity{
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setMyAdatper(){
-		this.myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text);
-		ArrayList<String> list = getSecondList();
-		myAdapter.addAll(list);
+		this.myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text,getSecondList());
+//		ArrayList<String> list = getSecondList();
+//		myAdapter.addAll(list);
 	}
 	
 	private ArrayList<String> getSecondList(){
