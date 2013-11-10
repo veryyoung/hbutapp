@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/change_title"
+        android:textSize="30sp" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/change_oldpw"
+                android:textSize="26sp" />
+
+            <EditText
+                android:id="@+id/change_oldpw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:inputType="textPassword"
+                android:textSize="26sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/change_newpw"
+                android:textSize="26sp" />
+
+            <EditText
+                android:id="@+id/change_newpw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:inputType="textPassword"
+                android:textSize="26sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/change_conpw"
+                android:textSize="26sp" />
+
+            <EditText
+                android:id="@+id/change_conpw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:inputType="textPassword"
+                android:textSize="26sp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/changeButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_button" />
+
+</LinearLayout>
