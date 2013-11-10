@@ -28,6 +28,11 @@
         <activity android:name="com.young.activity.MainActivity" />
         <activity android:name="com.young.activity.PersonalMessageActivity" />
         <activity android:name="com.young.activity.ScheduleActivity" />
+        <activity android:name="com.young.activity.InfoActivity" />
+        <activity android:name="com.young.activity.ChangeActivity" />
+        <activity android:name="com.young.activity.PublicActivity" />
+
+
         <activity
             android:name="com.young.activity.ChoseActivity"
             android:label="@string/title_activity_chose" >

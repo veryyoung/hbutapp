@@ -10,10 +10,45 @@
     <string name="title_main_page">主页</string>
     <string name="title_class_schedule">教学课表</string>
     <string name="title_personal_schedule">学生个课表</string>
-    <string name="title_student_message">学生个人信息</string>
+    <string name="title_info_page">学生个人信息</string>
+    <string name="info_name">姓      名</string>
+    <string name="info_stu_num">学      号</string>
+    <string name="info_class_name">班      级</string>
+    <string name="info_IDCard">身份证号</string>
+    <string name="info_sex">性       别</string>
+    <string name="info_ethnic">民      族</string>
+    <string name="info_college">所属学院</string>
+    <string name="info_major">专      业</string>
+    <string name="info_year">学      制</string>
+    <string name="info_political_status">政治面貌</string>
+    <string name="info_birthday">出生日期</string>
+    <string name="info_enterscholl">入校日期</string>
+    <string name="info_left_scholl">离校日期</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
-    <string name="title_activity_chose">chose</string>
+
+
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_score_management">ScoreManagement</string>
+
+    <string name="change_title">修改密码</string>
+    <string name="change_oldpw">原密码</string>
+    <string name="change_newpw">新密码</string>
+    <string name="change_conpw">确认密码</string>
+    <string name="change_button">修改</string>
+    
+    <string name="public_title">公选课信息</string>
+    <string name="public_task_no">任务编号</string>
+    <string name="public_task_name">课程名称</string>
+    <string name="public_task_place">课程地点</string>
+    <string name="public_task_type">课程类型</string>
+    <string name="public_task_college">院系</string>
+    <string name="public_task_credit">学分</string>
+    <string name="public_exam_times">考次</string>
+    <string name="public_task_score">成绩</string>
+    
+    
+    
+    
+    <string name="title_activity_chose">选择</string>
 
 </resources>
