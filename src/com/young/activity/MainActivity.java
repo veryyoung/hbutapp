@@ -37,6 +37,8 @@ public class MainActivity extends BaseActivity {
 				switch(arg2){
 				case 0:Intent intent =  new Intent(MainActivity.this,ChoseActivity.class);
 						MainActivity.this.startActivity(intent);break;
+				case 1:intent =  new Intent(MainActivity.this,InfoActivity.class);
+				MainActivity.this.startActivity(intent);break;
 				default:break;
 					
 				}

@@ -27,6 +27,7 @@
         </activity>
         <activity android:name="com.young.activity.MainActivity" />
         <activity android:name="com.young.activity.PersonalMessageActivity" />
+        <activity android:name="com.young.activity.InfoActivity" />
         <activity android:name=".activity.ScheduleActivity" />
         <activity
             android:name="com.young.activity.ChoseActivity"
