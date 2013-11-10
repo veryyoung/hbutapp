@@ -54,10 +54,10 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
-
-	public String getText() {
-		return text;
-	}
+//
+//	public String getText() {
+//		return text;
+//	}
 
 
 	@Override

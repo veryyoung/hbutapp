@@ -2,15 +2,11 @@ package com.young.activity;
 
 
 import android.os.Bundle;
-import android.widget.ListView;
-
-import com.young.R;
-import com.young.adapter.AdapterForSchedule;
 
 
 public class PersonalMessageActivity extends BaseActivity{
 	
-	private ListView listView;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

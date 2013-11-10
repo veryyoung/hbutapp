@@ -17,6 +17,9 @@ import com.young.adapter.AdapterForMain;
 public class MainActivity extends BaseActivity {
 	
 	private ListView listView;
+	public static final String CHOSE_MENU_MESSAGE = "name";
+	public static final String SCHEDULE_TABLE = "0";
+	public static final String SCORE_MANAGEMENT = "3";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,22 @@ public class MainActivity extends BaseActivity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				switch(arg2){
-				case 0:Intent intent =  new Intent(MainActivity.this,ChoseActivity.class);
+				case 0://教学课表
+						Intent intent =  new Intent(MainActivity.this,ChoseActivity.class);
+						intent.putExtra(CHOSE_MENU_MESSAGE, SCHEDULE_TABLE);
 						MainActivity.this.startActivity(intent);break;
+				case 1://学籍管理
+						break;
+				case 2://选课管理
+						break;
+				case 3://成绩管理
+						Intent intent3 = new Intent(MainActivity.this,ChoseActivity.class);
+						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
+						MainActivity.this.startActivity(intent3);
+						break;
+				case 4://个人配置
+						break;
 				default:break;
-					
 				}
 			}
 		});

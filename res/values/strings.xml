@@ -14,5 +14,6 @@
     <string name="title_activity_schedule">ScheduleActivity</string>
     <string name="title_activity_chose">chose</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_score_management">ScoreManagement</string>
 
 </resources>
