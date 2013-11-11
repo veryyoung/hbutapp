@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,12 +15,14 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.young.R;
-import com.young.business.HBUT;
 
 public class loginActivity extends Activity {
+
+	public static final String USERNAME = "userName";
+	public static final String PASSWORD = "passWord";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,39 +49,19 @@ public class loginActivity extends Activity {
 					public void run() {
 						String username = usernameEditText.getText().toString();
 						String password = passwordEditText.getText().toString();
-						HBUT hbut = HBUT.getInstance();
-						try {
 
-							Boolean loginFlag = hbut.login(username, password);
-							if (loginFlag) {
-								Looper.prepare();
-								Toast.makeText(getBaseContext(), "登录成功",
-										Toast.LENGTH_LONG).show();
-								if (rememberPw.isChecked()) {
-									Editor editor = sp.edit();
-									editor.putString("USER_NAME", username);
-									editor.putString("PASSWORD", password);
-									editor.commit();
-								}
 
-								Intent intent = new Intent(loginActivity.this,
-										LogoActivity.class);
-								loginActivity.this.startActivity(intent);
-								Looper.loop();
-							} else {
-								Looper.prepare();
-								Toast.makeText(getBaseContext(),
-										"登录失败，请核对您的学号和密码！", Toast.LENGTH_LONG)
-										.show();
-								Intent intent = new Intent(loginActivity.this,
-										loginActivity.class);
-								loginActivity.this.startActivity(intent);
-								Looper.loop();
-							}
-
-						} catch (IOException e) {
-							e.printStackTrace();
+						if (rememberPw.isChecked()) {
+							Editor editor = sp.edit();
+							editor.putString("USER_NAME", username);
+							editor.putString("PASSWORD", password);
+							editor.commit();
 						}
+						Intent intent = new Intent(loginActivity.this,
+								LogoActivity.class);
+						intent.putExtra(USERNAME, username);
+						intent.putExtra(PASSWORD, password);
+						loginActivity.this.startActivity(intent);
 
 					}
 				}).start();
