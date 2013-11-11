@@ -31,6 +31,7 @@
         <activity android:name="com.young.activity.InfoActivity" />
         <activity android:name="com.young.activity.ChangeActivity" />
         <activity android:name="com.young.activity.PublicActivity" />
+        <activity android:name="com.young.activity.LogoActivity" /> 
 
 
         <activity
