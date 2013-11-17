@@ -95,7 +95,7 @@ public class AdapterForMain extends MyBaseAdapter{
 		list.add(map3);
 		
 		Map<String,Object> map4 = new HashMap<String,Object>();
-		map4.put("imag",R.drawable.gerenshezhi);
+		map4.put("imag",R.drawable.gerenpeizhi);
 		map4.put("text", "个人配置");
 		list.add(map4);
 		

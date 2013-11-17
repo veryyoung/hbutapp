@@ -58,8 +58,14 @@ public class ChoseActivity extends BaseActivity implements Runnable{
 				if(switch_title==0){
 					switch(arg2){
 						case 0:Intent intent = new Intent(ChoseActivity.this,ScheduleActivity.class);
-						startActivity(intent);break;
+							intent.putExtra(ChoseItemActivity.CLASS_NAME, ScheduleActivity.NO_NAME);
+							startActivity(intent);break;
+							
+						case 1:Intent intent1 = new Intent(ChoseActivity.this,ChoseItemActivity.class);
+							
+							startActivity(intent1);break;
 						default:break;
+						
 					}
 				}//如果是成绩
 				else if(switch_title==3){
@@ -148,7 +154,7 @@ public class ChoseActivity extends BaseActivity implements Runnable{
 		try{
 			HBUT hbut = HBUT.getInstance();
 			list = (LinkedList<String>) hbut.getSemesterName();
-			System.out.println(list);
+//			System.out.println(list);
 		}catch(IOException e){
 			e.printStackTrace();
 		}

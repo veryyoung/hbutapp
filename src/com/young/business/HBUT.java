@@ -183,7 +183,7 @@ public class HBUT {
 		HttpEntity entity = response.getEntity();
 		String html = EntityUtils.toString(entity, "utf-8");
 		httpget.abort();
-
+		html = html.replace("<br />", "|");
 		// find the schedule
 		Document doc = Jsoup.parse(html);
 		Elements resultElements = doc.select("td");
@@ -313,6 +313,31 @@ public class HBUT {
 			subjectScores.add(subjectScore);
 		}
 		return subjectScores;
+	}
+	
+public ArrayList<String> getClassName() throws IOException{
+		
+		ArrayList<String> className = new ArrayList<String>();
+		String url = "http://run.hbut.edu.cn/ArrangeTask/Index";
+		HttpGet httpget = new HttpGet(url);
+		// must be the same httpClient
+		HttpResponse response = httpClient.execute(httpget);
+		HttpEntity entity = response.getEntity();
+		String html = EntityUtils.toString(entity, "utf-8");///^value=\".*\"$/
+		Document doc = Jsoup.parse(html);
+//		System.out.println("###################################");
+//		System.out.println(doc);
+//		Elements classElements = doc.select("a.t-link");
+		Elements classElements = doc.getElementsByAttribute("value");
+		// > span.t-icon t-plus
+		httpget.abort();
+//		System.out.println("**************************************");
+		for (Element element : classElements) {
+			className.add(element.attr("value"));
+//			System.out.println(element.attr("value"));
+		}
+		return className;
+		
 	}
 	
 

@@ -28,9 +28,6 @@ public class AdapterForScore extends MyBaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		while(null==score){
-			
-		}
 		return score.size();
 	}
 

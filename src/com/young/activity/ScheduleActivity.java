@@ -1,6 +1,7 @@
 package com.young.activity;
 
 import android.app.Activity;
+//import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -27,6 +28,9 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	private GestureDetector mDetector;
 	private static final int FLING_MIN_DISTANCE = 50;
 	private static final int FLING_MIN_VELOCITY = 0;
+	
+	public static final String NO_NAME = "no_class_name";
+	private String className;
 
 
 	@Override
@@ -35,6 +39,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		setContentView(R.layout.activity_schedule);
 		textView = (TextView)this.findViewById(R.id.text_schedule_title);
 		listView = (ListView)this.findViewById(R.id.list_schedule_course);
+		listView.setDividerHeight(0);
 		mDetector = new GestureDetector(this,this);
 		mDetector.setIsLongpressEnabled(true);
 //		listView.setEnabled(false);
@@ -46,11 +51,15 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		layout.setLongClickable(true);
 //		listView.setOnTouchListener(this);
 //		listView.setLongClickable(true);
-		adapter = new AdapterForSchedule(this,n);
+		//这里接收Intent传来的消息，然后传到Adapter里面去
+		className = this.getIntent().getStringExtra(ChoseItemActivity.CLASS_NAME);
+		System.out.println("this is in ScheduleActivity 55  "+className);
+		adapter = new AdapterForSchedule(this,n,className);
 		upDate();
 	}
 	
 	public void upDate(){
+		
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
@@ -91,7 +100,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 			n = (n==1)?7:n-1;
 		}
 		setDate();
-		adapter = new AdapterForSchedule(this,n);
+		adapter = new AdapterForSchedule(this,n,className);
 		upDate();
 		return false;
 	}

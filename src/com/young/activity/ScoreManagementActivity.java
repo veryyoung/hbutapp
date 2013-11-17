@@ -4,17 +4,21 @@ import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
-import android.view.View;
+//import android.view.View;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.young.R;
 import com.young.adapter.AdapterForScore;
 import com.young.business.HBUT;
 import com.young.entry.SubjectScore;
+//import java.util.logging.Handler;
 //import com.young.R.layout;
 //import com.young.R.menu;
 
@@ -23,8 +27,21 @@ public class ScoreManagementActivity extends Activity implements Runnable{
 	private TextView textTitle;
 	private ListView listScore;
 	private String title;
-	private ProgressBar progressBar;
 	private List<SubjectScore> score;
+	
+	private ProgressDialog  pd;
+	
+	private final Handler handler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			pd.dismiss();
+			super.handleMessage(msg);
+		}
+		
+
+	};
 	
 	
 
@@ -35,28 +52,29 @@ public class ScoreManagementActivity extends Activity implements Runnable{
 		textTitle = (TextView)findViewById(R.id.score_title_text);
 		listScore = (ListView)findViewById(R.id.score_list);
 		title = this.getIntent().getStringExtra(ChoseActivity.SEMESTER);
-		progressBar = (ProgressBar)findViewById(R.id.score_progress);
-		///////////////////////////////////
-		progressBar.setIndeterminate(true);
-		progressBar.setVisibility(View.VISIBLE);
-	}
-	
-	
-	
-//将setAdapter等放到这里加快速度
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
 		
-		new Thread(this).start();
-		while(null==score);
-		progressBar.setVisibility(View.GONE);
+		
+		Log.v("ScoreManagementActivity","56 is ok");
+		
+		
+		Thread thread = new Thread(this);
+		pd = ProgressDialog.show(ScoreManagementActivity.this, "请等待", "加载中，请等待...");
+		thread.start();
+		//非要这个东西，不然会报错
+		while(score==null){
+			
+		}
+
 		textTitle.setText(title);
+		Log.v("ScoreManagementActivity","63 is ok ");
 		AdapterForScore scoreAdapter = new AdapterForScore(this,score);
 		listScore.setAdapter(scoreAdapter);
-		super.onStart();
+		Log.v("ScoreManagementActivity","66 is ok ");
+		
+		
 	}
-
+	
+	
 
 
 
@@ -75,10 +93,15 @@ public class ScoreManagementActivity extends Activity implements Runnable{
 		try{
 			HBUT hbut = HBUT.getInstance();
 			score = hbut.semesterScore(title);
-			System.out.println(score);
+			System.out.println(score.get(0).getScore());
+			for (SubjectScore score1 : score) {
+				System.out.println(score1.getScore());
+			}
+			
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		handler.sendEmptyMessage(0);
 	}
 
 }

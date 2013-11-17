@@ -66,6 +66,7 @@ public class InfoActivity extends Activity {
 	}
 
 	Runnable runnableUi = new Runnable() {
+		@Override
 		public void run() {
 			name.setText(student.getStuName());
 			stuNum.setText(student.getStuNum());

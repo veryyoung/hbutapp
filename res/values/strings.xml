@@ -28,17 +28,13 @@
     <string name="info_enterscholl">入校日期</string>
     <string name="info_left_scholl">离校日期</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
-
-
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_score_management">ScoreManagement</string>
-
     <string name="change_title">修改密码</string>
     <string name="change_oldpw">原密码</string>
     <string name="change_newpw">新密码</string>
     <string name="change_conpw">确认密码</string>
     <string name="change_button">修改</string>
-    
     <string name="public_title">公选课信息</string>
     <string name="public_task_no">任务编号</string>
     <string name="public_task_name">课程名称</string>
@@ -48,10 +44,15 @@
     <string name="public_task_credit">学分</string>
     <string name="public_exam_times">考次</string>
     <string name="public_task_score">成绩</string>
-    
-    
-    
-    
     <string name="title_activity_chose">选择</string>
+    <string name="title_activity_chose_item">ChoseItemActivity</string>
+    <string name="input_hint1">输入格式：年级+班级</string>
+    <string name="input_hint2">比如：11软件1</string>
+    <string name="chose_ok">确定</string>
+    
+    <color name="green">#64ed89</color>
+    <color name="light_green">#37de6a</color>
+    <color name="gray">#CD853F</color>
+    
 
 </resources>

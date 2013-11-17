@@ -53,6 +53,7 @@ public class PublicActivity extends Activity {
 	}
 
 	Runnable runnableUi = new Runnable() {
+		@Override
 		public void run() {
 			taskNo.setText(publiClass.getTaskNo());
 			taskName.setText(publiClass.getTaskName());
