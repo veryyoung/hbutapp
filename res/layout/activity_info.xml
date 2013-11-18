@@ -8,219 +8,219 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title_info_page"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:stretchColumns="1" >
+        android:shrinkColumns="1" >
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_name"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_stu_num"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_stu_num"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+               android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_class_name"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_class_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+               android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_sex"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_sex"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_IDCard"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_IDCard"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_ethnic"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_ethnic"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_college"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_college"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_major"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_major"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_year"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_year"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_political_status"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_potitical_status"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_birthday"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_birthday"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_enterscholl"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_enterscholl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow>
 
             <TextView
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
                 android:text="@string/info_left_scholl"
-                android:textSize="26sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/info_left_scholl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="26sp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp" />
         </TableRow>
     </TableLayout>
 
