@@ -75,7 +75,6 @@ public class loginActivity extends Activity {
 		final EditText passwordEditText = (EditText) findViewById(R.id.password);
 		Button loginButton = (Button) findViewById(R.id.login_ok);
 		final CheckBox rememberPw = (CheckBox) findViewById(R.id.remember);
-		@SuppressWarnings("deprecation")
 		final SharedPreferences sp = this.getSharedPreferences("userInfo",
 				Context.MODE_WORLD_READABLE);
 		if (sp.getBoolean("ISCHECK", false)) {
