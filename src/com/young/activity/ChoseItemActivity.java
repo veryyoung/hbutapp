@@ -3,18 +3,16 @@ package com.young.activity;
 
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.logging.Handler;
-//import java.util.logging.Handler;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+//import android.os.Looper;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -25,16 +23,19 @@ import android.widget.Toast;
 
 import com.young.R;
 import com.young.business.HBUT;
+//import java.util.logging.Handler;
+//import java.util.logging.Handler;
 
 public class ChoseItemActivity extends Activity implements Runnable{
 
 	
-	private ArrayList<String> data;
+	private ArrayList<String> data = new ArrayList<String>();;
 	private TextView textTitle ;
 	private AutoCompleteTextView editClassName;
 	private Button button;
 	private String className;
 	private ProgressDialog pd;
+//	private MyHandler myHandler = null;
 	
 	public static final String CLASS_NAME = "className";
 	
@@ -43,6 +44,9 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChoseItemActivity.this,R.layout.simple_dropdown_item_1line,data);
+			System.out.println("this is in handle   "+data);
+			editClassName.setAdapter(adapter);
 			pd.dismiss();
 			super.handleMessage(msg);
 		}
@@ -58,18 +62,21 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		editClassName = (AutoCompleteTextView) findViewById(R.id.chose_auto_input);
 		button = (Button)findViewById(R.id.chose_button_ok);
 		textTitle.setText("输入班级名称");
+		
 		//在这里添加一个线程
-//		data = new ArrayList<String>();
+
 //		data.add("11软件1");
 //		data.add("11软件2");
 		pd = ProgressDialog.show(ChoseItemActivity.this, "加载中", "加载中，请稍后...");
 		Thread thread = new Thread(this);
 		thread.start();
-		while(data==null);
+
+//		while(data==null);
+		System.out.println("this is data of data  71    "+data);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.simple_dropdown_item_1line,data);
+//		editClassName.setAdapter(adapter);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,data);
-		editClassName.setAdapter(adapter);
-//		className = editClassName.getText().toString();
+		
 		editClassName.addTextChangedListener(new TextWatcher() {
 			
 			@Override
@@ -97,6 +104,7 @@ public class ChoseItemActivity extends Activity implements Runnable{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				className = editClassName.getText().toString();
 				System.out.println("in ChoseItemActivity 77"+className);
 				if("".equals(className)){
 					Toast.makeText(ChoseItemActivity.this, "查询班级不能为空", Toast.LENGTH_SHORT).show();
@@ -112,6 +120,8 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		});
 	}
 	
+
+	
 	
 	@Override
 	protected void onStart() {
@@ -119,20 +129,20 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		super.onStart();
 	}
 
-
-
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			data = HBUT.getInstance().getClassName();
-			System.out.println(data);
-			handler.sendEmptyMessage(0);
+			this.data = HBUT.getInstance().getClassName();
+			System.out.println("this is data   "+data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		
+		handler.sendEmptyMessage(0);
 	}
 	
 	
