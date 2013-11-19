@@ -4,6 +4,7 @@ import android.app.Activity;
 //import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -31,6 +32,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	
 	public static final String NO_NAME = "no_class_name";
 	private String className;
+	private Handler handler;
 
 
 	@Override
@@ -55,7 +57,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		className = this.getIntent().getStringExtra(ChoseItemActivity.CLASS_NAME);
 		System.out.println("this is in ScheduleActivity 55  "+className);
 		adapter = new AdapterForSchedule(this,n,className);
-		upDate();
+		handler = new Handler();
+		handler.post(runnableUi);
 	}
 	
 	public void upDate(){
@@ -63,6 +66,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
+	Runnable runnableUi = new Runnable() {
+		@Override
+		public void run() {
+			upDate();
+
+		};
+	};
 //
 //	public String getText() {
 //		return text;
