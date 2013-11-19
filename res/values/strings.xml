@@ -12,5 +12,7 @@
     <string name="title_personal_schedule">学生个课表</string>
     <string name="title_student_message">学生个人信息</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
+    <string name="title_activity_chose">chose</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

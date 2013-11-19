@@ -13,12 +13,12 @@ import com.young.R;
 
 public class AdapterForSchedule extends MyBaseAdapter{
 	
-	private Context context;
+//	private Context context;
 	private LayoutInflater inflater;
 	private ArrayList<HashMap<String,String>> data;
 	
 	public AdapterForSchedule(Context context){
-		this.context = context;
+//		this.context = context;
 		inflater = LayoutInflater.from(context);
 		data = getSchedule();
 	}

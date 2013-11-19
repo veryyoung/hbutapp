@@ -6,20 +6,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ScheduleActivity" >
-    
-    <TextView 
-        android:id="@+id/text_schedule_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        />
-    <ListView 
-        android:id="@+id/list_schedule_course"
-        android:layout_below="@id/text_schedule_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></ListView>
+    tools:context=".ChoseActivity" >
 
+    <TextView
+        android:id="@+id/chose_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp" />
+    
+    <ListView 
+        android:id="@+id/chose_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chose_title"
+        ></ListView>
 
 </RelativeLayout>
