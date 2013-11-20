@@ -65,14 +65,12 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		
 		//在这里添加一个线程
 
-//		data.add("11软件1");
-//		data.add("11软件2");
 		pd = ProgressDialog.show(ChoseItemActivity.this, "加载中", "加载中，请稍后...");
 		Thread thread = new Thread(this);
 		thread.start();
 
-//		while(data==null);
-		System.out.println("this is data of data  71    "+data);
+
+//		System.out.println("this is data of data  71    "+data);
 //		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.simple_dropdown_item_1line,data);
 //		editClassName.setAdapter(adapter);
 		
@@ -134,11 +132,9 @@ public class ChoseItemActivity extends Activity implements Runnable{
 		// TODO Auto-generated method stub
 		try {
 			this.data = HBUT.getInstance().getClassName();
-			System.out.println("this is data   "+data);
+//			System.out.println("this is data   "+data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
