@@ -3,8 +3,11 @@ package com.young.activity;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +29,13 @@ public class ChoseActivity extends BaseActivity implements Runnable{
         private String secondTitle;
         private ArrayAdapter<String> myAdapter;
         private LinkedList<String> list ;//= new LinkedList<String>();
+        private LinkedList<String> listSemesterName;
         private int switch_title = 10;//用来选择是哪一个activity调用了这个二级菜单
+        
+        /**
+         * to set progress dialog 
+         */
+        private ProgressDialog pd;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +49,16 @@ public class ChoseActivity extends BaseActivity implements Runnable{
                 switch(switch_title){
                 case 0:secondTitle = "课表";
                         list = getScheduleSecondList();
+                        myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text,list);
+                        upDateSecondTitle();
                         break;//教学课表的子菜单
                 case 3:secondTitle = "成绩";
                         getScoreSecondList();
                         break;//成绩管理的子菜单
                 default:break;
                 }
-                myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text,list);
-                upDateSecondTitle();
+//                myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text,list);
+//                upDateSecondTitle();
                 choseList.setOnItemClickListener(new OnItemClickListener() {
 
                         @Override
@@ -142,9 +153,10 @@ public class ChoseActivity extends BaseActivity implements Runnable{
         private void getScoreSecondList(){
                 Thread thread = new Thread(this);
                 thread.start();
-                while(list==null){
-                        
-                }
+                pd = ProgressDialog.show(ChoseActivity.this, "加载中", "加载中，请稍后...");
+//                while(list==null){
+//                        
+//                }
         }
         //在这里得到各个学期的列表，因为低年级的有些列表时没有的
 
@@ -153,13 +165,35 @@ public class ChoseActivity extends BaseActivity implements Runnable{
                 // TODO Auto-generated method stub
                 try{
                         HBUT hbut = HBUT.getInstance();
-                        list = (LinkedList<String>) hbut.getSemesterName();
-//                        System.out.println(list);
+                       list = (LinkedList<String>) hbut.getSemesterName();
+                       listSemesterName = new LinkedList<String>();
+                       for(String str:list){
+                    	  StringBuilder sb = new StringBuilder(str.substring(0, 4));
+                    	  sb.append("年第");
+                    	  sb.append(str.substring(4, 5));
+                    	  sb.append("学期");
+                    	  listSemesterName.add(sb.toString());
+                       }
+                        
                 }catch(IOException e){
                         e.printStackTrace();
                 }
+                handler.sendEmptyMessage(0);
                 
         }
+        
+        private Handler handler = new Handler(){
+
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				myAdapter = new ArrayAdapter<String>(ChoseActivity.this,R.layout.activity_chose_item,R.id.chose_item_text,listSemesterName);
+				upDateSecondTitle();
+				pd.dismiss();
+				super.handleMessage(msg);
+			}
+        	
+        };
 
 
         

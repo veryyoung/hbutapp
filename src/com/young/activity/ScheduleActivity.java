@@ -50,7 +50,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
-			data = getByDay(n);
+			data = getByDay(n-1);
 			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 			upDate();
 			pd.dismiss();
@@ -75,8 +75,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		layout.setFocusable(true);
 //		layout.setClickable(true);
 		layout.setLongClickable(true);
-//		listView.setOnTouchListener(this);
-//		listView.setLongClickable(true);
+
 		//这里接收Intent传来的消息，然后传到Adapter里面去
 		className = this.getIntent().getStringExtra(ChoseItemActivity.CLASS_NAME);
 		System.out.println("this is in ScheduleActivity 55  "+className);
@@ -131,7 +130,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 			n = (n==1)?7:n-1;
 		}
 		setDate();
-		adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,getByDay(n));
+		adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,getByDay(n-1));
 		upDate();
 		return false;
 	}
@@ -203,6 +202,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	
 	private ArrayList<HashMap<String,String>> getByDay(int day) {
 		data = new ArrayList<HashMap<String,String>>();
+		
 		HashMap<String,String> map;
 		Log.v("this","167 is ok");
 		

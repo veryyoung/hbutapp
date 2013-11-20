@@ -39,7 +39,7 @@ public class ScoreManagementActivity extends Activity{
 		textTitle = (TextView) findViewById(R.id.score_title_text);
 		listScore = (ListView) findViewById(R.id.score_list);
 		title = this.getIntent().getStringExtra(ChoseActivity.SEMESTER);
-		textTitle.setText(title);
+		textTitle.setText(title.substring(0, 4)+"年第"+title.substring(4, 5)+"学期");
 		handler = new Handler();
 		new Thread(new Runnable() {
 
