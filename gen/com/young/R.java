@@ -42,7 +42,7 @@ public final class R {
     }
     public static final class id {
         public static final int Schedule_relative_layout=0x7f090027;
-        public static final int action_settings=0x7f090039;
+        public static final int action_settings=0x7f09003a;
         public static final int btn_back=0x7f090038;
         public static final int changeButton=0x7f090003;
         public static final int change_conpw=0x7f090002;
@@ -93,6 +93,7 @@ public final class R {
         public static final int score_list=0x7f09002e;
         public static final int score_title_text=0x7f09002d;
         public static final int score_total_points=0x7f090031;
+        public static final int text1=0x7f090039;
         public static final int text_for_course=0x7f09002a;
         public static final int text_for_coursetime=0x7f09002c;
         public static final int text_main=0x7f09001d;
@@ -117,6 +118,7 @@ public final class R {
         public static final int activity_score_management_item=0x7f03000d;
         public static final int login=0x7f03000e;
         public static final int logo=0x7f03000f;
+        public static final int simple_dropdown_item_1line=0x7f030010;
     }
     public static final class menu {
         public static final int chose=0x7f080000;
