@@ -7,6 +7,7 @@ import com.young.business.HBUT;
 import com.young.entry.PubliClass;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -22,11 +23,22 @@ public class PublicActivity extends Activity {
 	TextView credit;
 	TextView times;
 	TextView score;
+	private ProgressDialog mpDialog;  
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_public);
+        mpDialog = new ProgressDialog(PublicActivity.this);  
+        mpDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置风格为圆形进度条  
+        mpDialog.setTitle("");//设置标题  
+        mpDialog.setMessage("正在玩命加载中，请稍候....");  
+        mpDialog.setIndeterminate(false);//设置进度条是否为不明确  
+        mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
+        mpDialog.show();
+		
+		
 		taskNo = (TextView) findViewById(R.id.public_task_no);
 		taskName = (TextView) findViewById(R.id.public_task_name);
 		taskPlace = (TextView) findViewById(R.id.public_task_place);
@@ -50,6 +62,7 @@ public class PublicActivity extends Activity {
 				handler.post(runnableUi);
 			}
 		}).start();
+		
 	}
 
 	Runnable runnableUi = new Runnable() {
@@ -63,6 +76,7 @@ public class PublicActivity extends Activity {
 			credit.setText(publiClass.getTaskCredit());
 			times.setText(publiClass.getExamTimes());
 			score.setText(publiClass.getScore());
+			mpDialog.dismiss();
 
 		};
 	};

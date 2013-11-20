@@ -12,14 +12,13 @@
         android:id="@+id/chose_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:gravity="center" />
-    
-    <ListView 
+        android:gravity="center"
+        android:textSize="24sp" />
+    <ListView
         android:id="@+id/chose_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/chose_title"
-        ></ListView>
+        android:layout_below="@id/chose_title" >
+    </ListView>
 
 </RelativeLayout>

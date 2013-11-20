@@ -12,40 +12,34 @@ import com.young.R;
 import com.young.entry.SubjectScore;
 
 public class AdapterForScore extends MyBaseAdapter{
-//	private ArrayList<HashMap<String,String>> list= new ArrayList<HashMap<String,String>>();
-//	private String name;//name用来获取数据的年号
 	private List<SubjectScore> score;
 	private LayoutInflater inflater;
 	
 	
 	public AdapterForScore(Context context,List<SubjectScore> score){
-		inflater = LayoutInflater.from(context);
 		this.score = score;
+		inflater = LayoutInflater.from(context);
 	}
 
 
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return score.size();
 	}
 
 	@Override
 	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return arg0;
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		MyViewItem viewItem;
 		if(null==convertView){
 			viewItem = new MyViewItem();

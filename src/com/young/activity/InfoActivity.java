@@ -7,6 +7,7 @@ import com.young.business.HBUT;
 import com.young.entry.Student;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -28,11 +29,20 @@ public class InfoActivity extends Activity {
 	private TextView birthday;
 	private TextView enterScholl;
 	private TextView leftScholl;
+	private ProgressDialog mpDialog;  
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info);
+		
+        mpDialog = new ProgressDialog(InfoActivity.this);  
+        mpDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//设置风格为圆形进度条  
+        mpDialog.setTitle("");//设置标题  
+        mpDialog.setMessage("正在玩命加载中，请稍候....");  
+        mpDialog.setIndeterminate(false);//设置进度条是否为不明确  
+        mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
+        mpDialog.show();
 
 		handler = new Handler();
 
@@ -81,6 +91,7 @@ public class InfoActivity extends Activity {
 			birthday.setText(student.getBirthDay());
 			enterScholl.setText(student.getEnterScholl());
 			leftScholl.setText(student.getLeftScholl());
+			mpDialog.dismiss();
 		};
 	};
 
