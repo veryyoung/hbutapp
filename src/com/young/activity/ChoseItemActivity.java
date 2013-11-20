@@ -40,7 +40,7 @@ public class ChoseItemActivity extends Activity implements Runnable{
                 @Override
              public void handleMessage(Message msg) {
                         // TODO Auto-generated method stub
-               ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChoseItemActivity.this,android.R.layout.simple_dropdown_item_1line,data);
+               ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChoseItemActivity.this,R.layout.simple_dropdown_item_1line,data);
 			editClassName.setAdapter(adapter);
 			pd.dismiss();
 			super.handleMessage(msg);
