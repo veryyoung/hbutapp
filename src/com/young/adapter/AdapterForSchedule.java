@@ -96,13 +96,13 @@ public class AdapterForSchedule extends MyBaseAdapter{
                 System.out.println("/////////in adapter for schedule//////////////"+isOneLine.size());
                 System.out.println(isOneLine);
                 if(isOneLine.get(position+1)==1){
-                        course.courseName.setBackgroundColor(Color.rgb(55,222,106));
-                        course.courseTeacher.setBackgroundColor(Color.rgb(55,222,106));
-                        course.courseTime.setBackgroundColor(Color.rgb(55,222,106));
+                        course.courseName.setBackgroundColor(Color.rgb(198,219,228));
+                        course.courseTeacher.setBackgroundColor(Color.rgb(198,219,228));
+                        course.courseTime.setBackgroundColor(Color.rgb(198,219,228));
                 }else{
-                        course.courseName.setBackgroundColor(Color.rgb(100,222,137));
-                        course.courseTeacher.setBackgroundColor(Color.rgb(100,222,137));
-                        course.courseTime.setBackgroundColor(Color.rgb(100,222,137));
+                        course.courseName.setBackgroundColor(Color.rgb(122, 179, 205));
+                        course.courseTeacher.setBackgroundColor(Color.rgb(122, 179, 205));
+                        course.courseTime.setBackgroundColor(Color.rgb(122, 179, 205));
                         
                 }
                 
