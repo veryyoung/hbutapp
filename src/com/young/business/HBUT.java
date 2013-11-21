@@ -214,17 +214,23 @@ public class HBUT {
 		Elements resultElements = doc.select("td");
 		PubliClass publiClass = new PubliClass();
 		publiClass.setTaskNo(resultElements.get(1).text());
-		publiClass.setTaskName(resultElements.get(2).text());
-		publiClass.setTaskType(resultElements.get(3).text());
-		publiClass.setTaskColledge(resultElements.get(4).text());
-		publiClass.setTaskCredit(resultElements.get(5).text());
-		publiClass.setExamTimes(resultElements.get(6).text());
-		publiClass.setScore(resultElements.get(7).text());
-		int size = resultElements.size();
-		for (int i = size - 1; i >= 0; i--) {
-			if (resultElements.get(i).text().equals(publiClass.getTaskNo())) {
-				publiClass.setTaskPlace(resultElements.get(i + 4).text());
-				break;
+		//如果taskNo是一个空值，就直接给其他的值赋空值
+		if("".equals(publiClass.getTaskNo())){
+			publiClass = null;
+		}else{
+			publiClass.setTaskName(resultElements.get(2).text());
+			publiClass.setTaskType(resultElements.get(3).text());
+			publiClass.setTaskColledge(resultElements.get(4).text());
+			publiClass.setTaskCredit(resultElements.get(5).text());
+			publiClass.setExamTimes(resultElements.get(6).text());
+			publiClass.setScore(resultElements.get(7).text());
+			int size = resultElements.size();
+			System.out.println("the size of result elements is "+resultElements.size());
+			for (int i = size - 1; i >= 0; i--) {
+				if (resultElements.get(i).text().equals(publiClass.getTaskNo())) {
+					publiClass.setTaskPlace(resultElements.get(i + 4).text());
+					break;
+				}
 			}
 		}
 		return publiClass;

@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PublicActivity extends Activity {
 	private Handler handler;
@@ -68,14 +69,27 @@ public class PublicActivity extends Activity {
 	Runnable runnableUi = new Runnable() {
 		@Override
 		public void run() {
-			taskNo.setText(publiClass.getTaskNo());
-			taskName.setText(publiClass.getTaskName());
-			taskPlace.setText(publiClass.getTaskPlace());
-			taskType.setText(publiClass.getTaskType());
-			college.setText(publiClass.getTaskColledge());
-			credit.setText(publiClass.getTaskCredit());
-			times.setText(publiClass.getExamTimes());
-			score.setText(publiClass.getScore());
+			if(publiClass==null){
+				Toast.makeText(PublicActivity.this, "您还没有选课！", Toast.LENGTH_SHORT).show();
+				taskNo.setText("");
+				taskName.setText("");
+				taskPlace.setText("");
+				taskType.setText("");
+				college.setText("");
+				credit.setText("");
+				times.setText("");
+				score.setText("");
+			}else{
+				taskNo.setText(publiClass.getTaskNo());
+				taskName.setText(publiClass.getTaskName());
+				taskPlace.setText(publiClass.getTaskPlace());
+				taskType.setText(publiClass.getTaskType());
+				college.setText(publiClass.getTaskColledge());
+				credit.setText(publiClass.getTaskCredit());
+				times.setText(publiClass.getExamTimes());
+				score.setText(publiClass.getScore());
+			}
+			
 			mpDialog.dismiss();
 
 		};
