@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -39,10 +38,9 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	
 	public static final String NO_NAME = "no_class_name";
 	private String className;
-/////////////////////////////////////////////////////////////////////////////////////
 	//用来存课表的变化
-	private ArrayList<Integer> isOneLine  = new ArrayList<Integer>();
-	private LinkedList<String> list;
+	private ArrayList<Integer> isOneLine ;// = new ArrayList<Integer>();
+	private LinkedList<String> list = new LinkedList<String>();
 	private ArrayList<HashMap<String,String>> data;
 	private ProgressDialog pd;
 	private Handler handler = new Handler(){
@@ -51,6 +49,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			data = getByDay(n-1);
+//			System.out.println("befor dapter in 54 the is one line is ");
+//			System.out.println(isOneLine);
 			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 			upDate();
 			pd.dismiss();
@@ -79,8 +79,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		//这里接收Intent传来的消息，然后传到Adapter里面去
 		className = this.getIntent().getStringExtra(ChoseItemActivity.CLASS_NAME);
 		System.out.println("this is in ScheduleActivity 55  "+className);
-///////////////////////////////////////////////////////////////////////////////
-		isOneLine.add(0);
+
 		Thread thread = new Thread(this);
 		thread.start();
 		pd = ProgressDialog.show(ScheduleActivity.this, "加载中", "加载中，请稍后...");
@@ -93,10 +92,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
-//
-//	public String getText() {
-//		return text;
-//	}
 
 
 	@Override
@@ -130,7 +125,10 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 			n = (n==1)?7:n-1;
 		}
 		setDate();
-		adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,getByDay(n-1));
+//		System.out.println("befor dapter in 131 the is one line is ");
+//		System.out.println(isOneLine);
+		data = getByDay(n-1);
+		adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 		upDate();
 		return false;
 	}
@@ -180,15 +178,15 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 
 			if(ScheduleActivity.NO_NAME.equals(className)){
 				list =(LinkedList<String>)  hbut.myselfSchedule();
-//				System.out.println("the size  is "+list.size());
-//				for(int i=0;i<list.size();i++){
-//					System.out.println(list.get(i)+"    "+i);
-//				}
+				System.out.println("the size  is "+list.size());
+				for(int i=0;i<list.size();i++){
+					System.out.println(list.get(i)+"    "+i);
+				}
 			}else if(className!=null){
 				list = (LinkedList<String>) hbut.classSchedule(className);
-//				for(String name:list){
-//					System.out.println(name);
-//				}
+				for(String name:list){
+					System.out.println(name);
+				}
 			}
 			handler.sendEmptyMessage(0);
 
@@ -202,16 +200,14 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	
 	private ArrayList<HashMap<String,String>> getByDay(int day) {
 		data = new ArrayList<HashMap<String,String>>();
-		
+		isOneLine = new ArrayList<Integer>();
+		isOneLine.add(0);
 		HashMap<String,String> map;
-		Log.v("this","167 is ok");
-		
-//		pd = ProgressDialog.show(context, "please wait", "please wait ...");
 		
 			for(int i = day;i<35;i+=7){
 				//map = new 
 				String total = list.get(i);
-//				System.out.println("total is "+total);
+				System.out.println("total is "+total);
 				if(!"".equals(total)){
 					String[] devided = total.split("\\|");
 					int coun = devided.length;
@@ -227,7 +223,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 						map.put("name", devided[y+0]);
 						map.put("teacher",devided[y+1]);
 						map.put("time", devided[y+2]);
-						
+						System.out.println("////////map//////////");
 						System.out.println(map);
 						if(x==0){
 							isOneLine.add(isOneLine.get(isOneLine.size()-1)==1?0:1);
@@ -250,6 +246,9 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 //				System.out.println(map);
 				
 			}
+			System.out.println("//////////////////////////////////////////////////");
+			System.out.println(isOneLine.size()+"      "+isOneLine);
+			System.out.println(data.size()+"      "+data);
 			return data;
 }
 
