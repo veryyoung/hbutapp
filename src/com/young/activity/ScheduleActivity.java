@@ -33,7 +33,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	private MyBaseAdapter adapter;
 	private int n = 1;
 	private GestureDetector mDetector;
-	private static final int FLING_MIN_DISTANCE = 50;
+	private static final int FLING_MIN_DISTANCE = 100;
 	private static final int FLING_MIN_VELOCITY = 0;
 	
 	public static final String NO_NAME = "no_class_name";
@@ -73,7 +73,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		layout.setOnTouchListener(this);
 		layout.setLongClickable(true);
 		layout.setFocusable(true);
-//		layout.setClickable(true);
+		layout.setClickable(true);
 		layout.setLongClickable(true);
 
 		//这里接收Intent传来的消息，然后传到Adapter里面去
@@ -120,16 +120,19 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		//fling to left
 		if(e1.getX()-e2.getX()>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
 			n = (n==7)?1:n+1;
+			setDate();
+			data = getByDay(n-1);
+			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
+			upDate();
 		}//fling to right
 		else if(e2.getX()-e1.getX()>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
 			n = (n==1)?7:n-1;
+			setDate();
+			data = getByDay(n-1);
+			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
+			upDate();
 		}
-		setDate();
-//		System.out.println("befor dapter in 131 the is one line is ");
-//		System.out.println(isOneLine);
-		data = getByDay(n-1);
-		adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
-		upDate();
+		
 		return false;
 	}
 	
@@ -144,6 +147,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		case 7:text = "星期天";break;
 		}
 	}
+	
+	
 
 	@Override
 	public void onLongPress(MotionEvent e) {
