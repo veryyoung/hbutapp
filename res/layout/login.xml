@@ -4,62 +4,74 @@
     android:layout_height="fill_parent"
     android:background="@drawable/login"
     android:orientation="vertical" >
-        <!-- android:background="@drawable/form" -->
+
+    <!-- android:background="@drawable/form" -->
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@drawable/form"
         android:orientation="vertical" >
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="100dp"
-            android:inputType="textPersonName" 
-            android:textSize="30sp"
-            android:textColor="#d2d2d2">
-
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="7dp"
+            android:inputType="textPersonName"
+            android:background="@null"
+            android:textColor="#d2d2d2"
+            android:textSize="23sp" >
         </EditText>
 
         <EditText
             android:id="@+id/password"
-            android:layout_marginTop="34dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:inputType="textPassword" />
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:textSize="23sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal" >
 
-        <CheckBox
-            android:layout_marginTop="10dp"
-            android:id="@+id/remember"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#4eaadc"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:gravity="center_vertical"
             android:text="@string/remember"
-            android:textSize="20sp"
-            android:button="@drawable/checkbox"  />
+            android:textColor="#434141"
+            android:textSize="10sp" />
+
+        <CheckBox
+            android:id="@+id/remember"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox" />
     </LinearLayout>
 
     <Button
         android:id="@+id/login_ok"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="#007294"
-        android:textColor="#ffffff"
         android:text="@string/login"
+        android:textColor="#ffffff"
         android:textSize="20sp" />
 
 </LinearLayout>
