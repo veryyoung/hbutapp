@@ -30,9 +30,9 @@ public class LogoActivity extends Activity {
 		backButton = (Button) findViewById(R.id.btn_back);
 
 		final String username = this.getIntent().getStringExtra(
-				loginActivity.USERNAME);
+				LoginActivity.USERNAME);
 		final String password = this.getIntent().getStringExtra(
-				loginActivity.PASSWORD);
+				LoginActivity.PASSWORD);
 		new Thread(new Runnable() {
 
 			@Override
@@ -53,7 +53,7 @@ public class LogoActivity extends Activity {
 								"登录失败，请核对您的学号和密码！", Toast.LENGTH_LONG)
 								.show();
 						Intent intent = new Intent(LogoActivity.this,
-								loginActivity.class);
+								LoginActivity.class);
 						LogoActivity.this.startActivity(intent);
 						Looper.loop();
 					}

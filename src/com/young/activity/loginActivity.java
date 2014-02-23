@@ -11,6 +11,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -18,21 +19,32 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 import com.young.R;
+import com.hbut.activity.LocalScheduleActivity;
 
-public class loginActivity extends Activity {
+public class LoginActivity extends Activity {
 
 	public static final String USERNAME = "userName";
 	public static final String PASSWORD = "passWord";
+	
+	
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-
+		@SuppressWarnings("deprecation")
+		final SharedPreferences sp = this.getSharedPreferences("userInfo",
+				Context.MODE_WORLD_READABLE);
+		//判断你是否记录了用户名和密码，如果是就直接登录
+//		if (sp.getBoolean("ISCHECK", false)){
+//			Intent intent = new Intent(loginActivity.this, MainActivity.class);
+//			loginActivity.this.startActivity(intent);
+//			return ;
+//		}
+		// end 判断你是否记录了用户名和密码，如果是就直接登录
 		if (!isOpenNetwork()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(
-					loginActivity.this);
+					LoginActivity.this);
 			builder.setTitle("没有可用的网络").setMessage("是否对网络进行设置?");
 
 			builder.setPositiveButton("是",
@@ -42,6 +54,7 @@ public class loginActivity extends Activity {
 							Intent intent = null;
 
 							try {
+								@SuppressWarnings("deprecation")
 								String sdkVersion = android.os.Build.VERSION.SDK;
 								if (Integer.valueOf(sdkVersion) > 10) {
 									intent = new Intent(
@@ -54,7 +67,7 @@ public class loginActivity extends Activity {
 									intent.setComponent(comp);
 									intent.setAction("android.intent.action.VIEW");
 								}
-								loginActivity.this.startActivity(intent);
+								LoginActivity.this.startActivity(intent);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -75,8 +88,7 @@ public class loginActivity extends Activity {
 		final EditText passwordEditText = (EditText) findViewById(R.id.password);
 		Button loginButton = (Button) findViewById(R.id.login_ok);
 		final CheckBox rememberPw = (CheckBox) findViewById(R.id.remember);
-		final SharedPreferences sp = this.getSharedPreferences("userInfo",
-				Context.MODE_WORLD_READABLE);
+		
 		if (sp.getBoolean("ISCHECK", false)) {
 			rememberPw.setChecked(true);
 			usernameEditText.setText(sp.getString("USER_NAME", ""));
@@ -99,11 +111,11 @@ public class loginActivity extends Activity {
 							editor.putString("PASSWORD", password);
 							editor.commit();
 						}
-						Intent intent = new Intent(loginActivity.this,
+						Intent intent = new Intent(LoginActivity.this,
 								LogoActivity.class);
 						intent.putExtra(USERNAME, username);
 						intent.putExtra(PASSWORD, password);
-						loginActivity.this.startActivity(intent);
+						LoginActivity.this.startActivity(intent);
 
 					}
 				}).start();
@@ -122,6 +134,17 @@ public class loginActivity extends Activity {
 				}
 			}
 		});
+		
+		Button btnLocalData = (Button)findViewById(R.id.local_schedule);
+		btnLocalData.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent inten = new Intent(LoginActivity.this,LocalScheduleActivity.class);
+				startActivity(inten);
+			}
+		});
 	}
 
 //	@Override
@@ -138,4 +161,6 @@ public class loginActivity extends Activity {
 
 		return false;
 	}
+	
+	
 }

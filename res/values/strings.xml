@@ -28,10 +28,6 @@
     <string name="info_enterscholl">入校日期</string>
     <string name="info_left_scholl">离校日期</string>
     <string name="title_activity_schedule">ScheduleActivity</string>
-<<<<<<< HEAD
-    <string name="title_activity_chose">chose</string>
-    <string name="hello_world">Hello world!</string>
-=======
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_score_management">ScoreManagement</string>
     <string name="change_title">修改密码</string>
@@ -57,7 +53,8 @@
     <color name="green">#64ed89</color>
     <color name="light_green">#37de6a</color>
     <color name="gray">#CD853F</color>
+    <!-- 这是后来做本地数据的时候添加的string -->
+    <string name="local_schedule">我的课表</string>
     
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 
 </resources>

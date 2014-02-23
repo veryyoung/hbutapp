@@ -1,17 +1,16 @@
 package com.young.activity;
 
-<<<<<<< HEAD
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.ListView;
-=======
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,21 +21,13 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 import android.widget.TextView;
 
+import com.hbut.other.Course;
+import com.hbut.sqlite.OperateDatabase;
 import com.young.R;
 import com.young.adapter.AdapterForSchedule;
 import com.young.adapter.MyBaseAdapter;
-<<<<<<< HEAD
-
-public class ScheduleActivity extends Activity {
-	
-	private TextView textView;
-	private ListView listView;
-	private String text;
-	private MyBaseAdapter adapter;
-=======
 import com.young.business.HBUT;
 //import android.content.Intent;
 
@@ -58,22 +49,34 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	private LinkedList<String> list = new LinkedList<String>();
 	private ArrayList<HashMap<String,String>> data;
 	private ProgressDialog pd;
+	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler(){
 
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			data = getByDay(n-1);
-//			System.out.println("befor dapter in 54 the is one line is ");
-//			System.out.println(isOneLine);
 			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 			upDate();
+			//判断数据库是否为空，如果是为空则写入数据
+			OperateDatabase operate = new OperateDatabase(ScheduleActivity.this);
+//			operate.clearTableSchedule();//清空schedule数据表中的内容
+			if(operate.isEmpty()){
+				//将数据格式化//将数据写入数据库.
+				for(int i = 1;i<8;i++){
+					List<Course> course = getCourse(i);
+					for(Course cou : course){
+						operate.insertData(cou);
+					}
+				}
+			}
+			operate.closeDB();
+			//end 判断数据库是否为空，如果是为空则写入数据
+			//让等待消失
 			pd.dismiss();
 			super.handleMessage(msg);
 		}
-		
 	};
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +84,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		setContentView(R.layout.activity_schedule);
 		textView = (TextView)this.findViewById(R.id.text_schedule_title);
 		listView = (ListView)this.findViewById(R.id.list_schedule_course);
-<<<<<<< HEAD
-		text = "Schedule";
-		adapter = new AdapterForSchedule(this);
-		upDate();
-	}
-	
-	public void upDate(){
-=======
 		listView.setDividerHeight(0);
 		mDetector = new GestureDetector(this,this);
 		mDetector.setIsLongpressEnabled(true);
@@ -102,38 +97,26 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 
 		//这里接收Intent传来的消息，然后传到Adapter里面去
 		className = this.getIntent().getStringExtra(ChoseItemActivity.CLASS_NAME);
-		System.out.println("this is in ScheduleActivity 55  "+className);
-
-		Thread thread = new Thread(this);
-		thread.start();
-		pd = ProgressDialog.show(ScheduleActivity.this, "加载中", "加载中，请稍后...");
-		
+		//在这里如果是使用本地数据就不需要使用线程来加载数据了
+		if(isOpenNetwork()){
+			Thread thread = new Thread(this);
+			thread.start();
+			pd = ProgressDialog.show(ScheduleActivity.this, "加载中", "加载中，请稍后...");
+			pd.setCancelable(true);
+		}else{
+			data = getDataFromDatabase(n);
+			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
+			upDate();
+		}
 		
 	}
 	
 	public void upDate(){
 		
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
 
-<<<<<<< HEAD
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public MyBaseAdapter getAdapter() {
-		return adapter;
-	}
-
-	public void setAdapter(MyBaseAdapter adapter) {
-		this.adapter = adapter;
-=======
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -162,14 +145,24 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		if(e1.getX()-e2.getX()>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
 			n = (n==7)?1:n+1;
 			setDate();
-			data = getByDay(n-1);
+			//如果打开了网络
+			if(isOpenNetwork()){
+				data = getByDay(n-1);
+			}else{
+				data = getDataFromDatabase(n);
+			}
 			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 			upDate();
 		}//fling to right
 		else if(e2.getX()-e1.getX()>FLING_MIN_DISTANCE&&Math.abs(velocityX)>FLING_MIN_VELOCITY){
 			n = (n==1)?7:n-1;
 			setDate();
-			data = getByDay(n-1);
+			//如果打开了网络
+			if(isOpenNetwork()){
+				data = getByDay(n-1);
+			}else{
+				data = getDataFromDatabase(n);
+			}
 			adapter = new AdapterForSchedule(ScheduleActivity.this,isOneLine,data);
 			upDate();
 		}
@@ -214,10 +207,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	public boolean onSingleTapUp(MotionEvent e) {
 		// TODO Auto-generated method stub
 		return false;
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 	}
-	
-	
 
 	@Override
 	public void run() {
@@ -227,15 +217,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 
 			if(ScheduleActivity.NO_NAME.equals(className)){
 				list =(LinkedList<String>)  hbut.myselfSchedule();
-				System.out.println("the size  is "+list.size());
-				for(int i=0;i<list.size();i++){
-					System.out.println(list.get(i)+"    "+i);
-				}
 			}else if(className!=null){
 				list = (LinkedList<String>) hbut.classSchedule(className);
-				for(String name:list){
-					System.out.println(name);
-				}
 			}
 			handler.sendEmptyMessage(0);
 
@@ -246,7 +229,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 
 	}
 	
-	
+	//处理得到的数据
 	private ArrayList<HashMap<String,String>> getByDay(int day) {
 		data = new ArrayList<HashMap<String,String>>();
 		isOneLine = new ArrayList<Integer>();
@@ -254,26 +237,16 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		HashMap<String,String> map;
 		
 			for(int i = day;i<35;i+=7){
-				//map = new 
 				String total = list.get(i);
-				System.out.println("total is "+total);
 				if(!"".equals(total)){
 					String[] devided = total.split("\\|");
 					int coun = devided.length;
-//					System.out.println("coun   "+coun);
-//					for(int xx = 0;xx<devided.length;xx++){
-//						System.out.println(xx+"   "+devided[xx]);
-//					}
-					////////////////
 					for(int x = 0;x<=coun/4;x++){///////////////
 						map = new HashMap<String,String>();
 						int y = x*4;
-//						System.out.println("y"+y);////////////////////////////////
 						map.put("name", devided[y+0]);
 						map.put("teacher",devided[y+1]);
 						map.put("time", devided[y+2]);
-						System.out.println("////////map//////////");
-						System.out.println(map);
 						if(x==0){
 							isOneLine.add(isOneLine.get(isOneLine.size()-1)==1?0:1);
 						}else{
@@ -290,15 +263,76 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 					data.add(map);
 					isOneLine.add(isOneLine.get(isOneLine.size()-1)==1?0:1);
 				}
-//				System.out.println(total);
-//				System.out.println(i);
-//				System.out.println(map);
 				
 			}
-			System.out.println("//////////////////////////////////////////////////");
-			System.out.println(isOneLine.size()+"      "+isOneLine);
-			System.out.println(data.size()+"      "+data);
 			return data;
 }
+	/**
+	 * 从网络得到数据 从而存入数据库
+	 * 根据星期几得到一天的课程
+	 * @param day 星期几
+	 * @return
+	 */
+	public List<Course> getCourse(int day){
+		
+		List<Course> oneDayCourse =  new ArrayList<Course>();
+		ArrayList<HashMap<String,String>> mydata = getByDay(day-1);
+		int couNum = 0;
+		for(int i = 0; i< mydata.size(); i++){
+			Course course = new Course();
+			course.setCourseName(mydata.get(i).get("name"));
+			course.setCourseTeacher(mydata.get(i).get("teacher"));
+			course.setTimeAndPlace(mydata.get(i).get("time"));
+			course.setDayOfWeek(day);
+			if(isOneLine.get(i+1) != isOneLine.get(i)){
+				couNum ++;
+			}
+			course.setCourseNum(couNum);
+			course.setIsChanged(0);
+			
+			oneDayCourse.add(course);
+		}
+		return oneDayCourse;
+	}
+	
+
+	
+	//判断是否有网
+	private boolean isOpenNetwork() {
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connManager.getActiveNetworkInfo() != null) {
+			return connManager.getActiveNetworkInfo().isAvailable();
+		}
+		return false;
+	}
+	/**
+	 * 查询一天的课程
+	 * 将数据库中数据读出并且用于创建adapter
+	 * @return
+	 */
+	public ArrayList<HashMap<String, String>> getDataFromDatabase(int day){
+		ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
+		isOneLine = new ArrayList<Integer>();
+		isOneLine.add(0);
+		isOneLine.add(1);
+		OperateDatabase od = new OperateDatabase(ScheduleActivity.this);
+			List<Course> cou = od.getClassByDay(day);
+			for(int j = 0;j<cou.size();j++){
+				HashMap<String, String> course = new HashMap<String, String>();
+				course.put("name", cou.get(j).getCourseName());
+				course.put("time", cou.get(j).getTimeAndPlace());
+				course.put("teacher", cou.get(j).getCourseTeacher());
+				if(j > 0){
+					if(cou.get(j-1).getCourseNum() != cou.get(j).getCourseNum()){
+						isOneLine.add(isOneLine.get(j-1)==0?1:0);
+					}else{
+						isOneLine.add(isOneLine.get(j-1)==0?0:1);
+					}
+				}
+				myList.add(course);
+			}
+		return myList;
+	}
+	
 
 }

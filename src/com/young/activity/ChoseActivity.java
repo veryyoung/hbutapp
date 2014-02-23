@@ -1,8 +1,5 @@
 package com.young.activity;
 
-<<<<<<< HEAD
-import android.os.Bundle;
-=======
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -16,58 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.young.R;
-<<<<<<< HEAD
-import com.young.adapter.MyBaseAdapter;
-
-public class ChoseActivity extends BaseActivity{
-	
-	private TextView choseText;
-	private ListView choseList;
-	private String secondTitle;
-	private MyBaseAdapter myAdapter;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chose);
-		choseText = (TextView)this.findViewById(R.id.chose_title);
-		choseList = (ListView)this.findViewById(R.id.chose_list);
-		secondTitle = "please chose";
-		
-		upDateSecondTitle();
-	}
-	
-	public void upDateSecondTitle(){
-		choseText.setText(secondTitle);
-		choseList.setAdapter(myAdapter);
-	}
-
-
-	public String getSecondTitle() {
-		return secondTitle;
-	}
-
-
-	public void setSecondTitle(String secondTitle) {
-		this.secondTitle = secondTitle;
-	}
-
-
-	public MyBaseAdapter getMyAdapter() {
-		return myAdapter;
-	}
-
-	public void setMyAdapter(MyBaseAdapter myAdapter) {
-		this.myAdapter = myAdapter;
-	}
-
-	
-=======
 import com.young.business.HBUT;
 //import android.widget.ArrayAdapter;
 
@@ -248,5 +197,4 @@ public class ChoseActivity extends BaseActivity implements Runnable{
 
 
         
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 }
