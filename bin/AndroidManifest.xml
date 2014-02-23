@@ -30,19 +30,14 @@
         <activity android:name="com.young.activity.MainActivity" />
         <activity android:name="com.young.activity.PersonalMessageActivity" />
         <activity android:name="com.young.activity.ScheduleActivity" />
-<<<<<<< HEAD
-=======
         <activity android:name="com.young.activity.InfoActivity" />
         <activity android:name="com.young.activity.ChangeActivity" />
         <activity android:name="com.young.activity.PublicActivity" />
         <activity android:name="com.young.activity.LogoActivity" />
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
         <activity
             android:name="com.young.activity.ChoseActivity"
             android:label="@string/title_activity_chose" >
         </activity>
-<<<<<<< HEAD
-=======
         <activity
             android:name="com.young.activity.ScoreManagementActivity"
             android:label="@string/title_activity_score_management" >
@@ -51,7 +46,6 @@
             android:name="com.young.activity.ChoseItemActivity"
             android:label="@string/title_activity_chose_item" >
         </activity>
->>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
     </application>
 
 </manifest>
