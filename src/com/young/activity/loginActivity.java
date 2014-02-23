@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +24,7 @@ public class loginActivity extends Activity {
 	public static final String USERNAME = "userName";
 	public static final String PASSWORD = "passWord";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
