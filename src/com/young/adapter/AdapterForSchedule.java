@@ -21,6 +21,10 @@ public class AdapterForSchedule extends MyBaseAdapter{
 //	private Context context;
 	private LayoutInflater inflater;
 	
+<<<<<<< HEAD
+	public AdapterForSchedule(Context context){
+//		this.context = context;
+=======
 	private ArrayList<HashMap<String,String>> data ;
 	
 	
@@ -32,6 +36,7 @@ public class AdapterForSchedule extends MyBaseAdapter{
 	
 	
 	public AdapterForSchedule(Context context,ArrayList<Integer> isOneLine, ArrayList<HashMap<String,String>> data){
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 		inflater = LayoutInflater.from(context);
 		//接收isOneLine
 		//接收data;

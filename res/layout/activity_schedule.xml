@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     android:background="#d7e6ec"
     tools:context=".ScheduleActivity" >
+    
+    <TextView 
+        android:id="@+id/text_schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        />
+    <ListView 
+        android:id="@+id/list_schedule_course"
+        android:layout_below="@id/text_schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></ListView>
 
     <TextView
         android:id="@+id/text_schedule_title"

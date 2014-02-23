@@ -1,5 +1,10 @@
 package com.young.activity;
 
+<<<<<<< HEAD
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.ListView;
+=======
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +22,21 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 import android.widget.TextView;
 
 import com.young.R;
 import com.young.adapter.AdapterForSchedule;
 import com.young.adapter.MyBaseAdapter;
+<<<<<<< HEAD
+
+public class ScheduleActivity extends Activity {
+	
+	private TextView textView;
+	private ListView listView;
+	private String text;
+	private MyBaseAdapter adapter;
+=======
 import com.young.business.HBUT;
 //import android.content.Intent;
 
@@ -58,6 +73,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		}
 		
 	};
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +81,14 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 		setContentView(R.layout.activity_schedule);
 		textView = (TextView)this.findViewById(R.id.text_schedule_title);
 		listView = (ListView)this.findViewById(R.id.list_schedule_course);
+<<<<<<< HEAD
+		text = "Schedule";
+		adapter = new AdapterForSchedule(this);
+		upDate();
+	}
+	
+	public void upDate(){
+=======
 		listView.setDividerHeight(0);
 		mDetector = new GestureDetector(this,this);
 		mDetector.setIsLongpressEnabled(true);
@@ -89,10 +113,27 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	
 	public void upDate(){
 		
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 		textView.setText(text);
 		listView.setAdapter(adapter);
 	}
 
+<<<<<<< HEAD
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public MyBaseAdapter getAdapter() {
+		return adapter;
+	}
+
+	public void setAdapter(MyBaseAdapter adapter) {
+		this.adapter = adapter;
+=======
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -173,7 +214,10 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
 	public boolean onSingleTapUp(MotionEvent e) {
 		// TODO Auto-generated method stub
 		return false;
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
 	}
+	
+	
 
 	@Override
 	public void run() {
