@@ -37,6 +37,21 @@ import com.young.verycode.CrashCode;
 import com.young.verycode.Tools;
 
 public class HBUT {
+	
+	private static HBUT hbut = null;
+	
+	private HBUT(){
+		
+	}
+	
+	public static HBUT getInstance(){
+		if(null==hbut){
+			hbut = new HBUT();
+		}
+		return hbut;
+	}
+	
+	
 	private HttpClient httpClient = new DefaultHttpClient();
 	private String username;
 	 
@@ -138,13 +153,16 @@ public class HBUT {
 		HttpEntity entity = response.getEntity();
 		String html = EntityUtils.toString(entity, "utf-8");
 		httpget.abort();
-
+		html = html.replace("<br />", "|");
+		
 		// find the schedule
 		Document doc = Jsoup.parse(html);
 
 		Elements resultElements = doc.select("td");
 		List<String> classInfo = new LinkedList<String>();
 		for (Element element : resultElements) {
+//			System.out.println("in HBUT");
+//			System.out.println(element.text());
 			classInfo.add(element.text());
 		}
 		return classInfo;
@@ -165,7 +183,7 @@ public class HBUT {
 		HttpEntity entity = response.getEntity();
 		String html = EntityUtils.toString(entity, "utf-8");
 		httpget.abort();
-
+		html = html.replace("<br />", "|");
 		// find the schedule
 		Document doc = Jsoup.parse(html);
 		Elements resultElements = doc.select("td");
@@ -196,17 +214,23 @@ public class HBUT {
 		Elements resultElements = doc.select("td");
 		PubliClass publiClass = new PubliClass();
 		publiClass.setTaskNo(resultElements.get(1).text());
-		publiClass.setTaskName(resultElements.get(2).text());
-		publiClass.setTaskType(resultElements.get(3).text());
-		publiClass.setTaskColledge(resultElements.get(4).text());
-		publiClass.setTaskCredit(resultElements.get(5).text());
-		publiClass.setExamTimes(resultElements.get(6).text());
-		publiClass.setScore(resultElements.get(7).text());
-		int size = resultElements.size();
-		for (int i = size - 1; i >= 0; i--) {
-			if (resultElements.get(i).text().equals(publiClass.getTaskNo())) {
-				publiClass.setTaskPlace(resultElements.get(i + 4).text());
-				break;
+		//如果taskNo是一个空值，就直接给其他的值赋空值
+		if("".equals(publiClass.getTaskNo())){
+			publiClass = null;
+		}else{
+			publiClass.setTaskName(resultElements.get(2).text());
+			publiClass.setTaskType(resultElements.get(3).text());
+			publiClass.setTaskColledge(resultElements.get(4).text());
+			publiClass.setTaskCredit(resultElements.get(5).text());
+			publiClass.setExamTimes(resultElements.get(6).text());
+			publiClass.setScore(resultElements.get(7).text());
+			int size = resultElements.size();
+			System.out.println("the size of result elements is "+resultElements.size());
+			for (int i = size - 1; i >= 0; i--) {
+				if (resultElements.get(i).text().equals(publiClass.getTaskNo())) {
+					publiClass.setTaskPlace(resultElements.get(i + 4).text());
+					break;
+				}
 			}
 		}
 		return publiClass;
@@ -295,6 +319,31 @@ public class HBUT {
 			subjectScores.add(subjectScore);
 		}
 		return subjectScores;
+	}
+	
+public ArrayList<String> getClassName() throws IOException{
+		
+		ArrayList<String> className = new ArrayList<String>();
+		String url = "http://run.hbut.edu.cn/ArrangeTask/Index";
+		HttpGet httpget = new HttpGet(url);
+		// must be the same httpClient
+		HttpResponse response = httpClient.execute(httpget);
+		HttpEntity entity = response.getEntity();
+		String html = EntityUtils.toString(entity, "utf-8");///^value=\".*\"$/
+		Document doc = Jsoup.parse(html);
+//		System.out.println("###################################");
+//		System.out.println(doc);
+//		Elements classElements = doc.select("a.t-link");
+		Elements classElements = doc.getElementsByAttribute("value");
+		// > span.t-icon t-plus
+		httpget.abort();
+//		System.out.println("**************************************");
+		for (Element element : classElements) {
+			className.add(element.attr("value"));
+//			System.out.println(element.attr("value"));
+		}
+		return className;
+		
 	}
 	
 

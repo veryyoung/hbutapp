@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/login"
     android:orientation="vertical" >
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+    <!-- android:background="@drawable/form" -->
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username" />
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/form"
+        android:orientation="vertical" >
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="wrap_content"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/password" />
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="7dp"
+            android:inputType="textPersonName"
+            android:background="@null"
+            android:textColor="#d2d2d2"
+            android:textSize="23sp" >
+        </EditText>
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
             android:inputType="textPassword"
-            />
-    </TableRow>
+            android:background="@null"
+            android:textSize="23sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/login_ok"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:text="@string/login" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="7dp"
+            android:gravity="center_vertical"
+            android:text="@string/remember"
+            android:textColor="#434141"
+            android:textSize="10sp" />
+
+        <CheckBox
+            android:id="@+id/remember"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/checkbox" />
     </LinearLayout>
 
-</TableLayout>
+    <Button
+        android:id="@+id/login_ok"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="#007294"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</LinearLayout>

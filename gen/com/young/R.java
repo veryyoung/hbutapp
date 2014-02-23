@@ -10,6 +10,11 @@ package com.young;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int gray=0x7f060002;
+        public static final int green=0x7f060000;
+        public static final int light_green=0x7f060001;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -21,14 +26,22 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int chengjiguanli_b=0x7f020000;
-        public static final int gerenshezhi=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int jiaoxuekebiao_1=0x7f020003;
-        public static final int xinxi=0x7f020004;
-        public static final int xuejiguanli=0x7f020005;
+        public static final int checkbox=0x7f020000;
+        public static final int checkbox_checked=0x7f020001;
+        public static final int checkbox_normal=0x7f020002;
+        public static final int chengjiguanli_b=0x7f020003;
+        public static final int cloud=0x7f020004;
+        public static final int form=0x7f020005;
+        public static final int gerenpeizhi=0x7f020006;
+        public static final int hbut=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int jiaoxuekebiao_1=0x7f020009;
+        public static final int login=0x7f02000a;
+        public static final int xinxi=0x7f02000b;
+        public static final int xuejiguanli=0x7f02000c;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int action_settings=0x7f08000e;
         public static final int chose_list=0x7f080001;
         public static final int chose_title=0x7f080000;
@@ -57,10 +70,97 @@ public final class R {
     public static final class menu {
         public static final int chose=0x7f070000;
         public static final int main=0x7f070001;
+=======
+        public static final int Schedule_relative_layout=0x7f090027;
+        public static final int action_settings=0x7f09003a;
+        public static final int btn_back=0x7f090038;
+        public static final int changeButton=0x7f090003;
+        public static final int change_conpw=0x7f090002;
+        public static final int change_newpw=0x7f090001;
+        public static final int change_oldpw=0x7f090000;
+        public static final int chose_auto_input=0x7f09000a;
+        public static final int chose_button_ok=0x7f09000b;
+        public static final int chose_class_list_item=0x7f09000c;
+        public static final int chose_item_text=0x7f090006;
+        public static final int chose_list=0x7f090005;
+        public static final int chose_list_hint1=0x7f090008;
+        public static final int chose_list_hint2=0x7f090009;
+        public static final int chose_list_title=0x7f090007;
+        public static final int chose_title=0x7f090004;
+        public static final int image=0x7f09001c;
+        public static final int info_IDCard=0x7f090011;
+        public static final int info_birthday=0x7f090017;
+        public static final int info_class_name=0x7f09000f;
+        public static final int info_college=0x7f090013;
+        public static final int info_enterscholl=0x7f090018;
+        public static final int info_ethnic=0x7f090012;
+        public static final int info_left_scholl=0x7f090019;
+        public static final int info_major=0x7f090014;
+        public static final int info_name=0x7f09000d;
+        public static final int info_potitical_status=0x7f090016;
+        public static final int info_sex=0x7f090010;
+        public static final int info_stu_num=0x7f09000e;
+        public static final int info_year=0x7f090015;
+        public static final int list_personal_schedule=0x7f09001e;
+        public static final int list_schedule_course=0x7f090029;
+        public static final int login_ok=0x7f090035;
+        public static final int main_list_title=0x7f09001b;
+        public static final int main_title=0x7f09001a;
+        public static final int password=0x7f090033;
+        public static final int pgBar=0x7f090036;
+        public static final int public_exam_times=0x7f090025;
+        public static final int public_task_college=0x7f090023;
+        public static final int public_task_credit=0x7f090024;
+        public static final int public_task_name=0x7f090020;
+        public static final int public_task_no=0x7f09001f;
+        public static final int public_task_place=0x7f090021;
+        public static final int public_task_score=0x7f090026;
+        public static final int public_task_type=0x7f090022;
+        public static final int remember=0x7f090034;
+        public static final int schedule_text_teacher=0x7f09002b;
+        public static final int score_corese_name=0x7f09002f;
+        public static final int score_grade_point_average=0x7f090030;
+        public static final int score_list=0x7f09002e;
+        public static final int score_title_text=0x7f09002d;
+        public static final int score_total_points=0x7f090031;
+        public static final int text1=0x7f090039;
+        public static final int text_for_course=0x7f09002a;
+        public static final int text_for_coursetime=0x7f09002c;
+        public static final int text_main=0x7f09001d;
+        public static final int text_schedule_title=0x7f090028;
+        public static final int tv1=0x7f090037;
+        public static final int username=0x7f090032;
+    }
+    public static final class layout {
+        public static final int activity_changepwd=0x7f030000;
+        public static final int activity_chose=0x7f030001;
+        public static final int activity_chose_item=0x7f030002;
+        public static final int activity_chose_item_list=0x7f030003;
+        public static final int activity_chose_item_list_style=0x7f030004;
+        public static final int activity_info=0x7f030005;
+        public static final int activity_main=0x7f030006;
+        public static final int activity_main_item=0x7f030007;
+        public static final int activity_personal_schedule=0x7f030008;
+        public static final int activity_public=0x7f030009;
+        public static final int activity_schedule=0x7f03000a;
+        public static final int activity_schedule_item=0x7f03000b;
+        public static final int activity_score_management=0x7f03000c;
+        public static final int activity_score_management_item=0x7f03000d;
+        public static final int login=0x7f03000e;
+        public static final int logo=0x7f03000f;
+        public static final int simple_dropdown_item_1line=0x7f030010;
+    }
+    public static final class menu {
+        public static final int chose=0x7f080000;
+        public static final int chose_item=0x7f080001;
+        public static final int main=0x7f080002;
+        public static final int score_management=0x7f080003;
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+<<<<<<< HEAD
         public static final int desc=0x7f050005;
         public static final int hello_world=0x7f05000c;
         public static final int login=0x7f050004;
@@ -71,6 +171,53 @@ public final class R {
         public static final int title_main_page=0x7f050006;
         public static final int title_personal_schedule=0x7f050008;
         public static final int title_student_message=0x7f050009;
+=======
+        public static final int cancle=0x7f050007;
+        public static final int change_button=0x7f050021;
+        public static final int change_conpw=0x7f050020;
+        public static final int change_newpw=0x7f05001f;
+        public static final int change_oldpw=0x7f05001e;
+        public static final int change_title=0x7f05001d;
+        public static final int chose_ok=0x7f05002f;
+        public static final int desc=0x7f050008;
+        public static final int hello_world=0x7f05001b;
+        public static final int info_IDCard=0x7f050010;
+        public static final int info_birthday=0x7f050017;
+        public static final int info_class_name=0x7f05000f;
+        public static final int info_college=0x7f050013;
+        public static final int info_enterscholl=0x7f050018;
+        public static final int info_ethnic=0x7f050012;
+        public static final int info_left_scholl=0x7f050019;
+        public static final int info_major=0x7f050014;
+        public static final int info_name=0x7f05000d;
+        public static final int info_political_status=0x7f050016;
+        public static final int info_sex=0x7f050011;
+        public static final int info_stu_num=0x7f05000e;
+        public static final int info_year=0x7f050015;
+        public static final int input_hint1=0x7f05002d;
+        public static final int input_hint2=0x7f05002e;
+        public static final int landing=0x7f050006;
+        public static final int login=0x7f050004;
+        public static final int password=0x7f050003;
+        public static final int public_exam_times=0x7f050029;
+        public static final int public_task_college=0x7f050027;
+        public static final int public_task_credit=0x7f050028;
+        public static final int public_task_name=0x7f050024;
+        public static final int public_task_no=0x7f050023;
+        public static final int public_task_place=0x7f050025;
+        public static final int public_task_score=0x7f05002a;
+        public static final int public_task_type=0x7f050026;
+        public static final int public_title=0x7f050022;
+        public static final int remember=0x7f050005;
+        public static final int title_activity_chose=0x7f05002b;
+        public static final int title_activity_chose_item=0x7f05002c;
+        public static final int title_activity_schedule=0x7f05001a;
+        public static final int title_activity_score_management=0x7f05001c;
+        public static final int title_class_schedule=0x7f05000a;
+        public static final int title_info_page=0x7f05000c;
+        public static final int title_main_page=0x7f050009;
+        public static final int title_personal_schedule=0x7f05000b;
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
         public static final int username=0x7f050002;
     }
     public static final class style {
@@ -95,10 +242,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }

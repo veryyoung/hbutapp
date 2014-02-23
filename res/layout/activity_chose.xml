@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/chose_title"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp" />
@@ -22,3 +23,17 @@
         ></ListView>
 
 </RelativeLayout>
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp" />
+    <ListView
+        android:id="@+id/chose_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chose_title" >
+    </ListView>
+
+</RelativeLayout>
+>>>>>>> b63a8e2cfa03fa42abf872ac25765c9d5e1a5633
