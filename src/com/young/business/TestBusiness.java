@@ -1,11 +1,10 @@
 package com.young.business;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.json.JSONException;
 
-import com.young.entry.SubjectScore;
+import com.young.entry.Student;
 
 
 
@@ -18,14 +17,14 @@ public class TestBusiness {
 	    else{
 	    	System.out.println("登录失败");
 	    }
-//		Student student = hbut.getInfo();
-//		System.out.println(student.getLeftScholl());
+		Student student = hbut.getInfo();
+		System.out.println(student.getLeftScholl());
 //		System.out.println(student.getClassName());
-	    List<SubjectScore> subjectScores = hbut.semesterScore("20121");
+//	    List<SubjectScore> subjectScores = hbut.semesterScore("20121");
 //	    Iterator<SubjectScore> it = subjectScores.iterator();
-	    for(int i=0;i<subjectScores.size();i++){
-	    	System.out.println(subjectScores.get(i).getScoreStatus());
-	    }
+//	    for(int i=0;i<subjectScores.size();i++){
+//	    	System.out.println(subjectScores.get(i).getScoreStatus());
+//	    }
 //	    while(it.hasNext()){
 //	    	SubjectScore sb = (SubjectScore) it.next();
 //	    	System.out.println(sb.getTaskNo());

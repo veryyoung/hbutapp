@@ -1,9 +1,8 @@
 package com.young.business;
 
-
-import com.young.entry.PubliClass;
+import com.young.entry.Schedule;
+import com.young.entry.Score;
 import com.young.entry.Student;
-import com.young.entry.SubjectScore;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,11 +14,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -42,7 +41,6 @@ public class HBUT {
         return hbut;
     }
 
-
     private HttpClient httpClient = new DefaultHttpClient();
     private String username;
 
@@ -54,21 +52,21 @@ public class HBUT {
      * @throws IOException
      */
     public boolean login(String username, String password) throws IOException {
-
+        // login
         this.username = username;
-        //      login
         String url = "http://run.hbut.edu.cn/Account/LogOnForJson?Mobile=1&UserName="
                 + username + "&Password=" + password + "&Role=Student";
         HttpGet httpget = new HttpGet(url);
         HttpResponse response = httpClient.execute(httpget);
-        if(response.getStatusLine().getStatusCode()==302){//object moved,代表登录失败
+        if (response.getStatusLine().getStatusCode() == 302) {// object
+            // moved,代表登录失败
             return false;
-        }
-        else if(response.getStatusLine().getStatusCode()==200){//ok,代表正常返回
+        } else if (response.getStatusLine().getStatusCode() == 200) {// ok,代表正常返回
             try {
-                JSONObject jsonObject = new JSONObject(EntityUtils.toString(response.getEntity(),"utf-8"));
-                String message  = jsonObject.getString("Message");
-                if ("登陆成功".equals(message)){
+                JSONObject jsonObject = new JSONObject(EntityUtils.toString(
+                        response.getEntity(), "utf-8"));
+                String message = jsonObject.getString("Message");
+                if ("登陆成功".equals(message)) {
                     return true;
                 }
             } catch (JSONException e) {
@@ -115,98 +113,45 @@ public class HBUT {
     }
 
     /**
-     * @return your ownen class schedule
+     * @param id
+     * @return the class schedule of the student
      * @throws IOException
      */
-    public List<String> myselfSchedule() throws IOException {
+    public List<Schedule> getSchedule(String id) throws IOException {
         // get result
-        String url = "http://run.hbut.edu.cn/ArrangeTask/MyselfSchedule";
+        String url = "http://run.hbut.edu.cn/ArrangeTask/MyselfScheduleForJson/?id="
+                + id + "&Mobile=1";
         HttpGet httpget = new HttpGet(url);
         // must be the same httpClient
         HttpResponse response = httpClient.execute(httpget);
         HttpEntity entity = response.getEntity();
         String html = EntityUtils.toString(entity, "utf-8");
         httpget.abort();
-        html = html.replace("<br />", "|");
-
-        // find the schedule
-        Document doc = Jsoup.parse(html);
-
-        Elements resultElements = doc.select("td");
-        List<String> classInfo = new LinkedList<String>();
-        for (Element element : resultElements) {
-//			System.out.println("in HBUT");
-//			System.out.println(element.text());
-            classInfo.add(element.text());
-        }
-        return classInfo;
-    }
-
-    /**
-     * @param className
-     * @return the class schedule of the class
-     * @throws IOException
-     */
-    public List<String> classSchedule(String className) throws IOException {
-        String url = "http://run.hbut.edu.cn/ArrangeTask/ClassSchedule?ClassName="
-                + className;
-        HttpGet httpget = new HttpGet(url);
-        // must be the same httpClient
-        HttpResponse response = httpClient.execute(httpget);
-        HttpEntity entity = response.getEntity();
-        String html = EntityUtils.toString(entity, "utf-8");
-        httpget.abort();
-        html = html.replace("<br />", "|");
-        // find the schedule
-        Document doc = Jsoup.parse(html);
-        Elements resultElements = doc.select("td");
-        List<String> classInfo = new LinkedList<String>();
-        for (Element element : resultElements) {
-            classInfo.add(element.text());
-            // System.out.println(i++ + "    " + element.text());
-        }
-        return classInfo;
-    }
-
-    /**
-     * @return the info of the public class
-     * @throws IOException
-     */
-    public PubliClass getPublic() throws IOException {
-        String url = "http://run.hbut.edu.cn/SelectCurriculum/PublicElectiveIndex";
-        HttpGet httpget = new HttpGet(url);
-        // must be the same httpClient
-        HttpResponse response = httpClient.execute(httpget);
-        HttpEntity entity = response.getEntity();
-        String html = EntityUtils.toString(entity, "utf-8");
-        httpget.abort();
-
-        // find the info of the public class
-        Document doc = Jsoup.parse(html);
-        Elements resultElements = doc.select("td");
-        PubliClass publiClass = new PubliClass();
-        publiClass.setTaskNo(resultElements.get(1).text());
-        //如果taskNo是一个空值，就直接给其他的值赋空值
-        if ("".equals(publiClass.getTaskNo())) {
-            publiClass = null;
-        } else {
-            publiClass.setTaskName(resultElements.get(2).text());
-            publiClass.setTaskType(resultElements.get(3).text());
-            publiClass.setTaskColledge(resultElements.get(4).text());
-            publiClass.setTaskCredit(resultElements.get(5).text());
-            publiClass.setExamTimes(resultElements.get(6).text());
-            publiClass.setScore(resultElements.get(7).text());
-            int size = resultElements.size();
-            System.out.println("the size of result elements is " + resultElements.size());
-            for (int i = size - 1; i >= 0; i--) {
-                if (resultElements.get(i).text().equals(publiClass.getTaskNo())) {
-                    publiClass.setTaskPlace(resultElements.get(i + 4).text());
-                    break;
-                }
+        List<Schedule> schedules = null;
+        try {
+            JSONObject jsonObject = new JSONObject(html);
+            JSONArray jsonArray = jsonObject.getJSONArray("TimeScheduleList");
+            int length = jsonArray.length();
+            schedules = new ArrayList<Schedule>(length);
+            JSONObject oj = null;
+            Schedule schedule = null;
+            for (int i = 0; i < length; i++) {// 遍历JSONArray
+                oj = jsonArray.getJSONObject(i);
+                schedule = new Schedule();
+                schedule.setCurName(oj.getString("CurName"));
+                schedule.setDay(oj.getInt("Day"));
+                schedule.setDayTime(oj.getInt("DayTime"));
+                schedule.setPlace(oj.getString("Place"));
+                schedule.setTeacher(oj.getString("Teacher"));
+                schedule.setWeek(oj.getString("Week"));
+                schedules.add(schedule);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return publiClass;
+        return schedules;
     }
+
 
     /**
      * @param currentPassword
@@ -216,8 +161,10 @@ public class HBUT {
      * @throws IOException
      * @throws JSONException
      */
-    public String changePass(String currentPassword, String newPassword, String confirmPassword) throws IOException, JSONException {
-        HttpPost httppost = new HttpPost("http://run.hbut.edu.cn/T_Student/Save");
+    public String changePass(String currentPassword, String newPassword,
+                             String confirmPassword) throws IOException, JSONException {
+        HttpPost httppost = new HttpPost(
+                "http://run.hbut.edu.cn/T_Student/Save");
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("ID", this.username));
         params.add(new BasicNameValuePair("UserTable", "student"));
@@ -235,84 +182,48 @@ public class HBUT {
         return message;
     }
 
+
     /**
-     * @return the semestername of the student
+     * @param isAll 是否查询全部成绩
+     * @param id
+     * @return the score list of the input id
      * @throws IOException
      */
-    public List<String> getSemesterName() throws IOException {
-
-        List<String> semesterName = new LinkedList<String>();
-        String url = "http://run.hbut.edu.cn/StuGrade/Index";
+    public List<Score> getAllScore(String id, Boolean isAll) throws IOException {
+        String url;
+        if (isAll) {
+            url = "http://run.hbut.edu.cn/StuGrade/IndexAllSemesterForJson/?id=" + id + "&Mobile=1";
+        } else {
+            url = "http://run.hbut.edu.cn//StuGrade/IndexRecentSemesterForJson/?id=" + id + "&Mobile=1";
+        }
         HttpGet httpget = new HttpGet(url);
         HttpResponse response = httpClient.execute(httpget);
         HttpEntity entity = response.getEntity();
         String html = EntityUtils.toString(entity, "utf-8");
         httpget.abort();
-
-        // find the info
-        Document doc = Jsoup.parse(html);
-        Elements resultElements = doc.select("option");
-        for (Element element : resultElements) {
-            semesterName.add(element.attr("value"));
+        List<Score> scores = null;
+        try {
+            JSONObject jsonObject = new JSONObject(html);
+            JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
+            int length = jsonArray.length();
+            scores = new LinkedList<Score>();
+            JSONObject oj = null;
+            Score score = null;
+            for (int i = 0; i < length; i++) {// 遍历JSONArray
+                oj = jsonArray.getJSONObject(i);
+                score.setCourseCredit(oj.getDouble("CourseCredit"));
+                score.setCourseName(oj.getString("CourseName"));
+                score.setCourseType(oj.getString("CourseType"));
+                score.setGrade(oj.getDouble("Grade"));
+                score.setGradePoint(oj.getDouble("GradePoint"));
+                score.setShowScore(oj.getBoolean("ShowScore"));
+                score.setTaskNo(oj.getString("TaskNo"));
+                scores.add(score);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return semesterName;
-    }
-
-    /**
-     * @param semester
-     * @return the score list of the input semester
-     * @throws IOException
-     */
-    public List<SubjectScore> semesterScore(String semester) throws IOException {
-        String url = "http://run.hbut.edu.cn/StuGrade/Index?SemesterName=" + semester;
-        HttpGet httpget = new HttpGet(url);
-        HttpResponse response = httpClient.execute(httpget);
-        HttpEntity entity = response.getEntity();
-        String html = EntityUtils.toString(entity, "utf-8");
-        httpget.abort();
-
-        List<SubjectScore> subjectScores = new LinkedList<SubjectScore>();
-        // find the info
-        Document doc = Jsoup.parse(html);
-        Elements resultElements = doc.select("td");
-        int size = resultElements.size();
-        for (int i = 0; i < size; i += 9) {
-            SubjectScore subjectScore = new SubjectScore();
-            subjectScore.setTaskNo(resultElements.get(i).text());
-            subjectScore.setTaskName(resultElements.get(i + 1).text());
-            subjectScore.setTaskType(resultElements.get(i + 2).text());
-            subjectScore.setGPA(resultElements.get(i + 3).text());
-            subjectScore.setTaskCredit(resultElements.get(i + 4).text());
-            subjectScore.setScore(resultElements.get(i + 5).text());
-            subjectScore.setScoreStatus(resultElements.get(i + 7).text());
-            subjectScores.add(subjectScore);
-        }
-        return subjectScores;
-    }
-
-    public ArrayList<String> getClassName() throws IOException {
-
-        ArrayList<String> className = new ArrayList<String>();
-        String url = "http://run.hbut.edu.cn/ArrangeTask/Index";
-        HttpGet httpget = new HttpGet(url);
-        // must be the same httpClient
-        HttpResponse response = httpClient.execute(httpget);
-        HttpEntity entity = response.getEntity();
-        String html = EntityUtils.toString(entity, "utf-8");///^value=\".*\"$/
-        Document doc = Jsoup.parse(html);
-//		System.out.println("###################################");
-//		System.out.println(doc);
-//		Elements classElements = doc.select("a.t-link");
-        Elements classElements = doc.getElementsByAttribute("value");
-        // > span.t-icon t-plus
-        httpget.abort();
-//		System.out.println("**************************************");
-        for (Element element : classElements) {
-            className.add(element.attr("value"));
-//			System.out.println(element.attr("value"));
-        }
-        return className;
-
+        return scores;
     }
 
 
