@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.young.R;
-import com.young.entry.SubjectScore;
+import com.young.entry.Score;
 
 public class AdapterForScore extends MyBaseAdapter{
-	private List<SubjectScore> score;
+	private List<Score> scores;
 	private LayoutInflater inflater;
 	
 	
-	public AdapterForScore(Context context,List<SubjectScore> score){
-		this.score = score;
+	public AdapterForScore(Context context,List<Score> scores){
+		this.scores = scores;
 		inflater = LayoutInflater.from(context);
 	}
 
@@ -25,7 +25,7 @@ public class AdapterForScore extends MyBaseAdapter{
 
 	@Override
 	public int getCount() {
-		return score.size();
+		return scores.size();
 	}
 
 	@Override
@@ -52,9 +52,9 @@ public class AdapterForScore extends MyBaseAdapter{
 			viewItem = (MyViewItem) convertView.getTag();
 		}
 		
-		viewItem.coureName.setText(score.get(position).getTaskName());
-		viewItem.pointAverage.setText("绩点："+score.get(position).getGPA()+"   学分："+score.get(position).getTaskCredit());
-		viewItem.totalPoints.setText("总成绩："+score.get(position).getScore());
+		viewItem.coureName.setText(scores.get(position).getCourseName());
+		viewItem.pointAverage.setText("绩点："+scores.get(position).getGradePoint()+"   学分："+scores.get(position).getCourseCredit());
+		viewItem.totalPoints.setText("总成绩："+scores.get(position).getGrade());
 		return convertView;
 	}
 
