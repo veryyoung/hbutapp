@@ -1,4 +1,4 @@
-package com.hbut.activity;
+package com.young.activity;
 
 import android.app.Activity;
 import android.os.Bundle;

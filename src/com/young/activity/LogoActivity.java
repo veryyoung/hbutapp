@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.young.R;
 import com.young.business.HBUT;
 import com.young.entry.Schedule;
+import com.young.entry.Score;
 import com.young.entry.Student;
 
 public class LogoActivity extends Activity {
@@ -43,51 +44,29 @@ public class LogoActivity extends Activity {
 			@Override
 			public void run() {
 				HBUT hbut = HBUT.getInstance();
-                try {
-                    if(hbut.login("1110321229","005685")){
-                        System.out.println("登录成功");
-                        List<Schedule> schedules  = hbut.getSchedule("1110321229");
-                        for (Schedule schedule:schedules){
-                            System.out.print(schedule.getCurName() +  "       ");
-                            System.out.print(schedule.getDayTime() +  "       ");
-                            System.out.print(schedule.getDay() +  "       ");
-                            System.out.print(schedule.getPlace() +  "       ");
-                            System.out.print(schedule.getTeacher() + "       ");
-                            System.out.print(schedule.getWeek() + "       ");
-                          }
-                          System.out.println();
-                    }
-                    else{
-                        System.out.println("登录失败");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                										e.printStackTrace();
-				}
 
-//				try {
-//					Boolean loginFlag = hbut.login(username, password);
-//					if (loginFlag) {
-//						Looper.prepare();
-//						Toast.makeText(getBaseContext(), "登录成功",
-//								Toast.LENGTH_LONG).show();
-////						Intent intent = new Intent(LogoActivity.this, MainActivity.class);
-//						LogoActivity.this.startActivity(intent);
-//						Looper.loop();
-//					} else {
-//						Looper.prepare();
-//						Toast.makeText(getBaseContext(),
-//								"登录失败，请核对您的学号和密码！", Toast.LENGTH_LONG)
-//								.show();
-//						Intent intent = new Intent(LogoActivity.this,
-//								LoginActivity.class);
-//						LogoActivity.this.startActivity(intent);
-//						Looper.loop();
-//					}
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
+				try {
+					Boolean loginFlag = hbut.login(username, password);
+					if (loginFlag) {
+						Looper.prepare();
+						Toast.makeText(getBaseContext(), "登录成功",
+								Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(LogoActivity.this, MainActivity.class);
+						LogoActivity.this.startActivity(intent);
+						Looper.loop();
+					} else {
+						Looper.prepare();
+						Toast.makeText(getBaseContext(),
+								"登录失败，请核对您的学号和密码！", Toast.LENGTH_LONG)
+								.show();
+						Intent intent = new Intent(LogoActivity.this,
+								LoginActivity.class);
+						LogoActivity.this.startActivity(intent);
+						Looper.loop();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
 			}
 		}).start();

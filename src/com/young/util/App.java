@@ -1,4 +1,4 @@
-package com.young.activity;
+package com.young.util;
 
 import android.app.Application;
 import android.content.Context;

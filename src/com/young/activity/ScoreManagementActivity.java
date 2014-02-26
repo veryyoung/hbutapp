@@ -15,7 +15,8 @@
 //import com.young.adapter.AdapterForScore;
 //import com.young.business.HBUT;
 //import com.young.entry.Score;
-//import com.young.entry.SubjectScore;
+//
+//import org.json.JSONException;
 //
 //public class ScoreManagementActivity extends Activity{
 //
@@ -48,8 +49,12 @@
 //			public void run() {
 //				HBUT hbut = HBUT.getInstance();
 //				try {
-//					scores = hbut.getAllScore("1110321229",true);
-//				} catch (IOException e) {
+//                    try {
+//                        scores = hbut.getAllScore("1110321229",true);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } catch (IOException e) {
 //					e.printStackTrace();
 //				}
 //				handler.post(runnableUi);
@@ -67,7 +72,7 @@
 //	Runnable runnableUi = new Runnable() {
 //		@Override
 //		public void run() {
-//			AdapterForScore scoreAdapter = new AdapterForScore(ScoreManagementActivity.this, score);
+//			AdapterForScore scoreAdapter = new AdapterForScore(ScoreManagementActivity.this, scores);
 //			listScore.setAdapter(scoreAdapter);
 //			mpDialog.dismiss();
 //		};

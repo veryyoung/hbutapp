@@ -1,20 +1,22 @@
-package com.hbut.sqlite;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.young.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import com.hbut.other.Course;
+
+
+import com.young.entry.Course;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperateDatabase {
 	
 	public static final String tag = "in OperateDataBase";
 	
 	private SQLiteDatabase db = null;
-	private MySQLiteHelper  mySQLiteHelper;
+	private MySQLiteHelper mySQLiteHelper;
 
 	public OperateDatabase(Context context) {
 		mySQLiteHelper = new MySQLiteHelper(context);

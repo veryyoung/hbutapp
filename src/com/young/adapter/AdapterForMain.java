@@ -83,11 +83,7 @@ public class AdapterForMain extends MyBaseAdapter{
 		map1.put("imag",R.drawable.xuejiguanli);
 		map1.put("text", "学籍管理");
 		list.add(map1);
-		
-		Map<String,Object> map2 = new HashMap<String,Object>();
-		map2.put("imag",R.drawable.xinxi);
-		map2.put("text", "选课管理");
-		list.add(map2);
+
 		
 		Map<String,Object> map3 = new HashMap<String,Object>();
 		map3.put("imag",R.drawable.chengjiguanli_b);

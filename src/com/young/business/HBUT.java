@@ -24,7 +24,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class HBUT {
@@ -204,13 +203,12 @@ public class HBUT {
 		HttpEntity entity = response.getEntity();
 		String html = EntityUtils.toString(entity, "utf-8");
 		httpget.abort();
-		System.out.println(html.replaceAll("\\\\", ""));
-		System.out.println("aaa");
-		List<Score> scores = null;
-		JSONObject jsonObject = new JSONObject(html.replaceAll("\\\\", ""));
+        html = html.replaceAll("\\\\", "");
+        html = html.substring(html.indexOf("{"), html.lastIndexOf("}") + 1);
+		JSONObject jsonObject = new JSONObject(html);
 		JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
 		int length = jsonArray.length();
-		scores = new LinkedList<Score>();
+        List<Score>  scores = new  ArrayList<Score>();
 		JSONObject oj = null;
 		Score score = null;
 		for (int i = 0; i < length; i++) {// 遍历JSONArray
@@ -221,8 +219,8 @@ public class HBUT {
 			score.setCourseType(oj.getString("CourseType"));
 			score.setGrade(oj.getDouble("Grade"));
 			score.setGradePoint(oj.getDouble("GradePoint"));
-			score.setShowScore(oj.getBoolean("ShowScore"));
-			score.setTaskNo(oj.getString("TaskNo"));
+			score.setShowScore(oj.getBoolean("IsShowScore"));
+			score.setTaskNo(oj.getString("TaskNO"));
 			scores.add(score);
 		}
 		return scores;

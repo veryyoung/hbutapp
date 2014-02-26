@@ -1,4 +1,4 @@
-package com.hbut.other;
+package com.young.entry;
 
 public class Course {
 	

@@ -19,7 +19,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 import com.young.R;
-import com.hbut.activity.LocalScheduleActivity;
 
 public class LoginActivity extends Activity {
 

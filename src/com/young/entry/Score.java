@@ -7,7 +7,7 @@ public class Score {
     private double courseCredit; // 学分
     private double grade; // 成绩
     private double gradePoint; // 绩点
-    private boolean isShowScore; //是否公共
+    private boolean isShowScore; //是否公布
 
     public String getTaskNo() {
         return taskNo;
