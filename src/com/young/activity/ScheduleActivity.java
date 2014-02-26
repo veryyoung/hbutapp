@@ -95,7 +95,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 				&& Math.abs(velocityX) > FLING_MIN_VELOCITY) {
 			n = (n == 7) ? 1 : n + 1;
 			setDate();
-			// 如果打开了网络
 			data = getDataFromDatabase(n);
 			adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
 					data);
@@ -105,7 +104,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 				&& Math.abs(velocityX) > FLING_MIN_VELOCITY) {
 			n = (n == 1) ? 7 : n - 1;
 			setDate();
-			// 如果打开了网络
 			data = getDataFromDatabase(n);
 			adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
 					data);
@@ -167,18 +165,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 	}
 
 	/**
-	 * 根据星期几得到一天的课程
-	 * 
-	 * @param day
-	 *            星期几
-	 * @return
-	 */
-	public List<Schedule> getCourse(int day) {
-		return databaseHelper.getClassByDay(day, "1110321229");
-	}
-
-
-	/**
 	 * 查询一天的课程 将数据库中数据读出并且用于创建adapter
 	 * 
 	 * @return
@@ -195,11 +181,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 		for (int j = 0; j < cou.size(); j++) {
 			HashMap<String, String> course = new HashMap<String, String>();
 			course.put("name", cou.get(j).getCurName());
-			course.put("time", cou.get(j).getWeek());
+			course.put("time", cou.get(j).getPlace() + "   "
+					+ cou.get(j).getWeek());
 			course.put("teacher", cou.get(j).getTeacher());
 			if (j > 0) {
 				if (cou.get(j - 1).getDayTime() != cou.get(j).getDayTime()) {
-					isOneLine.add(isOneLine.get(j - 1) == 0 ? 1 : 0);
+					isOneLine.add(isOneLine.get(isOneLine.size() - 1) == 0 ? 1
+							: 0);
 				} else {
 					isOneLine.add(isOneLine.get(j - 1) == 0 ? 0 : 1);
 				}
