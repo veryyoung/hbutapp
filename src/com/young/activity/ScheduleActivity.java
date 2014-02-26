@@ -29,7 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ScheduleActivity extends Activity implements OnTouchListener, OnGestureListener {
+public class ScheduleActivity extends Activity implements OnTouchListener,
+        OnGestureListener {
 
     private TextView textView;
     private ListView listView;
@@ -39,9 +40,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
     private GestureDetector mDetector;
     private static final int FLING_MIN_DISTANCE = 100;
     private static final int FLING_MIN_VELOCITY = 0;
-    private DatabaseHelper databaseHelper;
-
-    //用来存课表的变化
+    private DatabaseHelper databaseHelper ;
+    // 用来存课表的变化
     private ArrayList<Integer> isOneLine;// = new ArrayList<Integer>();
     private List<Schedule> schedules;
     private ArrayList<HashMap<String, String>> data;
@@ -55,7 +55,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         listView.setDividerHeight(0);
         mDetector = new GestureDetector(this, this);
         mDetector.setIsLongpressEnabled(true);
-//		listView.setEnabled(false);
+        // listView.setEnabled(false);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.Schedule_relative_layout);
         layout.setOnTouchListener(this);
         layout.setLongClickable(true);
@@ -72,7 +72,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         textView.setText(text);
         listView.setAdapter(adapter);
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -93,29 +92,33 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
                            float velocityY) {
-        //fling to left
-        if (e1.getX() - e2.getX() > FLING_MIN_DISTANCE && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
+        // fling to left
+        if (e1.getX() - e2.getX() > FLING_MIN_DISTANCE
+                && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 7) ? 1 : n + 1;
             setDate();
-            //如果打开了网络
+            // 如果打开了网络
             if (isOpenNetwork()) {
                 data = getByDay(n - 1);
             } else {
                 data = getDataFromDatabase(n);
             }
-            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
+            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
+                    data);
             upDateUI();
-        }//fling to right
-        else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
+        }// fling to right
+        else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE
+                && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 1) ? 7 : n - 1;
             setDate();
-            //如果打开了网络
+            // 如果打开了网络
             if (isOpenNetwork()) {
                 data = getByDay(n - 1);
             } else {
                 data = getDataFromDatabase(n);
             }
-            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
+            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
+                    data);
             upDateUI();
         }
 
@@ -148,7 +151,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         }
     }
 
-
     @Override
     public void onLongPress(MotionEvent e) {
         // TODO Auto-generated method stub
@@ -174,49 +176,31 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         return false;
     }
 
-
-    //处理得到的数据
+    // 处理得到的数据
     private ArrayList<HashMap<String, String>> getByDay(int day) {
         data = new ArrayList<HashMap<String, String>>();
         isOneLine = new ArrayList<Integer>();
         isOneLine.add(0);
+        List<Schedule> daySchedules = getCourse(day);
         HashMap<String, String> map;
-
-//        for (int i = day; i < 35; i += 7) {
-//            String total = schedules.get(i);
-//            if (!"".equals(total)) {
-//                String[] devided = total.split("\\|");
-//                int coun = devided.length;
-//                for (int x = 0; x <= coun / 4; x++) {///////////////
-//                    map = new HashMap<String, String>();
-//                    int y = x * 4;
-//                    map.put("name", devided[y + 0]);
-//                    map.put("teacher", devided[y + 1]);
-//                    map.put("time", devided[y + 2]);
-//                    if (x == 0) {
-//                        isOneLine.add(isOneLine.get(isOneLine.size() - 1) == 1 ? 0 : 1);
-//                    } else {
-//                        isOneLine.add(isOneLine.get(isOneLine.size() - 1));
-//                    }
-//                    data.add(map);
-//                }
-//
-//            } else {
-//                map = new HashMap<String, String>();
-//                map.put("name", "");
-//                map.put("time", "");
-//                map.put("teacher", "");
-//                data.add(map);
-//                isOneLine.add(isOneLine.get(isOneLine.size() - 1) == 1 ? 0 : 1);
-//            }
-//
-//        }
-
+        for (int x = 0; x <= 6; x++) {
+            map = new HashMap<String, String>();
+            map.put("name", daySchedules.get(x).getCurName());
+            map.put("teacher", daySchedules.get(x).getTeacher());
+            map.put("time", daySchedules.get(x).getWeek());
+            if (x == 0) {
+                isOneLine.add(isOneLine.get(isOneLine.size() - 1) == 1 ? 0 : 1);
+            } else {
+                isOneLine.add(isOneLine.get(isOneLine.size() - 1));
+            }
+            data.add(map);
+        }
         return data;
     }
 
     /**
      * 根据星期几得到一天的课程
+     *
      * @param day 星期几
      * @return
      */
@@ -224,8 +208,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         return databaseHelper.getClassByDay(day, "1110321229");
     }
 
-
-    //判断是否有网
+    // 判断是否有网
     private boolean isOpenNetwork() {
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connManager.getActiveNetworkInfo() != null) {
@@ -235,8 +218,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
     }
 
     /**
-     * 查询一天的课程
-     * 将数据库中数据读出并且用于创建adapter
+     * 查询一天的课程 将数据库中数据读出并且用于创建adapter
      *
      * @return
      */
@@ -266,13 +248,15 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
         return myList;
     }
 
+    private class GetSchedualFromNetWork extends
+            AsyncTask<String, Integer, String> {
 
-    private class GetSchedualFromNetWork extends AsyncTask {
         @Override
-        protected String doInBackground(Object[] objects) {
+        protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
                 schedules = hbut.getSchedule("1110321229");
+
                 for (Schedule schedule : schedules) {
                     databaseHelper.addSchedule(schedule);
                 }
@@ -281,13 +265,14 @@ public class ScheduleActivity extends Activity implements OnTouchListener, OnGes
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return "ok";
+            return null;
         }
 
         @Override
-        protected void onPostExecute(Object result) {
-            Toast.makeText(getApplicationContext(), result.toString(),
-                    Toast.LENGTH_LONG).show();
+        protected void onPostExecute(String result) {
+            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG)
+                    .show();
         }
+
     }
 }
