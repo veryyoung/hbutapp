@@ -31,37 +31,35 @@ public class DatabaseHelper {
      * 根据星期几来查询全天的课程数据
      *
      * @param day 星期几
+     * @param id     学号
      * @return
      */
 
-    public List<Course> getClassByDay(int day) {
-        List<Course> oneDayCourse = new ArrayList<Course>();
-//		String[] columns = {MySQLiteHelper.COURSE_NAME, MySQLiteHelper.COURSE_TEACHER, MySQLiteHelper.TIME_AND_PLACE};
-        String selection = "day_of_week = ?";
-        String myDay = "" + day;
-        String[] selectionArgs = {myDay};
-        String orderBy = "times_of_course asc";
+    public List<Schedule> getClassByDay(int day,String id) {
+        List<Schedule> oneDayCourse = null ;
         if (db != null) {
             if (db.isOpen()) {
-                Cursor cursor = db.query(MySQLiteHelper.TABLE_NAME, null, selection, selectionArgs, null, null, orderBy);
-                int courseNameIndex = cursor.getColumnIndex(MySQLiteHelper.COURSE_NAME);
-                int courseTeacherIndex = cursor.getColumnIndex(MySQLiteHelper.COURSE_TEACHER);
-                int timePlaceIndex = cursor.getColumnIndex(MySQLiteHelper.TIME_AND_PLACE);
-                int dayOfWeek = cursor.getColumnIndex(MySQLiteHelper.DAY_OF_WEEK);
-                int courseNum = cursor.getColumnIndex(MySQLiteHelper.TIMES_OF_COURSE);
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()) {
-                    Course course = new Course();
-                    course.setCourseName(cursor.getString(courseNameIndex));
-                    course.setCourseTeacher(cursor.getString(courseTeacherIndex));
-                    course.setTimeAndPlace(cursor.getString(timePlaceIndex));
-                    course.setDayOfWeek(cursor.getInt(dayOfWeek));
-                    course.setCourseNum(cursor.getInt(courseNum));
-                    cursor.moveToNext();
-                    oneDayCourse.add(course);
+                Cursor cursor = db.rawQuery("select * from schedule where day = ? and stu_id = ?", new String[]{day + "", id});
+                Schedule schedule = null;
+                oneDayCourse = new ArrayList<Schedule>();
+                while (cursor.moveToNext()) {
+                    schedule = new Schedule();
+                    schedule.setCurName(cursor.getString(cursor.getColumnIndex("cur_name")));
+                    schedule.setWeek(cursor.getString(cursor.getColumnIndex("week")));
+                    schedule.setTeacher(cursor.getString(cursor.getColumnIndex("teacher")));
+                    schedule.setPlace(cursor.getString(cursor.getColumnIndex("place")));
+                    schedule.setDay(cursor.getInt(cursor.getColumnIndex("day")));
+                    schedule.setDayTime(cursor.getInt(cursor.getColumnIndex("day_time")));
+                    schedule.setStuId(cursor.getString(cursor.getColumnIndex("stu_id")));
+                    short isLocal = cursor.getShort(cursor.getColumnIndex("is_local"));
+                    if (0 == isLocal) {
+                        schedule.setIsLocal(false);
+                    } else {
+                        schedule.setIsLocal(true);
+                    }
+                    oneDayCourse.add(schedule);
                 }
                 cursor.close();
-                cursor = null;
             }
         }
         return oneDayCourse;

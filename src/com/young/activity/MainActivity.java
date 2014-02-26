@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.young.R;
 import com.young.adapter.AdapterForMain;
+import com.young.entry.Schedule;
 
 public class MainActivity extends BaseActivity {
 
@@ -35,10 +36,10 @@ public class MainActivity extends BaseActivity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				switch(arg2){
-//				case 0://教学课表
-//						Intent intent =  new Intent(MainActivity.this,ChoseActivity.class);
+				case 0://教学课表
+						Intent intent =  new Intent(MainActivity.this,ScheduleActivity.class);
 //						intent.putExtra(CHOSE_MENU_MESSAGE, SCHEDULE_TABLE);
-//						MainActivity.this.startActivity(intent);break;
+						MainActivity.this.startActivity(intent);break;
 
 
 //				case 2://成绩管理
@@ -47,7 +48,7 @@ public class MainActivity extends BaseActivity {
 //						MainActivity.this.startActivity(intent3);
 //						break;
 				case 1:
-					Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+					intent = new Intent(MainActivity.this, InfoActivity.class);
 					MainActivity.this.startActivity(intent);
 					break;
 
