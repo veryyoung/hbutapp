@@ -8,14 +8,14 @@ public class Score {
     private double grade; // 成绩
     private double gradePoint; // 绩点
     private boolean isShowScore; //是否公布
-    private String id; //学号
+    private String stuId; //学号
 
-    public String getId() {
-        return id;
+    public String getStuId() {
+        return stuId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStuId(String stuId) {
+        this.stuId = stuId;
     }
 
     public String getTaskNo() {
@@ -73,7 +73,6 @@ public class Score {
     public void setShowScore(boolean isShowScore) {
         this.isShowScore = isShowScore;
     }
-
 
 
 }

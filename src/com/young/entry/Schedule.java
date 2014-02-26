@@ -7,16 +7,24 @@ public class Schedule {
     private String place;// 课程地点
     private String teacher;// 老师
     private String week;// 上课周数
-    private String id;//     学号
+    private String stuId;//     学号
+    private Boolean isLocal; //是否为本地课表
 
-    public String getId() {
-        return id;
+    public String getStuId() {
+        return stuId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStuId(String stuId) {
+        this.stuId = stuId;
     }
 
+    public Boolean getIsLocal() {
+        return isLocal;
+    }
+
+    public void setIsLocal(Boolean isLocal) {
+        this.isLocal = isLocal;
+    }
 
     public String getCurName() {
         return curName;

@@ -19,8 +19,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String WEEK = "week";// 和周数
     public static final String DAY = "day"; //星期几
     public static final String DAY_TIME = "day_time"; //本日第几次课
-    public static final String ID = "id" ;//学号
-    public static final String IS_CHANGED = "is_changed"; //是否被修改, 0,没有被修改， 1，被修改.
+    public static final String ID = "stu_id";//学号
+    public static final String IS_LOCAL = "is_local";//是否为本地课表
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,19 +38,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 DAY + " INTEGER," +
                 DAY_TIME + " INTEGER," +
                 ID + "  VARCHAR," +
-                WEEK + " VARCHAR ) ";
-        db.execSQL(sql);
-
-        //创建本地课表数据库
-        sql = " create table if not exists local_schedule (_id integer primary key autoincrement," +
-                CUR_NAME + "  ,VARCHAR" +
-                TEACHER + " VARCHAR, " +
-                PLACE + " VARCHAR ," +
-                DAY + " INTEGER," +
-                DAY_TIME + " INTEGER," +
-                WEEK + " VARCHAR" +
-                ID + "  VARCHAR," +
-                IS_CHANGED + " integer default '0') ";
+                WEEK + " VARCHAR ," +
+                IS_LOCAL + " TINYINT default 0 ) ";
         db.execSQL(sql);
     }
 
