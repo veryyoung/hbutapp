@@ -6,22 +6,22 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
-import com.young.entry.Course;
+import com.young.entry.Schedule;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperateDatabase {
+public class DatabaseHelper {
 	
 	public static final String tag = "in OperateDataBase";
 	
 	private SQLiteDatabase db = null;
-	private MySQLiteHelper mySQLiteHelper;
+	private SQLiteHelper sqLiteHelper;
 
-	public OperateDatabase(Context context) {
-		mySQLiteHelper = new MySQLiteHelper(context);
+	public DatabaseHelper(Context context) {
+		sqLiteHelper = new SQLiteHelper(context);
 		try{
-			db = mySQLiteHelper.getWritableDatabase();
+			db = sqLiteHelper.getWritableDatabase();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -76,7 +76,7 @@ public class OperateDatabase {
 	 * @return
 	 */
 	
-	public Long insertData(Course course){
+	public Long addSchedule (Schedule schedule){
 		ContentValues values = new ContentValues();
 		if(course.getCourseName() != null){
 			values.put(MySQLiteHelper.COURSE_NAME, course.getCourseName());
@@ -125,7 +125,7 @@ public class OperateDatabase {
 			}
 		}else{
 			try{
-				db = mySQLiteHelper.getWritableDatabase();
+				db = sqLiteHelper.getWritableDatabase();
 				return true;
 			}catch(Exception e){
 				e.printStackTrace();
@@ -144,7 +144,7 @@ public class OperateDatabase {
 	public boolean isEmpty(){
 		if(db != null && db.isOpen()){
 			if(db.isOpen()){
-			    Cursor cursor = db.query( MySQLiteHelper.TABLE_NAME, null, null, null, null, null, null);
+			    Cursor cursor = db.query( sqLiteHelper.TABLE_NAME, null, null, null, null, null, null);
 				if(cursor.getCount() < 1){
 					return true;
 				}else{
@@ -159,7 +159,7 @@ public class OperateDatabase {
 		public void clearTableSchedule(){
 			if(db != null){
 				if(db.isOpen()){
-					String sql = "delete from "+MySQLiteHelper.TABLE_NAME + " where _id > 0";
+					String sql = "delete from "+sqLiteHelper.TABLE_NAME + " where _id > 0";
 					db.execSQL(sql);
 				}
 			}

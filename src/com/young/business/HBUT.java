@@ -139,6 +139,7 @@ public class HBUT {
 		for (int i = 0; i < length; i++) {// 遍历JSONArray
 			oj = jsonArray.getJSONObject(i);
 			schedule = new Schedule();
+            schedule.setId(id);
 			schedule.setCurName(oj.getString("CurName"));
 			schedule.setDay(oj.getInt("Day"));
 			schedule.setDayTime(oj.getInt("DayTime"));
@@ -214,6 +215,7 @@ public class HBUT {
 		for (int i = 0; i < length; i++) {// 遍历JSONArray
 			oj = jsonArray.getJSONObject(i);
 			score = new Score();
+            score.setId(id);
 			score.setCourseCredit(oj.getDouble("CourseCredit"));
 			score.setCourseName(oj.getString("CourseName"));
 			score.setCourseType(oj.getString("CourseType"));

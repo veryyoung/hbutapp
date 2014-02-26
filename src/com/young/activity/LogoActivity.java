@@ -1,9 +1,6 @@
 package com.young.activity;
 
 import java.io.IOException;
-import java.util.List;
-
-import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,9 +15,6 @@ import android.widget.Toast;
 
 import com.young.R;
 import com.young.business.HBUT;
-import com.young.entry.Schedule;
-import com.young.entry.Score;
-import com.young.entry.Student;
 
 public class LogoActivity extends Activity {
 //	private ProgressBar progressBar;

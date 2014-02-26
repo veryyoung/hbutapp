@@ -8,6 +8,15 @@ public class Score {
     private double grade; // 成绩
     private double gradePoint; // 绩点
     private boolean isShowScore; //是否公布
+    private String id; //学号
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTaskNo() {
         return taskNo;
