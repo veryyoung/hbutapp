@@ -1,16 +1,9 @@
 package com.young.activity;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,11 +12,13 @@ import com.young.R;
 import com.young.adapter.AdapterForScore;
 import com.young.adapter.MyBaseAdapter;
 import com.young.business.HBUT;
-import com.young.entry.Schedule;
 import com.young.entry.Score;
 import com.young.sqlite.DatabaseHelper;
 
 import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
 
 public class ScoreManagementActivity extends Activity {
 
@@ -46,6 +41,7 @@ public class ScoreManagementActivity extends Activity {
         text = title.substring(0, 4) + "年第" + title.substring(4, 5) + "学期";
         databaseHelper = new DatabaseHelper(ScoreManagementActivity.this);
         scores = getDataFromDatabase();
+        Log.d("test", scores.size()+"");
         adapter = new AdapterForScore(ScoreManagementActivity.this, scores);
         upDateUI();
     }
@@ -62,6 +58,7 @@ public class ScoreManagementActivity extends Activity {
      */
     public List<Score> getDataFromDatabase() {
         if (databaseHelper.isEmpty("score")) {
+            Log.d("test","empty");
             new GetScoreFromNetWork().execute("");
         }
         return databaseHelper.getScore("1110321229");
