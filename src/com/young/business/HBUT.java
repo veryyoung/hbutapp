@@ -1,5 +1,7 @@
 package com.young.business;
 
+import android.util.Log;
+
 import com.young.entry.Schedule;
 import com.young.entry.Score;
 import com.young.entry.Student;
@@ -198,6 +200,7 @@ public class HBUT {
         httpget.abort();
         html = html.replaceAll("\\\\", "");
         html = html.substring(html.indexOf("{"), html.lastIndexOf("}") + 1);
+        Log.d("test",html);
         JSONObject jsonObject = new JSONObject(html);
         JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
         int length = jsonArray.length();

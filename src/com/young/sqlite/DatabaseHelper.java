@@ -139,7 +139,7 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 db.execSQL("insert into score (task_no,course_name,course_type," +
-                        "course_credit,grade,grade_point,is_show_score,stu_id)",
+                        "course_credit,grade,grade_point,is_show_score,stu_id)  values(?,?,?,?,?,?,?,?)",
                         new Object[]{score.getTaskNo(), score.getCourseName(), score.getCourseType(),
                                 score.getCourseCredit(), score.getGrade(), score.getGradePoint(),
                                 score.isShowScore() ? 1 : 0, score.getStuId()});

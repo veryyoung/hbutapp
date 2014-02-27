@@ -47,6 +47,7 @@ public class ScoreManagementActivity extends Activity {
         databaseHelper = new DatabaseHelper(ScoreManagementActivity.this);
         scores = getDataFromDatabase();
         adapter = new AdapterForScore(ScoreManagementActivity.this, scores);
+        upDateUI();
     }
 
     public void upDateUI() {
@@ -73,7 +74,7 @@ public class ScoreManagementActivity extends Activity {
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
-                scores = hbut.getScore("111032129");
+                scores = hbut.getScore("1110321229");
                 for (Score score : scores) {
                     databaseHelper.addScore(score);
                 }
