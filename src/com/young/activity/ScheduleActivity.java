@@ -170,7 +170,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 	 * @return
 	 */
 	public ArrayList<HashMap<String, String>> getDataFromDatabase(int day) {
-		if (databaseHelper.isEmpty()) {
+		if (databaseHelper.isEmpty("schedule")) {
 			new GetSchedualFromNetWork().execute("");
 		}
 		ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();

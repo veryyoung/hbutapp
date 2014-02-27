@@ -43,11 +43,11 @@ public class MainActivity extends BaseActivity {
                         break;
 
 
-//				case 2://成绩管理
-//						Intent intent3 = new Intent(MainActivity.this,ChoseActivity.class);
+				case 2://成绩管理
+						Intent intent3 = new Intent(MainActivity.this,ScoreManagementActivity.class);
 //						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
-//						MainActivity.this.startActivity(intent3);
-//						break;
+						MainActivity.this.startActivity(intent3);
+						break;
                     case 1:
                         intent = new Intent(MainActivity.this, InfoActivity.class);
                         MainActivity.this.startActivity(intent);
