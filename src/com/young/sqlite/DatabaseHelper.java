@@ -121,6 +121,7 @@ public class DatabaseHelper {
                     score.setCourseName(cursor.getString(cursor.getColumnIndex("course_name")));
                     score.setCourseType(cursor.getString(cursor.getColumnIndex("course_type")));
                     score.setTaskNo(cursor.getString(cursor.getColumnIndex("task_no")));
+                    scores.add(score);
                 }
                 cursor.close();
             }
