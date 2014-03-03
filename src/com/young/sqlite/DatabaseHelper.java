@@ -35,7 +35,7 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 Cursor cursor = db.rawQuery(
-                        "select * from schedule where day = ? and stu_id = ?",
+                        "select * from schedule where day = ? and stu_id = ? order by "+SQLiteHelper.DAY_TIME + " asc",
                         new String[]{day + "", id});
                 Schedule schedule = null;
                 oneDayCourse = new ArrayList<Schedule>();

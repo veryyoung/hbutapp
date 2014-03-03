@@ -178,22 +178,52 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 		isOneLine.add(0);
 		isOneLine.add(1);
 		List<Schedule> cou = databaseHelper.getClassByDay(day, "1110321229");
-		for (int j = 0; j < cou.size(); j++) {
-			HashMap<String, String> course = new HashMap<String, String>();
-			course.put("name", cou.get(j).getCurName());
-			course.put("time", cou.get(j).getPlace() + "   "
-					+ cou.get(j).getWeek());
-			course.put("teacher", cou.get(j).getTeacher());
-			if (j > 0) {
-				if (cou.get(j - 1).getDayTime() != cou.get(j).getDayTime()) {
-					isOneLine.add(isOneLine.get(isOneLine.size() - 1) == 0 ? 1
-							: 0);
-				} else {
-					isOneLine.add(isOneLine.get(j - 1) == 0 ? 0 : 1);
+		//start
+		int listCount = 0 , daytime = 1;
+		while(daytime <= 5){
+			if(listCount < cou.size() && cou.get(listCount).getDayTime() == daytime){//如果是有课
+				while(listCount < cou.size() && cou.get(listCount).getDayTime() == daytime){//判断是不是同一次课
+					HashMap<String, String> course = new HashMap<String, String>();
+					course.put("name", cou.get(listCount).getCurName());
+					course.put("time", cou.get(listCount).getPlace()+" "+cou.get(listCount).getWeek());
+					course.put("teacher", cou.get(listCount).getTeacher());
+					course.put("daytime", "" + daytime);
+					listCount ++;
+					myList.add(course);
 				}
+//				if(listCount > 0){//如果不是第一次课
+//					if(cou.get(listCount-1).getDayTime() != cou.get(listCount).getDayTime()){ //如果是同一节课
+//						daytime ++;
+//					}
+//				}else{//如果是第一次课，肯定不会跟他前面的课是同一节
+//					daytime ++;
+//				}
+//				listCount ++;
+				daytime ++;
+			}else{//如果没课
+				HashMap<String, String> course = new HashMap<String, String>();
+				course.put("name", "");
+				course.put("time", "");
+				course.put("teacher", "");
+				course.put("daytime", "" + daytime);
+				daytime ++;
+				myList.add(course);
 			}
-			myList.add(course);
 		}
+		//给isOneLine赋值
+		for(int x = 0;x<myList.size()-1;x++){
+			if(myList.get(x).get("daytime").equals(myList.get(x+1).get("daytime"))){
+				isOneLine.add(isOneLine.get(isOneLine.size()-1));
+			}else{
+				isOneLine.add(isOneLine.get(isOneLine.size()-1) == 1 ? 0 : 1);
+			}
+		}
+		if(myList.get(myList.size()-1).get("daytime").equals(myList.get(myList.size()-2).get("daytime"))){
+			isOneLine.add(isOneLine.size()-1);
+		}else{
+			isOneLine.add(isOneLine.get(isOneLine.size()-1) == 1 ? 0 : 1);
+		}
+		//end
 		return myList;
 	}
 

@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 import com.young.R;
 import com.young.adapter.AdapterForMain;
-import com.young.entry.Schedule;
 
 public class MainActivity extends BaseActivity {
 
