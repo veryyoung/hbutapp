@@ -3,6 +3,7 @@ package com.young.activity;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ScheduleActivity extends Activity implements OnTouchListener,
+public class SelfScheduleActivity extends Activity implements OnTouchListener,
 		OnGestureListener {
 
 	private TextView textView;
@@ -53,16 +54,15 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 		listView.setDividerHeight(0);
 		mDetector = new GestureDetector(this, this);
 		mDetector.setIsLongpressEnabled(true);
-		// listView.setEnabled(false);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.Schedule_relative_layout);
 		layout.setOnTouchListener(this);
 		layout.setLongClickable(true);
 		layout.setFocusable(true);
 		layout.setClickable(true);
 		layout.setLongClickable(true);
-		databaseHelper = new DatabaseHelper(ScheduleActivity.this);
+		databaseHelper = new DatabaseHelper(SelfScheduleActivity.this);
 		data = getDataFromDatabase(n);
-		adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
+		adapter = new AdapterForSchedule(SelfScheduleActivity.this, isOneLine, data);
 		upDateUI();
 	}
 
@@ -96,7 +96,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 			n = (n == 7) ? 1 : n + 1;
 			setDate();
 			data = getDataFromDatabase(n);
-			adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
+			adapter = new AdapterForSchedule(SelfScheduleActivity.this, isOneLine,
 					data);
 			upDateUI();
 		}// fling to right
@@ -105,7 +105,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 			n = (n == 1) ? 7 : n - 1;
 			setDate();
 			data = getDataFromDatabase(n);
-			adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
+			adapter = new AdapterForSchedule(SelfScheduleActivity.this, isOneLine,
 					data);
 			upDateUI();
 		}
@@ -170,7 +170,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 	 * @return
 	 */
 	public ArrayList<HashMap<String, String>> getDataFromDatabase(int day) {
-		if (databaseHelper.isEmpty("schedule")) {
+		if (databaseHelper.isEmpty("schedule","1110321229")) {
 			new GetSchedualFromNetWork().execute("");
 		}
 		ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
@@ -191,14 +191,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 					listCount ++;
 					myList.add(course);
 				}
-//				if(listCount > 0){//如果不是第一次课
-//					if(cou.get(listCount-1).getDayTime() != cou.get(listCount).getDayTime()){ //如果是同一节课
-//						daytime ++;
-//					}
-//				}else{//如果是第一次课，肯定不会跟他前面的课是同一节
-//					daytime ++;
-//				}
-//				listCount ++;
 				daytime ++;
 			}else{//如果没课
 				HashMap<String, String> course = new HashMap<String, String>();
@@ -249,7 +241,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
 
 		@Override
 		protected void onPostExecute(String result) {
-			Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG)
+			Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
 					.show();
 			upDateUI();
 		}

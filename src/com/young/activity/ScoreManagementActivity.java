@@ -57,8 +57,7 @@ public class ScoreManagementActivity extends Activity {
      * @return
      */
     public List<Score> getDataFromDatabase() {
-        if (databaseHelper.isEmpty("score")) {
-            Log.d("test","empty");
+        if (databaseHelper.isEmpty("score","1110321229")) {
             new GetScoreFromNetWork().execute("");
         }
         return databaseHelper.getScore("1110321229");
@@ -85,7 +84,7 @@ public class ScoreManagementActivity extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), "ok", Toast.LENGTH_LONG)
+            Toast.makeText(getApplicationContext(), "成绩更新完毕", Toast.LENGTH_LONG)
                     .show();
             upDateUI();
         }

@@ -72,8 +72,8 @@
 //                if (switch_title == 0) {
 //                    switch (arg2) {
 //                        case 0:
-//                            Intent intent = new Intent(ChoseActivity.this, ScheduleActivity.class);
-//                            intent.putExtra(ChoseItemActivity.CLASS_NAME, ScheduleActivity.NO_NAME);
+//                            Intent intent = new Intent(ChoseActivity.this, SelfScheduleActivity.class);
+//                            intent.putExtra(ChoseItemActivity.CLASS_NAME, SelfScheduleActivity.NO_NAME);
 //                            startActivity(intent);
 //                            break;
 //

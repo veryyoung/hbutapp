@@ -14,25 +14,33 @@
         android:gravity="center"
         android:textSize="24sp" />
 
+
     <TextView
         android:id="@+id/self_schedule"
+        android:paddingTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="@string/self_schedule"
+        android:textSize="24sp"
         android:layout_below="@id/chose_schedule_type_title"></TextView>
 
     <TextView
         android:id="@+id/others_schedule"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:text="@string/others_schedule"
+        android:textSize="24sp"
         android:layout_below="@id/self_schedule"></TextView>
 
     <TextView
         android:id="@+id/local_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="@string/local_schedule"
+        android:textSize="24sp"
         android:layout_below="@id/others_schedule"></TextView>
 
 </RelativeLayout>

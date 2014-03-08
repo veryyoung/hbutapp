@@ -100,7 +100,7 @@
 //				} else {
 //					Intent intent = new Intent();
 //					intent.setClass(ChoseItemActivity.this,
-//							ScheduleActivity.class);
+//							SelfScheduleActivity.class);
 //					intent.putExtra(CLASS_NAME, className);
 //					startActivity(intent);
 //					// System.out.println("this is in ChoseItemActivity 78   "+className);

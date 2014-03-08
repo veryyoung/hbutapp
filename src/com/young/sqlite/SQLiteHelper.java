@@ -33,13 +33,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + " (_id integer primary key autoincrement," + CUR_NAME
                 + " VARCHAR, " + TEACHER + " VARCHAR, " + PLACE + " VARCHAR ,"
                 + DAY + " INTEGER," + DAY_TIME + " INTEGER," + ID
+                + "  VARCHAR," + WEEK + " VARCHAR ) ";
+        db.execSQL(sql);
+        // 创建本地课表数据库
+        sql = " create table if not exists  local_schedule (_id integer primary key autoincrement," + CUR_NAME
+                + " VARCHAR, " + TEACHER + " VARCHAR, " + PLACE + " VARCHAR ,"
+                + DAY + " INTEGER," + DAY_TIME + " INTEGER," + ID
                 + "  VARCHAR," + WEEK + " VARCHAR ," + IS_LOCAL
                 + " TINYINT default 0 ) ";
         db.execSQL(sql);
         //创建成绩数据库
         sql = "create table if not exists  score (_id integer primary key autoincrement," +
                 "task_no VARCHAR,course_name VARCHAR,course_type VARCHAR,stu_id VARCHAR," +
-                "course_credit double,grade double,grade_point double,is_show_score TINYINT) ";
+                "course_credit double,grade double,grade_point double) ";
         db.execSQL(sql);
     }
 

@@ -3,6 +3,7 @@ package com.young.sqlite;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.young.entry.Schedule;
 import com.young.entry.Score;
@@ -35,7 +36,7 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 Cursor cursor = db.rawQuery(
-                        "select * from schedule where day = ? and stu_id = ? order by "+SQLiteHelper.DAY_TIME + " asc",
+                        "select * from schedule where day = ? and stu_id = ? order by " + SQLiteHelper.DAY_TIME + " asc",
                         new String[]{day + "", id});
                 Schedule schedule = null;
                 oneDayCourse = new ArrayList<Schedule>();
@@ -54,13 +55,6 @@ public class DatabaseHelper {
                             .getColumnIndex("day_time")));
                     schedule.setStuId(cursor.getString(cursor
                             .getColumnIndex("stu_id")));
-                    short isLocal = cursor.getShort(cursor
-                            .getColumnIndex("is_local"));
-                    if (0 == isLocal) {
-                        schedule.setIsLocal(false);
-                    } else {
-                        schedule.setIsLocal(true);
-                    }
                     oneDayCourse.add(schedule);
                 }
                 cursor.close();
@@ -163,15 +157,14 @@ public class DatabaseHelper {
 
 
     /**
-     * 判断数据库是否为空 true 表示表为空 false 表示表不为空
+     * 判断数据库对应学号记录是否为空 true 表示表为空 false 表示表不为空
      *
      * @return
      */
-    public boolean isEmpty(String tableName) {
+    public boolean isEmpty(String tableName, String id) {
         if (db != null && db.isOpen()) {
             if (db.isOpen()) {
-                Cursor cursor = db.query(tableName, null, null, null, null,
-                        null, null);
+                Cursor cursor = db.query(tableName,null,"stu_id = " + id,null,null,null,null);
                 if (cursor.getCount() < 1) {
                     return true;
                 } else {
