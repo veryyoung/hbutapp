@@ -40,7 +40,7 @@
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_chose);
+//        setContentView(R.layout.activit);
 //        choseText = (TextView) this.findViewById(R.id.chose_title);
 //        choseList = (ListView) this.findViewById(R.id.chose_list);
 //        //这里需要添加一个switch用来添加不同的数据

@@ -30,7 +30,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
+		setContentView(R.layout.activity_login);
 		@SuppressWarnings("deprecation")
 		final SharedPreferences sp = this.getSharedPreferences("userInfo",
 				Context.MODE_WORLD_READABLE);

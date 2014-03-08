@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/chose_schedule_type_title"
+        android:text="@string/chose_schedule_type_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/self_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/self_schedule"
+        android:layout_below="@id/chose_schedule_type_title"></TextView>
+
+    <TextView
+        android:id="@+id/others_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/others_schedule"
+        android:layout_below="@id/self_schedule"></TextView>
+
+    <TextView
+        android:id="@+id/local_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/local_schedule"
+        android:layout_below="@id/others_schedule"></TextView>
+
+</RelativeLayout>

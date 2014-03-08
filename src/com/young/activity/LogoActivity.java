@@ -22,7 +22,7 @@ public class LogoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.logo);
+		setContentView(R.layout.activity_logo);
 
 		backButton = (Button) findViewById(R.id.btn_back);
 

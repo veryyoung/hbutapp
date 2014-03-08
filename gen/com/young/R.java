@@ -98,7 +98,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_changepwd=0x7f030000;
-        public static final int activity_chose=0x7f030001;
+        public static final int activity_chose_schedule_type =0x7f030001;
         public static final int activity_chose_item=0x7f030002;
         public static final int activity_chose_item_list=0x7f030003;
         public static final int activity_chose_item_list_style=0x7f030004;
@@ -111,8 +111,8 @@ public final class R {
         public static final int activity_schedule_item=0x7f03000b;
         public static final int activity_score_management=0x7f03000c;
         public static final int activity_score_management_item=0x7f03000d;
-        public static final int login=0x7f03000e;
-        public static final int logo=0x7f03000f;
+        public static final int activity_login =0x7f03000e;
+        public static final int activity_logo =0x7f03000f;
         public static final int simple_dropdown_item_1line=0x7f030010;
     }
     public static final class menu {

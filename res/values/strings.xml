@@ -2,14 +2,12 @@
 <resources>
 
     <string name="app_name">HBUT</string>
-    <string name="action_settings">Settings</string>
     <string name="username">学号</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
     <string name="remember">记住密码</string>
     <string name="landing">正在登录...</string>
     <string name="cancle">取消登录</string>
-    <string name="desc">image</string>
     <string name="title_main_page">主页</string>
     <string name="title_class_schedule">教学课表</string>
     <string name="title_personal_schedule">学生个课表</string>
@@ -27,9 +25,6 @@
     <string name="info_birthday">出生日期</string>
     <string name="info_enterscholl">入校日期</string>
     <string name="info_left_scholl">离校日期</string>
-    <string name="title_activity_schedule">ScheduleActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_score_management">ScoreManagement</string>
     <string name="change_title">修改密码</string>
     <string name="change_oldpw">原密码</string>
     <string name="change_newpw">新密码</string>
@@ -45,16 +40,18 @@
     <string name="public_exam_times">考次</string>
     <string name="public_task_score">成绩</string>
     <string name="title_activity_chose">选择</string>
-    <string name="title_activity_chose_item">ChoseItemActivity</string>
-    <string name="input_hint1">输入格式：年级+班级</string>
-    <string name="input_hint2">比如：11软件1</string>
+    <string name="ohers_schedule_input_hint1">输入格式：年级+班级</string>
+    <string name="ohers_schedule_input_hint2">比如：11软件1</string>
     <string name="chose_ok">确定</string>
-    
+    <string name ="chose_schedule_type_title">请选择查询课表的类别</string>
+    <string name="self_schedule">个人课表</string>
+    <string name="others_schedule">小伙伴课表</string>
+    <string name="local_schedule">本地课表（可编辑）</string>
+    <string name="action_settings">设置</string>
+    <string name="desc">图片</string>
     <color name="green">#64ed89</color>
     <color name="light_green">#37de6a</color>
     <color name="gray">#CD853F</color>
-    <!-- 这是后来做本地数据的时候添加的string -->
-    <string name="local_schedule">我的课表</string>
     
 
 </resources>

@@ -33,8 +33,7 @@ public class MainActivity extends BaseActivity {
                 // TODO Auto-generated method stub
                 switch (arg2) {
                     case 0://教学课表
-                        Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
-////						intent.putExtra(CHOSE_MENU_MESSAGE, SCHEDULE_TABLE);
+                        Intent intent = new Intent(MainActivity.this, ChoseScheduleTypeActitity.class);
                         MainActivity.this.startActivity(intent);
                         break;
 
