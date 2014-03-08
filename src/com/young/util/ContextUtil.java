@@ -3,7 +3,7 @@ package com.young.util;
 import android.app.Application;
 import android.content.Context;
 
-public class App extends Application{
+public class ContextUtil extends Application{
 
     private static Context mContext;
 

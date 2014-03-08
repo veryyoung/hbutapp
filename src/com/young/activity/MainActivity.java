@@ -22,11 +22,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Log.v("this","this is ok1");
         listView = (ListView) findViewById(R.id.main_list_title);
-        // Log.v("this","this is ok2");
         AdapterForMain adapter = new AdapterForMain(this);
-        // Log.v("this","this is ok3");
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -41,17 +38,16 @@ public class MainActivity extends BaseActivity {
                         MainActivity.this.startActivity(intent);
                         break;
 
-
-				case 2://成绩管理
-						Intent intent3 = new Intent(MainActivity.this,ScoreManagementActivity.class);
-//						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
-						MainActivity.this.startActivity(intent3);
-						break;
                     case 1:
                         intent = new Intent(MainActivity.this, InfoActivity.class);
                         MainActivity.this.startActivity(intent);
                         break;
 
+                    case 2://成绩管理
+                        Intent intent3 = new Intent(MainActivity.this, ScoreManagementActivity.class);
+//						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
+                        MainActivity.this.startActivity(intent3);
+                        break;
                     case 3:
                         intent = new Intent(MainActivity.this, ChangeActivity.class);
                         MainActivity.this.startActivity(intent);
