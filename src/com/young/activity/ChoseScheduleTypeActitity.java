@@ -20,7 +20,7 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
         selfScheduleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChoseScheduleTypeActitity.this, SelfScheduleActivity.class);
+                Intent intent = new Intent(ChoseScheduleTypeActitity.this, ScheduleActivity.class);
                 startActivity(intent);
             }
         });
