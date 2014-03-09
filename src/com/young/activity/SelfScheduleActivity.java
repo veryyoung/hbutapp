@@ -243,6 +243,8 @@ public class SelfScheduleActivity extends Activity implements OnTouchListener,
 		protected void onPostExecute(String result) {
 			Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
 					.show();
+            data = getDataFromDatabase(n);
+            adapter = new AdapterForSchedule(SelfScheduleActivity.this, isOneLine, data);
 			upDateUI();
 		}
 
