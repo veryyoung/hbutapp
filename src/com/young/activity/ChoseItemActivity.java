@@ -51,7 +51,7 @@
 //	@Override
 //	protected void onCreate(Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_chose_item_list);
+//		setContentView(R.layout.activity_input_stu_for_schedule);
 //		textTitle = (TextView) findViewById(R.id.chose_list_title);
 //		editClassName = (AutoCompleteTextView) findViewById(R.id.chose_auto_input);
 //		button = (Button) findViewById(R.id.chose_button_ok);

@@ -30,15 +30,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <AutoCompleteTextView
-            android:id="@+id/chose_auto_input"
+
+        <EditText
+            android:id="@+id/stu_id_input"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="3"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="10dp"
-            android:paddingTop="25dp"
-            android:completionThreshold="2" />
+            android:maxLength="10"
+            android:paddingTop="25dp" />
 
         <Button
             android:id="@+id/chose_button_ok"

@@ -38,6 +38,7 @@
             android:label="@string/title_activity_chose"></activity>
         <activity android:name="com.young.activity.ScoreManagementActivity" />
         <activity android:name=".activity.LocalScheduleActivity"></activity>
+        <activity android:name=".activity.InputOtherStuIdForScheduleActivity"></activity>
     </application>
 
 </manifest>

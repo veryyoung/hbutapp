@@ -100,7 +100,7 @@ public final class R {
         public static final int activity_changepwd=0x7f030000;
         public static final int activity_chose_schedule_type =0x7f030001;
         public static final int activity_chose_item=0x7f030002;
-        public static final int activity_chose_item_list=0x7f030003;
+        public static final int activity_input_stu_for_schedule =0x7f030003;
         public static final int activity_chose_item_list_style=0x7f030004;
         public static final int activity_info=0x7f030005;
         public static final int activity_localschedule=0x7f030006;

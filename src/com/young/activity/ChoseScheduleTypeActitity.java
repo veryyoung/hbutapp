@@ -24,5 +24,13 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        TextView othersScheduleView = (TextView) findViewById(R.id.others_schedule);
+        othersScheduleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChoseScheduleTypeActitity.this,InputOtherStuIdForScheduleActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

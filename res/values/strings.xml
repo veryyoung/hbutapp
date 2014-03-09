@@ -40,8 +40,8 @@
     <string name="public_exam_times">考次</string>
     <string name="public_task_score">成绩</string>
     <string name="title_activity_chose">选择</string>
-    <string name="ohers_schedule_input_hint1">输入格式：年级+班级</string>
-    <string name="ohers_schedule_input_hint2">比如：11软件1</string>
+    <string name="ohers_schedule_input_hint1">输入小伙伴的学号(10位)</string>
+    <string name="ohers_schedule_input_hint2">比如：110321229</string>
     <string name="chose_ok">确定</string>
     <string name ="chose_schedule_type_title">请选择查询课表的类别</string>
     <string name="self_schedule">个人课表</string>
