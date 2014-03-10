@@ -26,17 +26,22 @@ public class DatabaseHelper {
     /**
      * 根据星期几来查询全天的课程数据
      *
-     * @param day 星期几
-     * @param id  学号
+     * @param day     星期几
+     * @param id      学号
+     * @param isLocal 是否为本地课表
      * @return
      */
 
-    public List<Schedule> getClassByDay(int day, String id) {
+    public List<Schedule> getClassByDay(int day, String id, Boolean isLocal) {
         List<Schedule> oneDayCourse = null;
         if (db != null) {
             if (db.isOpen()) {
+                String tableName = "schedule";
+                if (isLocal) {
+                    tableName = "local_schedule";
+                }
                 Cursor cursor = db.rawQuery(
-                        "select * from schedule where day = ? and stu_id = ? order by " + SQLiteHelper.DAY_TIME + " asc",
+                        "select * from " + tableName + "  where day = ? and stu_id = ? order by " + SQLiteHelper.DAY_TIME + " asc",
                         new String[]{day + "", id});
                 Schedule schedule = null;
                 oneDayCourse = new ArrayList<Schedule>();
@@ -66,20 +71,26 @@ public class DatabaseHelper {
     /**
      * 插入一节课信息
      *
+     * @param isLocal  是否为本地课表
      * @param schedule
      * @return
      */
 
-    public void addSchedule(Schedule schedule) {
+    public void addSchedule(Schedule schedule, Boolean isLocal) {
         if (db != null) {
             if (db.isOpen()) {
+                String tableName = "schedule";
+                if (isLocal) {
+                    tableName = "local_schedule";
+                }
                 db.execSQL(
-                        "insert into schedule(cur_name,teacher,place,week,day," +
+                        "insert into " + tableName + " (cur_name,teacher,place,week,day," +
                                 "day_time,stu_id) values(?,?,?,?,?,?,?)",
                         new Object[]{schedule.getCurName(),
                                 schedule.getTeacher(), schedule.getPlace(),
                                 schedule.getWeek(), schedule.getDay(),
-                                schedule.getDayTime(), schedule.getStuId()});
+                                schedule.getDayTime(), schedule.getStuId()}
+                );
             }
         }
     }
@@ -134,10 +145,11 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 db.execSQL("insert into score (task_no,course_name,course_type," +
-                        "course_credit,grade,grade_point,is_show_score,stu_id)  values(?,?,?,?,?,?,?,?)",
+                                "course_credit,grade,grade_point,is_show_score,stu_id)  values(?,?,?,?,?,?,?,?)",
                         new Object[]{score.getTaskNo(), score.getCourseName(), score.getCourseType(),
                                 score.getCourseCredit(), score.getGrade(), score.getGradePoint(),
-                                score.isShowScore() ? 1 : 0, score.getStuId()});
+                                score.isShowScore() ? 1 : 0, score.getStuId()}
+                );
             }
         }
 
@@ -164,7 +176,7 @@ public class DatabaseHelper {
     public boolean isEmpty(String tableName, String id) {
         if (db != null && db.isOpen()) {
             if (db.isOpen()) {
-                Cursor cursor = db.query(tableName,null,"stu_id = " + id,null,null,null,null);
+                Cursor cursor = db.query(tableName, null, "stu_id = " + id, null, null, null, null);
                 if (cursor.getCount() < 1) {
                     return true;
                 } else {

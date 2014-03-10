@@ -196,7 +196,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         isOneLine = new ArrayList<Integer>();
         isOneLine.add(0);
         isOneLine.add(1);
-        List<Schedule> cou = databaseHelper.getClassByDay(day,stuId);
+        List<Schedule> cou = databaseHelper.getClassByDay(day,stuId,false);
         //start
         int listCount = 0, daytime = 1;
         while (daytime <= 5) {
@@ -248,7 +248,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
                 schedules = hbut.getSchedule(stuId);
 
                 for (Schedule schedule : schedules) {
-                    databaseHelper.addSchedule(schedule);
+                    databaseHelper.addSchedule(schedule,false);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
