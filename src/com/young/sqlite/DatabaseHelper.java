@@ -47,6 +47,7 @@ public class DatabaseHelper {
                 oneDayCourse = new ArrayList<Schedule>();
                 while (cursor.moveToNext()) {
                     schedule = new Schedule();
+                    schedule.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
                     schedule.setCurName(cursor.getString(cursor
                             .getColumnIndex("cur_name")));
                     schedule.setWeek(cursor.getString(cursor
