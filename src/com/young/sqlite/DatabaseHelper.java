@@ -105,7 +105,7 @@ public class DatabaseHelper {
     public void deleteSchedule(String id) {
         if (db != null) {
             if (db.isOpen()) {
-                db.execSQL("delete from schedule where _id = ?", new Object[]{id});
+                db.execSQL("delete from local_schedule where _id = ?", new Object[]{id});
             }
         }
     }

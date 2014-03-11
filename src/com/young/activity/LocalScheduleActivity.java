@@ -138,10 +138,10 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
         menu.setHeaderTitle("请选择操作");
         String id = data.get(i).get("_id");
-        menu.add(1, 3, 0, "插入课表");
+        menu.add(1, 1, 0, "插入课表");
         if ((null != id) && (!id.equals(""))) { //课表存在
-            menu.add(0, 1, 0, "修改该课表");
-            menu.add(0, 2, 0, "删除该课表");
+            menu.add(0, 2, 0, "修改该课表");
+            menu.add(0, 3, 0, "删除该课表");
         }
         super.onCreateContextMenu(menu, v, menuInfo);
     }
@@ -152,18 +152,18 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         String id = data.get(menuInfo.position).get("_id");
         switch (item.getItemId()) {
             case 1:
-                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
-                break;
-            case 2:
-                databaseHelper.deleteSchedule(id);
-                upDateUI();
-                break;
-            case 3:
                 Intent intent = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
                 intent.putExtra("ISMODIFY", false);
                 intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position + 1));
                 intent.putExtra("DAY", n);
                 LocalScheduleActivity.this.startActivity(intent);
+                break;
+            case 2:
+                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                break;
+            case 3:
+                databaseHelper.deleteSchedule(id);
+                upDateUI();
                 break;
             default:
                 break;
