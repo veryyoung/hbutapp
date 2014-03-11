@@ -48,6 +48,7 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
     private List<Schedule> schedules;
     private ArrayList<HashMap<String, String>> data;
     private String stuId;
+    private String password;
     private ProgressDialog mpDialog;
 
     @Override
@@ -66,6 +67,7 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         final SharedPreferences sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = sp.getString("USER_NAME", "");
+        password = sp.getString("PASSWORD", "");
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
         listView = (ListView) this.findViewById(R.id.list_schedule_course);
         listView.setDividerHeight(0);
@@ -282,6 +284,8 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
+                hbut.login(stuId, password);
+
                 schedules = hbut.getSchedule(stuId);
 
                 for (Schedule schedule : schedules) {

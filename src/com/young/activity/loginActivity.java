@@ -34,6 +34,13 @@ public class LoginActivity extends Activity {
 		@SuppressWarnings("deprecation")
 		final SharedPreferences sp = this.getSharedPreferences("userInfo",
 				Context.MODE_WORLD_READABLE);
+        String stuId = sp.getString("USER_NAME","");
+        //判断你是否登陆过，如果是就直接进入MainActivity
+        if(!("".equals(stuId))){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            LoginActivity.this.startActivity(intent);
+            finish();
+        }
 		//判断你是否记录了用户名和密码，如果是就直接登录
 //		if (sp.getBoolean("ISCHECK", false)){
 //			Intent intent = new Intent(loginActivity.this, MainActivity.class);
@@ -133,7 +140,7 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
-		
+
 	}
 
 //	@Override
