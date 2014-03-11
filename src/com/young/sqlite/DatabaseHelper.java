@@ -97,6 +97,20 @@ public class DatabaseHelper {
     }
 
     /**
+     * 删除一节课信息
+     *
+     * @return
+     */
+
+    public void deleteSchedule(String id) {
+        if (db != null) {
+            if (db.isOpen()) {
+                db.execSQL("delete from schedule where _id = ?", new Object[]{id});
+            }
+        }
+    }
+
+    /**
      * 查询该学号的所有成绩
      *
      * @param id

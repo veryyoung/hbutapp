@@ -80,12 +80,12 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         layout.setLongClickable(true);
         registerForContextMenu(listView);
         databaseHelper = new DatabaseHelper(LocalScheduleActivity.this);
-        data = getDataFromDatabase(n);
-        adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
         upDateUI();
     }
 
     public void upDateUI() {
+        data = getDataFromDatabase(n);
+        adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
         textView.setText(text);
         listView.setAdapter(adapter);
         mpDialog.dismiss();
@@ -138,9 +138,8 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
         menu.setHeaderTitle("请选择操作");
         String id = data.get(i).get("_id");
-        if (null == id || id.equals("")) { //课表不存在
-            menu.add(1, 1, 0, "插入课表");
-        } else {
+        menu.add(1, 3, 0, "插入课表");
+        if ((null != id) && (!id.equals(""))) { //课表存在
             menu.add(0, 1, 0, "修改该课表");
             menu.add(0, 2, 0, "删除该课表");
         }
@@ -151,27 +150,23 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         String id = data.get(menuInfo.position).get("_id");
-        int groupId = item.getGroupId();
-        if (groupId == 1) {
-            Intent intent = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
-            intent.putExtra("ISMODIFY", false);
-            Log.d("postion",menuInfo.position+"");
-            Log.d("DAYTIME",(getDaytimeByOnline(menuInfo.position + 1))+"");
-            intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position + 1));
-            intent.putExtra("DAY", n);
-            LocalScheduleActivity.this.startActivity(intent);
-            Toast.makeText(this, "插入", Toast.LENGTH_LONG).show();
-        } else {
-            switch (item.getItemId()) {
-                case 1:
-                    Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
-                    break;
-                case 2:
-                    Toast.makeText(this, "删除", Toast.LENGTH_LONG).show();
-                    break;
-                default:
-                    break;
-            }
+        switch (item.getItemId()) {
+            case 1:
+                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                break;
+            case 2:
+                databaseHelper.deleteSchedule(id);
+                upDateUI();
+                break;
+            case 3:
+                Intent intent = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
+                intent.putExtra("ISMODIFY", false);
+                intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position + 1));
+                intent.putExtra("DAY", n);
+                LocalScheduleActivity.this.startActivity(intent);
+                break;
+            default:
+                break;
         }
         return super.onContextItemSelected(item);
     }
