@@ -40,6 +40,7 @@
         <activity android:name=".activity.LocalScheduleActivity"></activity>
         <activity android:name=".activity.InputOtherStuIdForScheduleActivity"></activity>
         <activity android:name=".activity.InsertScheduleActivity"></activity>
+        <activity android:name="com.young.activity.ChoseTermsActivity"></activity>
     </application>
 
 </manifest>

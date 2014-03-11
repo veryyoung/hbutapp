@@ -189,7 +189,7 @@ public class HBUT {
      * @throws IOException
      * @throws JSONException
      */
-    public List<Score> getScore(String id)
+    public ArrayList<Score> getScore(String id)
             throws IOException, JSONException {
         String url = "http://run.hbut.edu.cn/StuGrade/IndexAllSemesterForJson/?id="
                 + id + "&Mobile=1";
@@ -204,7 +204,7 @@ public class HBUT {
         JSONObject jsonObject = new JSONObject(html);
         JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
         int length = jsonArray.length();
-        List<Score> scores = new ArrayList<Score>();
+        ArrayList<Score> scores = new ArrayList<Score>();
         JSONObject oj = null;
         Score score = null;
         for (int i = 0; i < length; i++) {// 遍历JSONArray

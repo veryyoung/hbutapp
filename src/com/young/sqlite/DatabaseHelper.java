@@ -173,7 +173,7 @@ public class DatabaseHelper {
      * @param stu_id
      * @return
      */
-    public ArrayList<String> scoreGetTerms(String stu_id){
+    public ArrayList<String> getTerms(String stu_id){
     	ArrayList<String> listTerms = null;
     	if(db != null){
     		if(db.isOpen()){
@@ -230,6 +230,16 @@ public class DatabaseHelper {
                 db.execSQL(sql);
             }
         }
+    }
+    
+    //清空score表中数据，调试时使用
+    public void clearTableScore(){
+    	if(db != null){
+    		if(db.isOpen()){
+    			String sql = "delete from score where _id > 0 ";
+    			db.execSQL(sql);
+    		}
+    	}
     }
     
     
