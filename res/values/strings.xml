@@ -49,6 +49,10 @@
     <string name="local_schedule">本地课表（可编辑）</string>
     <string name="action_settings">设置</string>
     <string name="desc">图片</string>
+    <string name="schedule_name">课程名</string>
+    <string name="schedule_teacher">授课老师</string>
+    <string name="schedule_place">课程地点</string>
+    <string name="schedule_week">课程周数</string>
     <color name="green">#64ed89</color>
     <color name="light_green">#37de6a</color>
     <color name="gray">#CD853F</color>

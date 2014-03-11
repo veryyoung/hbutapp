@@ -3,6 +3,7 @@ package com.young.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -135,7 +136,6 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
-
         menu.setHeaderTitle("请选择操作");
         String id = data.get(i).get("_id");
         if (null == id || id.equals("")) { //课表不存在
@@ -149,14 +149,17 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-//        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//        String id = data.get(menuInfo.position).get("_id");
-//        if (null == id || id.equals("")) { //课表不存在
-//            return false;
-//        }
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        String id = data.get(menuInfo.position).get("_id");
         int groupId = item.getGroupId();
         if (groupId == 1) {
+            Intent intent = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
+            intent.putExtra("ISMODIFY", false);
+            Log.d("postion",menuInfo.position+"");
+            Log.d("DAYTIME",(getDaytimeByOnline(menuInfo.position + 1))+"");
+            intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position + 1));
+            intent.putExtra("DAY", n);
+            LocalScheduleActivity.this.startActivity(intent);
             Toast.makeText(this, "插入", Toast.LENGTH_LONG).show();
         } else {
             switch (item.getItemId()) {
@@ -310,5 +313,15 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
             upDateUI();
         }
 
+    }
+
+    private int getDaytimeByOnline(int n) {
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (isOneLine.get(i) != isOneLine.get(i - 1)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
