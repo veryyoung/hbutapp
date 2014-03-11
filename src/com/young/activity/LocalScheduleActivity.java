@@ -6,9 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,6 +77,7 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         layout.setFocusable(true);
         layout.setClickable(true);
         layout.setLongClickable(true);
+        registerForContextMenu(listView);
         databaseHelper = new DatabaseHelper(LocalScheduleActivity.this);
         data = getDataFromDatabase(n);
         adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
@@ -126,6 +131,48 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
 
         return false;
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
+
+        menu.setHeaderTitle("请选择操作");
+        String id = data.get(i).get("_id");
+        if (null == id || id.equals("")) { //课表不存在
+            menu.add(1, 1, 0, "插入课表");
+        } else {
+            menu.add(0, 1, 0, "修改该课表");
+            menu.add(0, 2, 0, "删除该课表");
+        }
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+//        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//        String id = data.get(menuInfo.position).get("_id");
+//        if (null == id || id.equals("")) { //课表不存在
+//            return false;
+//        }
+        int groupId = item.getGroupId();
+        if (groupId == 1) {
+            Toast.makeText(this, "插入", Toast.LENGTH_LONG).show();
+        } else {
+            switch (item.getItemId()) {
+                case 1:
+                    Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                    break;
+                case 2:
+                    Toast.makeText(this, "删除", Toast.LENGTH_LONG).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        return super.onContextItemSelected(item);
+    }
+
 
     private void setDate() {
         switch (n) {
@@ -202,6 +249,7 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
                     course.put("time", cou.get(listCount).getPlace() + " " + cou.get(listCount).getWeek());
                     course.put("teacher", cou.get(listCount).getTeacher());
                     course.put("daytime", "" + daytime);
+                    course.put("_id", cou.get(listCount).get_id() + "");
                     listCount++;
                     myList.add(course);
                 }
