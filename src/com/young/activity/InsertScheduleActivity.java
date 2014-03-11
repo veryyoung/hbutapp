@@ -70,7 +70,8 @@ public class InsertScheduleActivity extends BaseActivity {
                     schedule.setPlace(placeView.getText().toString());
                     schedule.setWeek(weekView.getText().toString());
                     schedule.setTeacher(teacherView.getText().toString());
-                    final SharedPreferences sp = InsertScheduleActivity.this.getSharedPreferences("userInfo",
+                    @SuppressWarnings("deprecation")
+					final SharedPreferences sp = InsertScheduleActivity.this.getSharedPreferences("userInfo",
                             Context.MODE_WORLD_READABLE);
                     schedule.setStuId(sp.getString("USER_NAME", ""));
                     databaseHelper.addSchedule(schedule, true);

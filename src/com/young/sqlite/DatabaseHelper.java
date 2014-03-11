@@ -169,33 +169,35 @@ public class DatabaseHelper {
      * @param id
      * @return
      */
-    public List<Score> getScore(String id) {
+    public List<Score> getScore(String id, String term) {
         List<Score> scores = null;
         if (db != null) {
             if (db.isOpen()) {
+            	System.out.println("id is "+id);
                 Cursor cursor = db.rawQuery(
-                        "select * from score where stu_id = ?",
-                        new String[]{id});
+                        "select * from score where stu_id = ? and task_no like ?",
+                        new String[] {id, term+"%"});
                 Score score = null;
                 scores = new ArrayList<Score>();
-                while (cursor.moveToNext()) {
+                cursor.moveToFirst();
+               do{
                     score = new Score();
                     short isShowScore = cursor.getShort(cursor
-                            .getColumnIndex("is_show_score"));
+                            .getColumnIndex(SQLiteHelper.IS_SHOW_SCORE));
                     if (0 == isShowScore) {
                         score.setShowScore(false);
                     } else {
                         score.setShowScore(true);
                     }
-                    score.setStuId(cursor.getString(cursor.getColumnIndex("stu_id")));
-                    score.setGradePoint(cursor.getDouble(cursor.getColumnIndex("grade_point")));
-                    score.setGrade(cursor.getDouble(cursor.getColumnIndex("grade")));
-                    score.setCourseCredit(cursor.getDouble(cursor.getColumnIndex("course_credit")));
-                    score.setCourseName(cursor.getString(cursor.getColumnIndex("course_name")));
-                    score.setCourseType(cursor.getString(cursor.getColumnIndex("course_type")));
-                    score.setTaskNo(cursor.getString(cursor.getColumnIndex("task_no")));
+                    score.setStuId(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_ID)));
+                    score.setGradePoint(cursor.getDouble(cursor.getColumnIndex(SQLiteHelper.GRADE_POINT)));
+                    score.setGrade(cursor.getDouble(cursor.getColumnIndex(SQLiteHelper.GRADE)));
+                    score.setCourseCredit(cursor.getDouble(cursor.getColumnIndex(SQLiteHelper.COURSE_CREDIT)));
+                    score.setCourseName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COURSE_NAME)));
+                    score.setCourseType(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COURSE_TYPE)));
+                    score.setTaskNo(cursor.getString(cursor.getColumnIndex(SQLiteHelper.TASK_NO)));
                     scores.add(score);
-                }
+                }while (cursor.moveToNext());
                 cursor.close();
             }
 
@@ -229,7 +231,6 @@ public class DatabaseHelper {
      * @param stu_id
      * @return
      */
-<<<<<<< HEAD
     public ArrayList<String> getTerms(String stu_id){
     	ArrayList<String> listTerms = null;
     	if(db != null){
@@ -242,26 +243,10 @@ public class DatabaseHelper {
     			do{
     				listTerms.add(cursor.getString(columnIndex));
     			}while(cursor.moveToNext());
+    			cursor.close();
     		}
     	}
     	return listTerms;
-=======
-    public ArrayList<String> scoreGetTerms(String stu_id) {
-        ArrayList<String> listTerms = null;
-        if (db != null) {
-            if (db.isOpen()) {
-                listTerms = new ArrayList<String>();
-                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
-                Cursor cursor = db.rawQuery(sql, new String[]{stu_id});
-                int columnIndex = cursor.getColumnIndex("terms");
-                cursor.moveToFirst();
-                do {
-                    listTerms.add(cursor.getString(columnIndex));
-                } while (cursor.moveToNext());
-            }
-        }
-        return listTerms;
->>>>>>> 1187d2a6c87fb5ab767b974c5e3324d2b13f2790
     }
 
     /*
@@ -305,7 +290,6 @@ public class DatabaseHelper {
             }
         }
     }
-<<<<<<< HEAD
     
     //清空score表中数据，调试时使用
     public void clearTableScore(){
@@ -318,8 +302,6 @@ public class DatabaseHelper {
     }
     
     
-=======
 
->>>>>>> 1187d2a6c87fb5ab767b974c5e3324d2b13f2790
 
 }

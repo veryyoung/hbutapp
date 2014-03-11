@@ -7,9 +7,13 @@ import org.json.JSONException;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -48,6 +52,19 @@ public class ChoseTermsActivity extends BaseActivity{
         		data = helper.getTerms(stuId);
         	}
         }
+        //给ListView添加单击响应
+        listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(ChoseTermsActivity.this, ScoreManagementActivity.class);
+				intent.putExtra("term", data.get(position));
+				intent.putExtra("id", stuId);
+				startActivity(intent);
+			}
+		});
     }
 
 	@Override
@@ -57,7 +74,7 @@ public class ChoseTermsActivity extends BaseActivity{
 			ArrayList<String> myData = new ArrayList<String>();
 			for(int i = 0;i<data.size();i++){
 				String str = data.get(i);
-				myData.add(str.substring(0,4)+"学年，第"+str.substring(4)+"学期");
+				myData.add(str.substring(0,4)+"学年第"+str.substring(4)+"学期");
 			}
 			listView.setAdapter(new ArrayAdapter<String>(ChoseTermsActivity.this, android.R.layout.simple_list_item_1,myData));
 		}
@@ -97,7 +114,7 @@ public class ChoseTermsActivity extends BaseActivity{
             	ArrayList<String> myData = new ArrayList<String>();
     			for(int i = 0;i<data.size();i++){
     				String str = data.get(i);
-    				myData.add(str.substring(0,4)+"学年，第"+str.substring(4)+"学期");
+    				myData.add(str.substring(0,4)+"学年第"+str.substring(4)+"学期");
     			}
             	listView.setAdapter(new ArrayAdapter<String>(ChoseTermsActivity.this, android.R.layout.simple_list_item_1,myData));
             }else{

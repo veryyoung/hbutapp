@@ -51,7 +51,8 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
     private ProgressDialog mpDialog;
     private SharedPreferences sp;
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
