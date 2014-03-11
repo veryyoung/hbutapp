@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
                         break;
 
                     case 2://成绩管理
-                        Intent intent3 = new Intent(MainActivity.this, ChoseActivity.class);
+                        Intent intent3 = new Intent(MainActivity.this, ChoseTermsActivity.class);
 //						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
                         MainActivity.this.startActivity(intent3);
                         finish();
