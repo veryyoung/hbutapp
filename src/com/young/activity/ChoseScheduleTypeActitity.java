@@ -22,6 +22,7 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ChoseScheduleTypeActitity.this, ScheduleActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         TextView othersScheduleView = (TextView) findViewById(R.id.others_schedule);
@@ -30,6 +31,7 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ChoseScheduleTypeActitity.this,InputOtherStuIdForScheduleActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         TextView localScheduleView = (TextView) findViewById(R.id.local_schedule);
@@ -38,6 +40,7 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ChoseScheduleTypeActitity.this,LocalScheduleActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

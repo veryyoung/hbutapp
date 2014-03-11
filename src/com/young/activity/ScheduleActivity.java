@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ScheduleActivity extends Activity implements OnTouchListener,
+public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         OnGestureListener {
 
     private TextView textView;

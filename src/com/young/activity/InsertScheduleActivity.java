@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +16,7 @@ import com.young.sqlite.DatabaseHelper;
 /**
  * Created by VERYYOUNG on 14-3-11.
  */
-public class InsertScheduleActivity extends Activity {
+public class InsertScheduleActivity extends BaseActivity {
     private EditText curNameView;
     private EditText weekView;
     private EditText placeView;

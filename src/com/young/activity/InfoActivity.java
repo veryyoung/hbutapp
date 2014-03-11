@@ -6,13 +6,12 @@ import com.young.R;
 import com.young.business.HBUT;
 import com.young.entry.Student;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
-public class InfoActivity extends Activity {
+public class InfoActivity extends BaseActivity {
 
 	private Student student;
 	private Handler handler;

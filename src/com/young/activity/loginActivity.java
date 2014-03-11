@@ -134,16 +134,6 @@ public class LoginActivity extends Activity {
 			}
 		});
 		
-		Button btnLocalData = (Button)findViewById(R.id.local_schedule);
-		btnLocalData.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent inten = new Intent(LoginActivity.this,LocalScheduleActivity.class);
-				startActivity(inten);
-			}
-		});
 	}
 
 //	@Override

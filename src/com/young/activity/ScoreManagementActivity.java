@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +19,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
-public class ScoreManagementActivity extends Activity {
+public class ScoreManagementActivity extends BaseActivity {
 
     private TextView textTitle;
     private ListView listScore;

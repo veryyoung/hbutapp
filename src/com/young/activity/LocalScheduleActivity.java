@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LocalScheduleActivity extends Activity implements View.OnTouchListener,
+public class LocalScheduleActivity extends BaseActivity implements View.OnTouchListener,
         GestureDetector.OnGestureListener {
 
     private TextView textView;
