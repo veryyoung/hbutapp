@@ -21,7 +21,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String DAY_TIME = "day_time"; // 本日第几次课
     public static final String ID = "stu_id";// 学号
     public static final String IS_LOCAL = "is_local";// 是否为本地课表
-
+    //成绩字段
+    public static final String TABLE_SCORE = "score";//score 表名
+    public static final String TASK_NO = "task_no";//课程编号
+    public static final String COURSE_NAME = "course_name"; //课程名称
+    public static final String COURSE_TYPE = "course_type";  //课程类型
+    public static final String COURSE_CREDIT = "course_credit"; //课程绩点
+    public static final String GRADE = "grade"; //成绩
+    public static final String STU_ID = "stu_id"; //学号
+    public static final String GRADE_POINT = "grade_point";//学分
+    public static final String IS_SHOW_SCORE = "is_show_score"; //是否公布
+    
+    
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -45,7 +56,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         //创建成绩数据库
         sql = "create table if not exists  score (_id integer primary key autoincrement," +
                 "task_no VARCHAR,course_name VARCHAR,course_type VARCHAR,stu_id VARCHAR," +
-                "course_credit double,grade double,grade_point double) ";
+                "course_credit double,grade double,grade_point double,is_show_score  VARCHAR) ";
         db.execSQL(sql);
     }
 

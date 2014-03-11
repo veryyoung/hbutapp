@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.GestureDetector;
 import android.view.MenuItem;
@@ -63,7 +62,8 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
         mpDialog.show();
 
-        final SharedPreferences sp = this.getSharedPreferences("userInfo",
+        @SuppressWarnings("deprecation")
+		final SharedPreferences sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = sp.getString("USER_NAME", "");
         textView = (TextView) this.findViewById(R.id.text_schedule_title);

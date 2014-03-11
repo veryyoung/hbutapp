@@ -3,7 +3,6 @@ package com.young.sqlite;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.young.entry.Schedule;
 import com.young.entry.Score;
@@ -155,6 +154,27 @@ public class DatabaseHelper {
         }
 
     }
+    /**
+     * 根据学号查找有多少个学期
+     * @param stu_id
+     * @return
+     */
+    public ArrayList<String> scoreGetTerms(String stu_id){
+    	ArrayList<String> listTerms = null;
+    	if(db != null){
+    		if(db.isOpen()){
+    			listTerms = new ArrayList<String>();
+    			String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
+    			Cursor cursor = db.rawQuery(sql, new String[] {stu_id});
+    			int columnIndex = cursor.getColumnIndex("terms");
+    			cursor.moveToFirst();
+    			do{
+    				listTerms.add(cursor.getString(columnIndex));
+    			}while(cursor.moveToNext());
+    		}
+    	}
+    	return listTerms;
+    }
 
     /*
      * 关闭数据库
@@ -197,5 +217,7 @@ public class DatabaseHelper {
             }
         }
     }
+    
+    
 
 }

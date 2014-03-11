@@ -1,46 +1,53 @@
-//package com.young.activity;
-//
-//import java.io.IOException;
-//import java.util.LinkedList;
-//
-//import android.app.ProgressDialog;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.os.Handler;
-//import android.os.Message;
-//import android.util.Log;
-//import android.view.View;
-//import android.widget.AdapterView;
-//import android.widget.AdapterView.OnItemClickListener;
-//import android.widget.ArrayAdapter;
-//import android.widget.ListView;
-//import android.widget.TextView;
-//
-//import com.young.R;
-//import com.young.business.HBUT;
-////import android.widget.ArrayAdapter;
-//
-//public class ChoseActivity extends BaseActivity implements Runnable {
-//
-//    public static final String SEMESTER = "semester";
-//
-//    private TextView choseText;
-//    private ListView choseList;
-//    private String secondTitle;
-//    private ArrayAdapter<String> myAdapter;
-//    private LinkedList<String> list;//= new LinkedList<String>();
-//    private LinkedList<String> listSemesterName;
-//    private int switch_title = 10;//用来选择是哪一个activity调用了这个二级菜单
-//
-//    /**
-//     * to set progress dialog
-//     */
-//    private ProgressDialog pd;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activit);
+package com.young.activity;
+
+import android.os.Bundle;
+
+import com.young.R;
+
+public class ChoseActivity extends BaseActivity{
+
+    public static final String SEMESTER = "semester";
+
+   
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chose_term);
+        
+        
+        
+        
+        
+    }
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 //        choseText = (TextView) this.findViewById(R.id.chose_title);
 //        choseList = (ListView) this.findViewById(R.id.chose_list);
 //        //这里需要添加一个switch用来添加不同的数据

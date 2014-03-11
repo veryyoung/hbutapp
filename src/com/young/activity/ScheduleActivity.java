@@ -61,7 +61,8 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
         mpDialog.show();
 
-        final SharedPreferences sp = this.getSharedPreferences("userInfo",
+        @SuppressWarnings("deprecation")
+		final SharedPreferences sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = getIntent().getStringExtra("STUID");
         if ("".equals(stuId) || null == stuId) {
