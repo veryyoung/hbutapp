@@ -3,7 +3,9 @@ package com.young.activity;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -35,10 +37,15 @@ public class LogoActivity extends Activity {
 			@Override
 			public void run() {
 				HBUT hbut = HBUT.getInstance();
-
 				try {
 					Boolean loginFlag = hbut.login(username, password);
 					if (loginFlag) {
+                        SharedPreferences sp = LogoActivity.this.getSharedPreferences("userInfo",
+                                Context.MODE_WORLD_READABLE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("USER_NAME", username);
+                        editor.putString("PASSWORD", password);
+                        editor.commit();
 						Looper.prepare();
 						Toast.makeText(getBaseContext(), "登录成功",
 								Toast.LENGTH_LONG).show();

@@ -44,22 +44,6 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="7dp"
-            android:gravity="center_vertical"
-            android:text="@string/remember"
-            android:textColor="#434141"
-            android:textSize="12sp" />
-
-        <CheckBox
-            android:id="@+id/remember"
-            android:layout_width="100dp"
-            android:layout_height="20dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:button="@drawable/checkbox" />
     </LinearLayout>
 
     <Button
@@ -67,7 +51,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="30dp"
         android:background="#007294"
         android:text="@string/login"
         android:textColor="#ffffff"
