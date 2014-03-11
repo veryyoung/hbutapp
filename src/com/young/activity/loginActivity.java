@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.young.R;
+import com.young.util.NetworkUtil;
 
 public class LoginActivity extends Activity {
 
@@ -35,11 +36,10 @@ public class LoginActivity extends Activity {
             LoginActivity.this.startActivity(intent);
             finish();
         } else {
-            if (!isOpenNetwork()) {
+            if (!NetworkUtil.isOpenNetwork()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(
                         LoginActivity.this);
                 builder.setTitle("没有可用的网络").setMessage("是否对网络进行设置?");
-
                 builder.setPositiveButton("是",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -112,14 +112,7 @@ public class LoginActivity extends Activity {
 //		return true;
 //	}
 
-    private boolean isOpenNetwork() {
-        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connManager.getActiveNetworkInfo() != null) {
-            return connManager.getActiveNetworkInfo().isAvailable();
-        }
 
-        return false;
-    }
 
 
 }
