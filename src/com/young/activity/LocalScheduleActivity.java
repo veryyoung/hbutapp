@@ -23,6 +23,7 @@ import com.young.adapter.MyBaseAdapter;
 import com.young.business.HBUT;
 import com.young.entry.Schedule;
 import com.young.sqlite.DatabaseHelper;
+import com.young.util.NetworkUtil;
 
 import org.json.JSONException;
 
@@ -284,26 +285,32 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
-                hbut.login(stuId, password);
-
-                schedules = hbut.getSchedule(stuId);
-
-                for (Schedule schedule : schedules) {
-                    databaseHelper.addSchedule(schedule, true);
+                if (!NetworkUtil.isOpenNetwork()) {
+                    Intent intent = new Intent(LocalScheduleActivity.this, MainActivity.class);
+                    LocalScheduleActivity.this.startActivity(intent);
+                    return "无网络连接";
+                } else {
+                    hbut.login(stuId, password);
+                    schedules = hbut.getSchedule(stuId);
+                    for (Schedule schedule : schedules) {
+                        databaseHelper.addSchedule(schedule, false);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return null;
+            return "课表更新完毕";
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
                     .show();
-            upDateUI();
+            if ("课表更新完毕".equals(result)) {
+                upDateUI();
+            }
         }
 
     }

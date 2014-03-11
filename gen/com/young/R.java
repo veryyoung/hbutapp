@@ -26,24 +26,21 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int checkbox=0x7f020000;
-        public static final int checkbox_checked=0x7f020001;
-        public static final int checkbox_normal=0x7f020002;
-        public static final int chengjiguanli_b=0x7f020003;
-        public static final int cloud=0x7f020004;
-        public static final int form=0x7f020005;
-        public static final int gerenpeizhi=0x7f020006;
-        public static final int hbut=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int jiaoxuekebiao_1=0x7f020009;
-        public static final int login=0x7f02000a;
-        public static final int xinxi=0x7f02000b;
-        public static final int xuejiguanli=0x7f02000c;
+        public static final int chengjiguanli_b=0x7f020000;
+        public static final int cloud=0x7f020001;
+        public static final int form=0x7f020002;
+        public static final int gerenpeizhi=0x7f020003;
+        public static final int hbut=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int jiaoxuekebiao_1=0x7f020006;
+        public static final int login=0x7f020007;
+        public static final int xinxi=0x7f020008;
+        public static final int xuejiguanli=0x7f020009;
     }
     public static final class id {
-        public static final int Schedule_relative_layout=0x7f09002e;
-        public static final int action_settings=0x7f090039;
-        public static final int btn_back=0x7f090029;
+        public static final int Schedule_relative_layout=0x7f09002d;
+        public static final int action_settings=0x7f090038;
+        public static final int btn_back=0x7f090028;
         public static final int changeButton=0x7f090009;
         public static final int change_conpw=0x7f090008;
         public static final int change_newpw=0x7f090007;
@@ -52,7 +49,7 @@ public final class R {
         public static final int chose_list_hint2=0x7f09001e;
         public static final int chose_list_title=0x7f09001c;
         public static final int chose_schedule_type_title=0x7f09000a;
-        public static final int image=0x7f09002c;
+        public static final int image=0x7f09002b;
         public static final int info_IDCard=0x7f090013;
         public static final int info_birthday=0x7f090019;
         public static final int info_class_name=0x7f090011;
@@ -73,31 +70,30 @@ public final class R {
         public static final int insert_schedule_teacher=0x7f090002;
         public static final int insert_schedule_title=0x7f090000;
         public static final int insert_schedule_week=0x7f090004;
-        public static final int list_schedule_course=0x7f090030;
+        public static final int list_schedule_course=0x7f09002f;
         public static final int list_terms=0x7f09000e;
         public static final int local_schedule=0x7f09000d;
         public static final int local_scheme=0x7f090021;
         public static final int local_scheme_list=0x7f090022;
-        public static final int login_ok=0x7f090026;
-        public static final int main_list_title=0x7f09002b;
-        public static final int main_title=0x7f09002a;
+        public static final int login_ok=0x7f090025;
+        public static final int main_list_title=0x7f09002a;
+        public static final int main_title=0x7f090029;
         public static final int others_schedule=0x7f09000c;
         public static final int password=0x7f090024;
-        public static final int pgBar=0x7f090027;
-        public static final int remember=0x7f090025;
-        public static final int schedule_text_teacher=0x7f090032;
-        public static final int score_corese_name=0x7f090036;
-        public static final int score_grade_point_average=0x7f090037;
-        public static final int score_list=0x7f090035;
-        public static final int score_title_text=0x7f090034;
-        public static final int score_total_points=0x7f090038;
+        public static final int pgBar=0x7f090026;
+        public static final int schedule_text_teacher=0x7f090031;
+        public static final int score_corese_name=0x7f090035;
+        public static final int score_grade_point_average=0x7f090036;
+        public static final int score_list=0x7f090034;
+        public static final int score_title_text=0x7f090033;
+        public static final int score_total_points=0x7f090037;
         public static final int self_schedule=0x7f09000b;
         public static final int stu_id_input=0x7f09001f;
-        public static final int text_for_course=0x7f090031;
-        public static final int text_for_coursetime=0x7f090033;
-        public static final int text_main=0x7f09002d;
-        public static final int text_schedule_title=0x7f09002f;
-        public static final int tv1=0x7f090028;
+        public static final int text_for_course=0x7f090030;
+        public static final int text_for_coursetime=0x7f090032;
+        public static final int text_main=0x7f09002c;
+        public static final int text_schedule_title=0x7f09002e;
+        public static final int tv1=0x7f090027;
         public static final int username=0x7f090023;
     }
     public static final class layout {

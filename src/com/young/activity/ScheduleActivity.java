@@ -2,6 +2,7 @@ package com.young.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.young.adapter.MyBaseAdapter;
 import com.young.business.HBUT;
 import com.young.entry.Schedule;
 import com.young.sqlite.DatabaseHelper;
+import com.young.util.NetworkUtil;
 
 import org.json.JSONException;
 
@@ -244,24 +246,32 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
-                hbut.login(loginStuId, password);
-                schedules = hbut.getSchedule(stuId);
-                for (Schedule schedule : schedules) {
-                    databaseHelper.addSchedule(schedule, false);
+                if (!NetworkUtil.isOpenNetwork()) {
+                    Intent intent = new Intent(ScheduleActivity.this, MainActivity.class);
+                    ScheduleActivity.this.startActivity(intent);
+                    return "无网络连接";
+                } else {
+                    hbut.login(loginStuId, password);
+                    schedules = hbut.getSchedule(stuId);
+                    for (Schedule schedule : schedules) {
+                        databaseHelper.addSchedule(schedule, false);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return null;
+            return "课表更新完毕";
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
                     .show();
-            upDateUI();
+            if ("课表更新完毕".equals(result)) {
+                upDateUI();
+            }
         }
 
     }
