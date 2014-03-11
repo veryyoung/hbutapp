@@ -23,6 +23,7 @@ import com.young.business.HBUT;
 import com.young.entry.Score;
 import com.young.sqlite.DatabaseHelper;
 import com.young.sqlite.SQLiteHelper;
+import com.young.util.NetworkUtil;
 
 public class ChoseTermsActivity extends BaseActivity{
 
@@ -32,14 +33,15 @@ public class ChoseTermsActivity extends BaseActivity{
 	private DatabaseHelper helper;
 	private ProgressDialog proDialog;
 	private String stuId;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose_term);
         listView = (ListView)findViewById(R.id.list_terms);
-        //得到登陆学号
-        stuId = getLoginID();
+        //得到登陆学号和密码
+        getUserIdAndPassWord();
         
         //得到数据的方法要放到这里，然后给listView设置Adapter可以放到onStart里面
         helper = new DatabaseHelper(this);
@@ -91,9 +93,16 @@ public class ChoseTermsActivity extends BaseActivity{
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
-                ArrayList<Score> scores = hbut.getScore(stuId);
-                for (Score score : scores) {
-                    helper.addScore(score);
+                if (!NetworkUtil.isOpenNetwork()) {
+                    Intent intent = new Intent(ChoseTermsActivity.this, MainActivity.class);
+                    ChoseTermsActivity.this.startActivity(intent);
+                    return "无网络连接";
+                } else {
+                    hbut.login(stuId, password);
+                    ArrayList<Score> scores = hbut.getScore(stuId);
+                    for (Score score : scores) {
+                        helper.addScore(score);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -118,16 +127,16 @@ public class ChoseTermsActivity extends BaseActivity{
     			}
             	listView.setAdapter(new ArrayAdapter<String>(ChoseTermsActivity.this, android.R.layout.simple_list_item_1,myData));
             }else{
-            	Toast.makeText(ChoseTermsActivity.this, "你还没用数据", Toast.LENGTH_LONG).show();
+            	Toast.makeText(ChoseTermsActivity.this, "你还没有数据", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private String getLoginID(){
+    private void getUserIdAndPassWord(){
     	@SuppressWarnings("deprecation")
 		SharedPreferences sp = ChoseTermsActivity.this.getSharedPreferences("userInfo",Context.MODE_WORLD_READABLE);
-    	String id = sp.getString("USER_NAME", "");
-    	return id;
+    	stuId = sp.getString("USER_NAME", "");
+        password = sp.getString("PASSWORD", "");
     }
     
 }
