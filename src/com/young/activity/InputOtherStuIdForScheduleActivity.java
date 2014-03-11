@@ -33,6 +33,7 @@ public class InputOtherStuIdForScheduleActivity extends BaseActivity {
                     Intent intent = new Intent(InputOtherStuIdForScheduleActivity.this ,ScheduleActivity.class);
                     intent.putExtra("STUID",stuId);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

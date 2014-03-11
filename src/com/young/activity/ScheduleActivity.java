@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ScheduleActivity extends Activity implements OnTouchListener,
+public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         OnGestureListener {
 
     private TextView textView;
@@ -47,7 +46,10 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
     private List<Schedule> schedules;
     private ArrayList<HashMap<String, String>> data;
     private String stuId;
+    private String loginStuId;
+    private String password;
     private ProgressDialog mpDialog;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +62,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         mpDialog.setIndeterminate(false);//设置进度条是否为不明确
         mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
         mpDialog.show();
-
-        @SuppressWarnings("deprecation")
-		final SharedPreferences sp = this.getSharedPreferences("userInfo",
+        sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = getIntent().getStringExtra("STUID");
+        loginStuId = sp.getString("USER_NAME", "");
+        password = sp.getString("PASSWORD", "");
         if ("".equals(stuId) || null == stuId) {
-            stuId = sp.getString("USER_NAME", "");
+            stuId = loginStuId;
         }
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
         listView = (ListView) this.findViewById(R.id.list_schedule_course);
@@ -80,12 +82,13 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         layout.setClickable(true);
         layout.setLongClickable(true);
         databaseHelper = new DatabaseHelper(ScheduleActivity.this);
-        data = getDataFromDatabase(n);
-        adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
+
         upDateUI();
     }
 
     public void upDateUI() {
+        data = getDataFromDatabase(n);
+        adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
         textView.setText(text);
         listView.setAdapter(adapter);
         mpDialog.dismiss();
@@ -115,18 +118,12 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 7) ? 1 : n + 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }// fling to right
         else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 1) ? 7 : n - 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }
 
@@ -197,7 +194,7 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         isOneLine = new ArrayList<Integer>();
         isOneLine.add(0);
         isOneLine.add(1);
-        List<Schedule> cou = databaseHelper.getClassByDay(day,stuId,false);
+        List<Schedule> cou = databaseHelper.getClassByDay(day, stuId, false);
         //start
         int listCount = 0, daytime = 1;
         while (daytime <= 5) {
@@ -246,10 +243,10 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
+                hbut.login(loginStuId, password);
                 schedules = hbut.getSchedule(stuId);
-
                 for (Schedule schedule : schedules) {
-                    databaseHelper.addSchedule(schedule,false);
+                    databaseHelper.addSchedule(schedule, false);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -263,8 +260,6 @@ public class ScheduleActivity extends Activity implements OnTouchListener,
         protected void onPostExecute(String result) {
             Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
                     .show();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(ScheduleActivity.this, isOneLine, data);
             upDateUI();
         }
 

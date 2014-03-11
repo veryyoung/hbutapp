@@ -6,8 +6,6 @@ import org.json.JSONException;
 
 import com.young.R;
 import com.young.business.HBUT;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -15,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ChangeActivity extends Activity {
+public class ChangeActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

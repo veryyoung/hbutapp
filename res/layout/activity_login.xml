@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/login"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <!-- android:background="@drawable/form" -->
 
@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@drawable/form"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/username"
@@ -24,8 +24,7 @@
             android:inputType="textPersonName"
             android:background="@null"
             android:textColor="#d2d2d2"
-            android:textSize="23sp" >
-        </EditText>
+            android:textSize="23sp"></EditText>
 
         <EditText
             android:id="@+id/password"
@@ -43,7 +42,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,18 +72,6 @@
         android:text="@string/login"
         android:textColor="#ffffff"
         android:textSize="20sp" />
-    
-    <Button 
-        android:id="@+id/local_schedule"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="#007294"
-        android:text="@string/local_schedule"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        >
-        </Button>
+
 
 </LinearLayout>

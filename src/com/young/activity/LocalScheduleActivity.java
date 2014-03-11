@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LocalScheduleActivity extends Activity implements View.OnTouchListener,
+public class LocalScheduleActivity extends BaseActivity implements View.OnTouchListener,
         GestureDetector.OnGestureListener {
 
     private TextView textView;
@@ -49,6 +48,7 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
     private List<Schedule> schedules;
     private ArrayList<HashMap<String, String>> data;
     private String stuId;
+    private String password;
     private ProgressDialog mpDialog;
 
     @Override
@@ -64,9 +64,10 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         mpDialog.show();
 
         @SuppressWarnings("deprecation")
-		final SharedPreferences sp = this.getSharedPreferences("userInfo",
+        final SharedPreferences sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = sp.getString("USER_NAME", "");
+        password = sp.getString("PASSWORD", "");
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
         listView = (ListView) this.findViewById(R.id.list_schedule_course);
         listView.setDividerHeight(0);
@@ -115,18 +116,12 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 7) ? 1 : n + 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }// fling to right
         else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 1) ? 7 : n - 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }
 
@@ -159,7 +154,10 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
                 LocalScheduleActivity.this.startActivity(intent);
                 break;
             case 2:
-                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                Intent intentUpdate = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
+                intentUpdate.putExtra("ID", data.get(menuInfo.position).get("_id"));
+                intentUpdate.putExtra("ISMODIFY", true);
+                LocalScheduleActivity.this.startActivity(intentUpdate);
                 break;
             case 3:
                 databaseHelper.deleteSchedule(id);
@@ -286,6 +284,8 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
+                hbut.login(stuId, password);
+
                 schedules = hbut.getSchedule(stuId);
 
                 for (Schedule schedule : schedules) {
@@ -303,8 +303,6 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         protected void onPostExecute(String result) {
             Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
                     .show();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
             upDateUI();
         }
 
