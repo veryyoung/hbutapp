@@ -229,24 +229,7 @@ public class DatabaseHelper {
      * @param stu_id
      * @return
      */
-<<<<<<< HEAD
-    public ArrayList<String> getTerms(String stu_id){
-    	ArrayList<String> listTerms = null;
-    	if(db != null){
-    		if(db.isOpen()){
-    			listTerms = new ArrayList<String>();
-    			String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
-    			Cursor cursor = db.rawQuery(sql, new String[] {stu_id});
-    			int columnIndex = cursor.getColumnIndex("terms");
-    			cursor.moveToFirst();
-    			do{
-    				listTerms.add(cursor.getString(columnIndex));
-    			}while(cursor.moveToNext());
-    		}
-    	}
-    	return listTerms;
-=======
-    public ArrayList<String> scoreGetTerms(String stu_id) {
+    public ArrayList<String> getTerms(String stu_id) {
         ArrayList<String> listTerms = null;
         if (db != null) {
             if (db.isOpen()) {
@@ -261,7 +244,7 @@ public class DatabaseHelper {
             }
         }
         return listTerms;
->>>>>>> 1187d2a6c87fb5ab767b974c5e3324d2b13f2790
+
     }
 
     /*
@@ -305,21 +288,5 @@ public class DatabaseHelper {
             }
         }
     }
-<<<<<<< HEAD
-    
-    //清空score表中数据，调试时使用
-    public void clearTableScore(){
-    	if(db != null){
-    		if(db.isOpen()){
-    			String sql = "delete from score where _id > 0 ";
-    			db.execSQL(sql);
-    		}
-    	}
-    }
-    
-    
-=======
-
->>>>>>> 1187d2a6c87fb5ab767b974c5e3324d2b13f2790
 
 }
