@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.young.R;
 
-public class ChoseActivity extends BaseActivity{
+public class ChoseTermsActivity extends BaseActivity{
 
     public static final String SEMESTER = "semester";
 
