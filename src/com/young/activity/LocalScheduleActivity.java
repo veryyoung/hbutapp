@@ -64,7 +64,7 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         mpDialog.show();
 
         @SuppressWarnings("deprecation")
-		final SharedPreferences sp = this.getSharedPreferences("userInfo",
+        final SharedPreferences sp = this.getSharedPreferences("userInfo",
                 Context.MODE_WORLD_READABLE);
         stuId = sp.getString("USER_NAME", "");
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
@@ -115,18 +115,12 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 7) ? 1 : n + 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }// fling to right
         else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE
                 && Math.abs(velocityX) > FLING_MIN_VELOCITY) {
             n = (n == 1) ? 7 : n - 1;
             setDate();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine,
-                    data);
             upDateUI();
         }
 
@@ -159,7 +153,10 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
                 LocalScheduleActivity.this.startActivity(intent);
                 break;
             case 2:
-                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                Intent intentUpdate = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
+                intentUpdate.putExtra("ID", data.get(menuInfo.position).get("_id"));
+                intentUpdate.putExtra("ISMODIFY", true);
+                LocalScheduleActivity.this.startActivity(intentUpdate);
                 break;
             case 3:
                 databaseHelper.deleteSchedule(id);
@@ -303,8 +300,6 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         protected void onPostExecute(String result) {
             Toast.makeText(getApplicationContext(), "课表更新完毕", Toast.LENGTH_LONG)
                     .show();
-            data = getDataFromDatabase(n);
-            adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
             upDateUI();
         }
 

@@ -69,6 +69,42 @@ public class DatabaseHelper {
     }
 
     /**
+     * 根据课程id查询
+     *
+     * @param id
+     * @return
+     */
+    public Schedule getScheduleById(String id) {
+        Schedule schedule = null;
+        if (db != null) {
+            if (db.isOpen()) {
+                Cursor cursor = db.rawQuery(
+                        "select * from local_schedule where _id = ?",
+                        new String[]{id});
+                while (cursor.moveToNext()) {
+                    schedule = new Schedule();
+                    schedule.set_id(cursor.getInt(cursor.getColumnIndex("_id")));
+                    schedule.setCurName(cursor.getString(cursor
+                            .getColumnIndex("cur_name")));
+                    schedule.setWeek(cursor.getString(cursor
+                            .getColumnIndex("week")));
+                    schedule.setTeacher(cursor.getString(cursor
+                            .getColumnIndex("teacher")));
+                    schedule.setPlace(cursor.getString(cursor
+                            .getColumnIndex("place")));
+                    schedule.setDay(cursor.getInt(cursor.getColumnIndex("day")));
+                    schedule.setDayTime(cursor.getInt(cursor
+                            .getColumnIndex("day_time")));
+                    schedule.setStuId(cursor.getString(cursor
+                            .getColumnIndex("stu_id")));
+                }
+                cursor.close();
+            }
+        }
+        return schedule;
+    }
+
+    /**
      * 插入一节课信息
      *
      * @param isLocal  是否为本地课表
@@ -93,6 +129,24 @@ public class DatabaseHelper {
                 );
             }
         }
+    }
+
+    /**
+     * 修改课程
+     *
+     * @param schedule
+     */
+    public void updateSchedule(Schedule schedule) {
+        if (db != null) {
+            if (db.isOpen()) {
+                db.execSQL("update local_schedule set cur_name = ? ,teacher = ?, place = ? ," +
+                        "week = ? where _id = ?", new Object[]{
+                        schedule.getCurName(), schedule.getTeacher(), schedule.getPlace(),
+                        schedule.getWeek(), schedule.get_id()
+                });
+            }
+        }
+
     }
 
     /**
@@ -168,26 +222,28 @@ public class DatabaseHelper {
         }
 
     }
+
     /**
      * 根据学号查找有多少个学期
+     *
      * @param stu_id
      * @return
      */
-    public ArrayList<String> scoreGetTerms(String stu_id){
-    	ArrayList<String> listTerms = null;
-    	if(db != null){
-    		if(db.isOpen()){
-    			listTerms = new ArrayList<String>();
-    			String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
-    			Cursor cursor = db.rawQuery(sql, new String[] {stu_id});
-    			int columnIndex = cursor.getColumnIndex("terms");
-    			cursor.moveToFirst();
-    			do{
-    				listTerms.add(cursor.getString(columnIndex));
-    			}while(cursor.moveToNext());
-    		}
-    	}
-    	return listTerms;
+    public ArrayList<String> scoreGetTerms(String stu_id) {
+        ArrayList<String> listTerms = null;
+        if (db != null) {
+            if (db.isOpen()) {
+                listTerms = new ArrayList<String>();
+                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
+                Cursor cursor = db.rawQuery(sql, new String[]{stu_id});
+                int columnIndex = cursor.getColumnIndex("terms");
+                cursor.moveToFirst();
+                do {
+                    listTerms.add(cursor.getString(columnIndex));
+                } while (cursor.moveToNext());
+            }
+        }
+        return listTerms;
     }
 
     /*
@@ -231,7 +287,6 @@ public class DatabaseHelper {
             }
         }
     }
-    
-    
+
 
 }

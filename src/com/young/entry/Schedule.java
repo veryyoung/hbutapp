@@ -1,6 +1,8 @@
 package com.young.entry;
 
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable {
     private int _id;
     private String curName; // 课程名
     private int day; // 星期几
