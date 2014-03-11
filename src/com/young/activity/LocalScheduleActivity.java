@@ -3,6 +3,7 @@ package com.young.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -79,12 +80,12 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
         layout.setLongClickable(true);
         registerForContextMenu(listView);
         databaseHelper = new DatabaseHelper(LocalScheduleActivity.this);
-        data = getDataFromDatabase(n);
-        adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
         upDateUI();
     }
 
     public void upDateUI() {
+        data = getDataFromDatabase(n);
+        adapter = new AdapterForSchedule(LocalScheduleActivity.this, isOneLine, data);
         textView.setText(text);
         listView.setAdapter(adapter);
         mpDialog.dismiss();
@@ -135,40 +136,37 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
-
         menu.setHeaderTitle("请选择操作");
         String id = data.get(i).get("_id");
-        if (null == id || id.equals("")) { //课表不存在
-            menu.add(1, 1, 0, "插入课表");
-        } else {
-            menu.add(0, 1, 0, "修改该课表");
-            menu.add(0, 2, 0, "删除该课表");
+        menu.add(1, 1, 0, "插入课表");
+        if ((null != id) && (!id.equals(""))) { //课表存在
+            menu.add(0, 2, 0, "修改该课表");
+            menu.add(0, 3, 0, "删除该课表");
         }
         super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-//        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//        String id = data.get(menuInfo.position).get("_id");
-//        if (null == id || id.equals("")) { //课表不存在
-//            return false;
-//        }
-        int groupId = item.getGroupId();
-        if (groupId == 1) {
-            Toast.makeText(this, "插入", Toast.LENGTH_LONG).show();
-        } else {
-            switch (item.getItemId()) {
-                case 1:
-                    Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
-                    break;
-                case 2:
-                    Toast.makeText(this, "删除", Toast.LENGTH_LONG).show();
-                    break;
-                default:
-                    break;
-            }
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        String id = data.get(menuInfo.position).get("_id");
+        switch (item.getItemId()) {
+            case 1:
+                Intent intent = new Intent(LocalScheduleActivity.this, InsertScheduleActivity.class);
+                intent.putExtra("ISMODIFY", false);
+                intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position + 1));
+                intent.putExtra("DAY", n);
+                LocalScheduleActivity.this.startActivity(intent);
+                break;
+            case 2:
+                Toast.makeText(this, "修改", Toast.LENGTH_LONG).show();
+                break;
+            case 3:
+                databaseHelper.deleteSchedule(id);
+                upDateUI();
+                break;
+            default:
+                break;
         }
         return super.onContextItemSelected(item);
     }
@@ -310,5 +308,15 @@ public class LocalScheduleActivity extends Activity implements View.OnTouchListe
             upDateUI();
         }
 
+    }
+
+    private int getDaytimeByOnline(int n) {
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (isOneLine.get(i) != isOneLine.get(i - 1)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
