@@ -247,8 +247,7 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
             HBUT hbut = HBUT.getInstance();
             try {
                 if (!NetworkUtil.isOpenNetwork()) {
-                    Intent intent = new Intent(ScheduleActivity.this, MainActivity.class);
-                    ScheduleActivity.this.startActivity(intent);
+                    finish();
                     return "无网络连接";
                 } else {
                     hbut.login(loginStuId, password);

@@ -1,6 +1,5 @@
 package com.young.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import com.young.R;
 import com.young.adapter.AdapterForMain;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private ListView listView;
     public static final String CHOSE_MENU_MESSAGE = "name";

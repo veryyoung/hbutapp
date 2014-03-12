@@ -286,14 +286,13 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
             HBUT hbut = HBUT.getInstance();
             try {
                 if (!NetworkUtil.isOpenNetwork()) {
-                    Intent intent = new Intent(LocalScheduleActivity.this, MainActivity.class);
-                    LocalScheduleActivity.this.startActivity(intent);
+                    finish();
                     return "无网络连接";
                 } else {
                     hbut.login(stuId, password);
                     schedules = hbut.getSchedule(stuId);
                     for (Schedule schedule : schedules) {
-                        databaseHelper.addSchedule(schedule, false);
+                        databaseHelper.addSchedule(schedule, true);
                     }
                 }
             } catch (IOException e) {
