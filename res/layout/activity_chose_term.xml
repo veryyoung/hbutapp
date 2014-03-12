@@ -3,12 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:textSize="30sp"
+            />
+        
+        <Button 
+            android:id="@+id/button_refresh"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/refresh"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            />
+        
+    </RelativeLayout>
+    
+    <TextView 
+        android:id="@+id/text_score_gredit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        />
+    
+    <TextView 
+        android:id="@+id/text_average_score_gredit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="10dp"
+        />
    
      
     <ListView
         android:id="@+id/list_terms"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
+        android:paddingLeft="10dp"
         ></ListView>
     
 

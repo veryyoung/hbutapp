@@ -1,19 +1,19 @@
 package com.young.entry;
 
 public class Student {
-	private String className;
-	private String stuName;
-	private String stuNum;
-	private String IDCard;
-	private String sex;
-	private String ethnic;
-	private String college;
-	private String major;
-	private String year;
-	private String politicalStatus;
-	private String birthDay;
-	private String enterScholl;
-	private String leftScholl;
+	private String className; //班级
+	private String stuName;  //姓名
+	private String stuNum;  //学号
+	private String IDCard;  //生分证号
+	private String sex;  //性别
+	private String ethnic; //民族
+	private String college; //学院
+	private String major; //专业
+	private String year;  //学制
+	private String politicalStatus; //政治面貌
+	private String birthDay; //出生日期
+	private String enterScholl; //入校日期
+	private String leftScholl;  //离校日期
 	public String getClassName() {
 		return className;
 	}

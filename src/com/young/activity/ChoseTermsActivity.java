@@ -12,10 +12,13 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.young.R;
@@ -40,15 +43,38 @@ public class ChoseTermsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose_term);
         listView = (ListView) findViewById(R.id.list_terms);
+        helper = new DatabaseHelper(this);
         //得到登陆学号和密码
         getUserIdAndPassWord();
-
+        //标题栏,学生姓名
+        TextView textView = (TextView) findViewById(R.id.title_name);
+        textView.setText("ironman");
+        //刷新按钮
+        Button buttonRefresh = (Button)findViewById(R.id.button_refresh);
+        buttonRefresh.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(helper != null){
+					//先删除表中的所有数据
+					helper.clearTableScore();
+					new GetScoreFromNetWork().execute();
+	                proDialog = ProgressDialog.show(ChoseTermsActivity.this, "数据更新中", "请等待，数据更新中。。。");
+				}
+			}
+		});
+        //学分总绩点
+        TextView textTotalGredit = (TextView) findViewById(R.id.text_score_gredit);
+        textTotalGredit.setText("总学分绩点是：200");
+        //平均学分绩点
+        TextView textAverageGredit = (TextView)findViewById(R.id.text_average_score_gredit);
+        textAverageGredit.setText("平均学分绩点是：4.0");
         //得到数据的方法要放到这里，然后给listView设置Adapter可以放到onStart里面
-        helper = new DatabaseHelper(this);
         if (stuId != "") {
             //判断表中是否有数据，如果有就直接获取，如果没有就重新去网络拿数据
             if (helper.isEmpty(SQLiteHelper.TABLE_SCORE, stuId)) {
-                new GetScoreFromNetWork().execute("");
+                new GetScoreFromNetWork().execute();
                 proDialog = ProgressDialog.show(ChoseTermsActivity.this, "数据更新中", "请等待，数据更新中。。。");
             } else {
                 data = helper.getTerms(stuId);

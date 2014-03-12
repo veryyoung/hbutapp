@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.young.entry.Schedule;
 import com.young.entry.Score;
+import com.young.entry.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -237,7 +238,7 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 listTerms = new ArrayList<String>();
-                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? ";
+                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? order by terms asc ";
                 Cursor cursor = db.rawQuery(sql, new String[]{stu_id});
                 int columnIndex = cursor.getColumnIndex("terms");
                 cursor.moveToFirst();
@@ -290,7 +291,7 @@ public class DatabaseHelper {
         }
     }
 
-    //清空score表中数据，调试时使用
+    //清空score表中数据，用于刷新分手，需要删除以前分数
     public void clearTableScore(){
     	if(db != null){
     		if(db.isOpen()){
@@ -298,6 +299,73 @@ public class DatabaseHelper {
     			db.execSQL(sql);
     		}
     	}
+    }
+    
+    /**
+     * 插入一个学生的信息
+     * @param stu
+     * @return
+     */
+    
+    public void insertStudent(Student stu){
+    	String insetSql = " insert into student (class_name , stu_name , stu_id , id_card, "+
+        		"sex , ethnic , college , major , year , "+
+        		"political_status , birth_day , enter_school , leave_school ) " +
+        		"values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    	if(db != null){
+    		if(db.isOpen()){
+    			db.execSQL(insetSql, new String[] {
+    					stu.getClassName(),
+    					stu.getStuName(),
+    					stu.getStuNum(),
+    					stu.getIDCard(),
+    					stu.getSex(),
+    					stu.getEthnic(),
+    					stu.getCollege(),
+    					stu.getMajor(),
+    					stu.getYear(),
+    					stu.getPoliticalStatus(),
+    					stu.getBirthDay(),
+    					stu.getEnterScholl(),
+    					stu.getLeftScholl()
+    			});
+    		}
+    	}
+    }
+    
+    /**
+     * 查询学生信息
+     * @param stuId
+     */
+    
+    public Student getStudent(String stuId){
+    	Student stu = null;
+    	if(db != null){
+    		if(db.isOpen()){
+    			Cursor cursor = db.rawQuery("select * from student where stu_id = ?",
+    					new String[] {stuId});
+    			if(cursor.getColumnCount() < 1){
+    				return null;
+    			}
+    			while(cursor.moveToNext()){
+    				stu = new Student();
+    				stu.setClassName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.CLASS_NAME)));
+    				stu.setStuName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NAME)));
+    				stu.setStuNum(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NUM)));
+    				stu.setIDCard(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ID_CARD)));
+    				stu.setSex(cursor.getString(cursor.getColumnIndex(SQLiteHelper.SEX)));
+    				stu.setEnterScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ETHNIC)));
+    				stu.setCollege(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLLEGE)));
+    				stu.setMajor(cursor.getString(cursor.getColumnIndex(SQLiteHelper.MAJOR)));
+    				stu.setYear(cursor.getString(cursor.getColumnIndex(SQLiteHelper.YEAR)));
+    				stu.setPoliticalStatus(cursor.getString(cursor.getColumnIndex(SQLiteHelper.POLITICAL_STATUS)));
+    				stu.setBirthDay(cursor.getString(cursor.getColumnIndex(SQLiteHelper.BIRTH_DAY)));
+    				stu.setEnterScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ENTER_SCHOOL)));
+    				stu.setLeftScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.LEAVE_SCHOOL)));
+    			}
+    		}
+    	}
+    	return stu;
     }
     
     
