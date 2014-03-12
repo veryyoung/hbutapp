@@ -1,11 +1,13 @@
 package com.young.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.view.MenuInflater;
 
 import com.young.R;
 
@@ -33,8 +35,27 @@ public abstract class BaseActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast toast = Toast.makeText(this, "这是个Menu菜单的练习", Toast.LENGTH_SHORT);
-        toast.show();
+        switch (item.getItemId()) {
+            case R.id.about_us:
+                Toast.makeText(this, "关于我们", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.check_update:
+                Toast.makeText(this, "检查更新", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.exit:
+                SharedPreferences sp = this.getSharedPreferences("userInfo",
+                        Context.MODE_WORLD_READABLE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.remove("USER_NAME");
+                editor.remove("PASSWORD");
+                editor.commit();
+                Intent intent = new Intent(this, LoginActivity.class);
+                this.startActivity(intent);
+                Toast.makeText(this, "注销成功", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
