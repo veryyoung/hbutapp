@@ -37,25 +37,21 @@ public class MainActivity extends Activity {
                     case 0://教学课表
                         Intent intent = new Intent(MainActivity.this, ChoseScheduleTypeActitity.class);
                         MainActivity.this.startActivity(intent);
-                        finish();
                         break;
 
                     case 1://个人信息
                         intent = new Intent(MainActivity.this, InfoActivity.class);
                         MainActivity.this.startActivity(intent);
-                        finish();
                         break;
 
                     case 2://成绩管理
                         Intent intent3 = new Intent(MainActivity.this, ChoseTermsActivity.class);
 //						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
                         MainActivity.this.startActivity(intent3);
-                        finish();
                         break;
                     case 3://修改密码
                         intent = new Intent(MainActivity.this, ChangeActivity.class);
                         MainActivity.this.startActivity(intent);
-                        finish();
                         break;
                     default:
                         break;
