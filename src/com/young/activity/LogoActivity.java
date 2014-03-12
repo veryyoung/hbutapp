@@ -40,7 +40,8 @@ public class LogoActivity extends Activity {
 				try {
 					Boolean loginFlag = hbut.login(username, password);
 					if (loginFlag) {
-                        SharedPreferences sp = LogoActivity.this.getSharedPreferences("userInfo",
+                        @SuppressWarnings("deprecation")
+						SharedPreferences sp = LogoActivity.this.getSharedPreferences("userInfo",
                                 Context.MODE_WORLD_READABLE);
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("USER_NAME", username);

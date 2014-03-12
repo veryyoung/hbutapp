@@ -15,9 +15,6 @@ import com.young.adapter.AdapterForMain;
 public class MainActivity extends BaseActivity {
 
     private ListView listView;
-    public static final String CHOSE_MENU_MESSAGE = "name";
-    public static final String SCHEDULE_TABLE = "0";
-    public static final String SCORE_MANAGEMENT = "3";
     private long exitTime;//两次返回键退出之间的间隔
 
     @Override
