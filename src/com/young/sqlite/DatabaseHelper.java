@@ -354,7 +354,7 @@ public class DatabaseHelper {
     				stu.setStuNum(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NUM)));
     				stu.setIDCard(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ID_CARD)));
     				stu.setSex(cursor.getString(cursor.getColumnIndex(SQLiteHelper.SEX)));
-    				stu.setEnterScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ETHNIC)));
+    				stu.setEthnic(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ETHNIC)));
     				stu.setCollege(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLLEGE)));
     				stu.setMajor(cursor.getString(cursor.getColumnIndex(SQLiteHelper.MAJOR)));
     				stu.setYear(cursor.getString(cursor.getColumnIndex(SQLiteHelper.YEAR)));
@@ -366,6 +366,18 @@ public class DatabaseHelper {
     		}
     	}
     	return stu;
+    }
+    /**
+     * 清空student数据表
+     */
+    
+    public void clearTableStudent(){
+    	String sql ="delete  from student where _id > 0";
+    	if(db != null){
+    		if(db.isOpen()){
+    			db.execSQL(sql);
+    		}
+    	}
     }
     
     
