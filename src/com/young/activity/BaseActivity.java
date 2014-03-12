@@ -5,6 +5,12 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.view.MenuInflater;
+
+import com.young.R;
+
+import java.lang.reflect.Method;
+
 
 public abstract class BaseActivity extends Activity {
 
@@ -19,7 +25,9 @@ public abstract class BaseActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, 1, 1, "退出").setIcon(android.R.drawable.ic_menu_close_clear_cancel);
+
+        setIconEnable(menu, true);
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -29,4 +37,21 @@ public abstract class BaseActivity extends Activity {
         toast.show();
         return super.onOptionsItemSelected(item);
     }
+
+    //enable为true时，菜单添加图标有效，enable为false时无效。4.0系统默认无效
+    private void setIconEnable(Menu menu, boolean enable) {
+        try {
+            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
+            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            m.setAccessible(true);
+
+            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
+            m.invoke(menu, enable);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
