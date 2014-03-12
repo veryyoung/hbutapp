@@ -18,7 +18,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.young.R;
@@ -46,9 +45,6 @@ public class ChoseTermsActivity extends BaseActivity {
         helper = new DatabaseHelper(this);
         //得到登陆学号和密码
         getUserIdAndPassWord();
-        //标题栏,学生姓名
-        TextView textView = (TextView) findViewById(R.id.title_name);
-        textView.setText("ironman");
         //刷新按钮
         Button buttonRefresh = (Button)findViewById(R.id.button_refresh);
         buttonRefresh.setOnClickListener(new OnClickListener() {
@@ -64,12 +60,6 @@ public class ChoseTermsActivity extends BaseActivity {
 				}
 			}
 		});
-        //学分总绩点
-        TextView textTotalGredit = (TextView) findViewById(R.id.text_score_gredit);
-        textTotalGredit.setText("总学分绩点是：200");
-        //平均学分绩点
-        TextView textAverageGredit = (TextView)findViewById(R.id.text_average_score_gredit);
-        textAverageGredit.setText("平均学分绩点是：4.0");
         //得到数据的方法要放到这里，然后给listView设置Adapter可以放到onStart里面
         if (stuId != "") {
             //判断表中是否有数据，如果有就直接获取，如果没有就重新去网络拿数据
