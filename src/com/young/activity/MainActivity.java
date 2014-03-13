@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
                         MainActivity.this.startActivity(intent3);
                         break;
                     case 3://修改密码
-                        intent = new Intent(MainActivity.this, ChangeActivity.class);
+                        intent = new Intent(MainActivity.this, ChangePwdActivity.class);
                         MainActivity.this.startActivity(intent);
                         break;
                     default:

@@ -30,7 +30,7 @@
         <activity android:name="com.young.activity.MainActivity" />
         <activity android:name=".activity.ScheduleActivity" />
         <activity android:name="com.young.activity.InfoActivity" />
-        <activity android:name="com.young.activity.ChangeActivity" />
+        <activity android:name=".activity.ChangePwdActivity" />
         <activity android:name="com.young.activity.LogoActivity" />
         <activity android:name="com.young.activity.ChoseScheduleTypeActitity"></activity>
         <activity android:name="com.young.activity.ScoreManagementActivity" />
