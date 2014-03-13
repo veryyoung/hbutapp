@@ -27,37 +27,39 @@ public final class R {
     }
     public static final class drawable {
         public static final int about_us=0x7f020000;
-        public static final int button_border=0x7f020001;
-        public static final int chengjiguanli_b=0x7f020002;
-        public static final int cloud=0x7f020003;
-        public static final int form=0x7f020004;
-        public static final int gerenpeizhi=0x7f020005;
-        public static final int hbut=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int jiaoxuekebiao_1=0x7f020008;
-        public static final int login=0x7f020009;
-        public static final int xinxi=0x7f02000a;
-        public static final int xuejiguanli=0x7f02000b;
+        public static final int arrow=0x7f020001;
+        public static final int button_border=0x7f020002;
+        public static final int chengjiguanli_b=0x7f020003;
+        public static final int cloud=0x7f020004;
+        public static final int form=0x7f020005;
+        public static final int gerenpeizhi=0x7f020006;
+        public static final int hbut=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int jiaoxuekebiao_1=0x7f020009;
+        public static final int login=0x7f02000a;
+        public static final int xinxi=0x7f02000b;
+        public static final int xuejiguanli=0x7f02000c;
     }
     public static final class id {
         public static final int Schedule_relative_layout=0x7f090033;
-        public static final int about_us=0x7f090041;
-        public static final int action_settings=0x7f090040;
+        public static final int about_us=0x7f090046;
+        public static final int action_settings=0x7f090045;
         public static final int btn_back=0x7f09002e;
         public static final int button_refresh=0x7f090013;
-        public static final int cancleButton=0x7f09000d;
-        public static final int changeButton=0x7f09000c;
-        public static final int change_conpw=0x7f09000b;
-        public static final int change_newpw=0x7f09000a;
-        public static final int change_oldpw=0x7f090009;
-        public static final int check_update=0x7f090042;
+        public static final int cancleButton=0x7f090006;
+        public static final int changeButton=0x7f09000d;
+        public static final int change_conpw=0x7f09000c;
+        public static final int change_newpw=0x7f09000b;
+        public static final int change_oldpw=0x7f09000a;
+        public static final int check_update=0x7f090047;
         public static final int chose_list_hint1=0x7f090023;
         public static final int chose_list_hint2=0x7f090024;
         public static final int chose_list_title=0x7f090022;
         public static final int chose_schedule_type_title=0x7f09000e;
-        public static final int exit=0x7f090043;
+        public static final int exit=0x7f090048;
+        public static final int head_contentLayout=0x7f09003e;
         public static final int image=0x7f090031;
-        public static final int image_about_us=0x7f090006;
+        public static final int image_about_us=0x7f090007;
         public static final int info_IDCard=0x7f090019;
         public static final int info_birthday=0x7f09001f;
         public static final int info_class_name=0x7f090017;
@@ -84,12 +86,16 @@ public final class R {
         public static final int local_scheme=0x7f090027;
         public static final int local_scheme_list=0x7f090028;
         public static final int login_ok=0x7f09002b;
+        public static final int lvHeaderArrowIv=0x7f09003f;
+        public static final int lvHeaderLastUpdatedTv=0x7f090042;
+        public static final int lvHeaderProgressBar=0x7f090040;
+        public static final int lvHeaderTipsTv=0x7f090041;
         public static final int main_list_title=0x7f090030;
         public static final int main_title=0x7f09002f;
         public static final int others_schedule=0x7f090010;
         public static final int password=0x7f09002a;
         public static final int pgBar=0x7f09002c;
-        public static final int progressPercent=0x7f09003e;
+        public static final int progressPercent=0x7f090043;
         public static final int schedule_text_teacher=0x7f090037;
         public static final int score_corese_name=0x7f09003b;
         public static final int score_grade_point_average=0x7f09003c;
@@ -98,15 +104,15 @@ public final class R {
         public static final int score_total_points=0x7f09003d;
         public static final int self_schedule=0x7f09000f;
         public static final int stu_id_input=0x7f090025;
-        public static final int text_about_picture=0x7f090007;
-        public static final int text_about_us=0x7f090008;
+        public static final int text_about_picture=0x7f090008;
+        public static final int text_about_us=0x7f090009;
         public static final int text_for_course=0x7f090036;
         public static final int text_for_coursetime=0x7f090038;
         public static final int text_main=0x7f090032;
         public static final int text_schedule_title=0x7f090034;
         public static final int title_name=0x7f090012;
         public static final int tv1=0x7f09002d;
-        public static final int update_progress=0x7f09003f;
+        public static final int update_progress=0x7f090044;
         public static final int username=0x7f090029;
     }
     public static final class layout {
@@ -126,7 +132,8 @@ public final class R {
         public static final int activity_schedule_item=0x7f03000d;
         public static final int activity_score_management=0x7f03000e;
         public static final int activity_score_management_item=0x7f03000f;
-        public static final int softupdate_progress=0x7f030010;
+        public static final int drop_header=0x7f030010;
+        public static final int softupdate_progress=0x7f030011;
     }
     public static final class menu {
         public static final int about_us=0x7f080000;
