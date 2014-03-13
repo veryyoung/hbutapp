@@ -4,12 +4,12 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.young.R;
 import com.young.adapter.AdapterForScore;
-import com.young.adapter.MyBaseAdapter;
 import com.young.entry.Score;
 import com.young.sqlite.DatabaseHelper;
 
@@ -20,7 +20,7 @@ public class ScoreManagementActivity extends BaseActivity {
     private String title;
     private String stuId;
     private List<Score> scores;
-    private MyBaseAdapter adapter;
+    private BaseAdapter adapter;
     private String text;
     private DatabaseHelper databaseHelper;
 

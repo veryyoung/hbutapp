@@ -6,12 +6,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.young.R;
 import com.young.entry.Score;
 
-public class AdapterForScore extends MyBaseAdapter{
+public class AdapterForScore extends BaseAdapter {
 	private List<Score> scores;
 	private LayoutInflater inflater;
 	

@@ -1,7 +1,9 @@
 package com.young.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -12,17 +14,17 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.young.R;
 import com.young.adapter.AdapterForSchedule;
-import com.young.adapter.MyBaseAdapter;
 import com.young.business.HBUT;
 import com.young.entry.Schedule;
 import com.young.sqlite.DatabaseHelper;
+import com.young.util.DropDownListView;
 import com.young.util.NetworkUtil;
 
 import org.json.JSONException;
@@ -36,9 +38,9 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         GestureDetector.OnGestureListener {
 
     private TextView textView;
-    private ListView listView;
+    private DropDownListView listView;
     private String text = "星期一";
-    private MyBaseAdapter adapter;
+    private BaseAdapter adapter;
     private int n = 1;
     private GestureDetector mDetector;
     private static final int FLING_MIN_DISTANCE = 100;
@@ -70,7 +72,7 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         stuId = sp.getString("USER_NAME", "");
         password = sp.getString("PASSWORD", "");
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
-        listView = (ListView) this.findViewById(R.id.list_schedule_course);
+        listView = (DropDownListView) this.findViewById(R.id.list_schedule_course);
         listView.setDividerHeight(0);
         mDetector = new GestureDetector(this, this);
         mDetector.setIsLongpressEnabled(true);
@@ -83,6 +85,33 @@ public class LocalScheduleActivity extends BaseActivity implements View.OnTouchL
         registerForContextMenu(listView);
         databaseHelper = new DatabaseHelper(LocalScheduleActivity.this);
         upDateUI();
+        listView.setonRefreshListener(new DropDownListView.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LocalScheduleActivity.this);
+                builder.setTitle("更新课表会覆盖您的所有数据，确定更新吗？");
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.cancel();
+                                listView.onRefreshComplete();
+                            }
+                        }
+                ).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        databaseHelper.clearTableSchedule(stuId, true);
+                        new GetSchedualFromNetWork().execute("");
+                        upDateUI();
+                        adapter.notifyDataSetChanged();
+                        listView.onRefreshComplete();
+                    }
+                }).show();
+            }
+        });
     }
 
     public void upDateUI() {

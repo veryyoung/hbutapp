@@ -14,6 +14,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
@@ -75,6 +76,9 @@ public class HBUT {
 
         }
         httpget.abort();
+        if (response.getEntity() != null) {
+            response.getEntity().consumeContent();
+        }//if
         return false;
     }
 
@@ -178,7 +182,7 @@ public class HBUT {
         httppost.abort();
         JSONObject jsonObject = new JSONObject(postResult);
         String message = jsonObject.getString("Message");
-       
+
         return message;
     }
 

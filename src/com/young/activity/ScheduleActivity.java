@@ -1,7 +1,9 @@
 package com.young.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,10 +20,10 @@ import android.widget.Toast;
 
 import com.young.R;
 import com.young.adapter.AdapterForSchedule;
-import com.young.adapter.MyBaseAdapter;
 import com.young.business.HBUT;
 import com.young.entry.Schedule;
 import com.young.sqlite.DatabaseHelper;
+import com.young.util.DropDownListView;
 import com.young.util.NetworkUtil;
 
 import org.json.JSONException;
@@ -34,9 +37,9 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         OnGestureListener {
 
     private TextView textView;
-    private ListView listView;
+    private DropDownListView listView;
     private String text = "星期一";
-    private MyBaseAdapter adapter;
+    private BaseAdapter adapter;
     private int n = 1;
     private GestureDetector mDetector;
     private static final int FLING_MIN_DISTANCE = 100;
@@ -53,7 +56,7 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
     private SharedPreferences sp;
 
     @SuppressWarnings("deprecation")
-	@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
@@ -73,7 +76,7 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
             stuId = loginStuId;
         }
         textView = (TextView) this.findViewById(R.id.text_schedule_title);
-        listView = (ListView) this.findViewById(R.id.list_schedule_course);
+        listView = (DropDownListView) this.findViewById(R.id.list_schedule_course);
         listView.setDividerHeight(0);
         mDetector = new GestureDetector(this, this);
         mDetector.setIsLongpressEnabled(true);
@@ -84,8 +87,19 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         layout.setClickable(true);
         layout.setLongClickable(true);
         databaseHelper = new DatabaseHelper(ScheduleActivity.this);
-
         upDateUI();
+        listView.setonRefreshListener(new DropDownListView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                databaseHelper.clearTableSchedule(stuId, false);
+                new GetSchedualFromNetWork().execute("");
+                upDateUI();
+                adapter.notifyDataSetChanged();
+                listView.onRefreshComplete();
+
+            }
+        });
     }
 
     public void upDateUI() {

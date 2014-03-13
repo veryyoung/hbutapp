@@ -14,12 +14,12 @@
         android:gravity="center"
         android:textSize="24sp" />
 
-    <ListView
+    <com.young.util.DropDownListView
         android:id="@+id/list_schedule_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/text_schedule_title"
         android:cacheColorHint="#d7e6ec" >
-    </ListView>
+    </com.young.util.DropDownListView>
 
 </RelativeLayout>

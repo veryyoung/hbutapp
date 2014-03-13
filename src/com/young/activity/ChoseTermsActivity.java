@@ -46,20 +46,20 @@ public class ChoseTermsActivity extends BaseActivity {
         //得到登陆学号和密码
         getUserIdAndPassWord();
         //刷新按钮
-        Button buttonRefresh = (Button)findViewById(R.id.button_refresh);
+        Button buttonRefresh = (Button) findViewById(R.id.button_refresh);
         buttonRefresh.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(helper != null){
-					//先删除表中的所有数据
-					helper.clearTableScore();
-					new GetScoreFromNetWork().execute();
-	                proDialog = ProgressDialog.show(ChoseTermsActivity.this, "数据更新中", "请等待，数据更新中。。。");
-				}
-			}
-		});
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                if (helper != null) {
+                    //先删除表中的所有数据
+                    helper.clearTableScore(stuId);
+                    new GetScoreFromNetWork().execute();
+                    proDialog = ProgressDialog.show(ChoseTermsActivity.this, "数据更新中", "请等待，数据更新中。。。");
+                }
+            }
+        });
         //得到数据的方法要放到这里，然后给listView设置Adapter可以放到onStart里面
         if (stuId != "") {
             //判断表中是否有数据，如果有就直接获取，如果没有就重新去网络拿数据
@@ -146,9 +146,8 @@ public class ChoseTermsActivity extends BaseActivity {
                 } else {
                     Toast.makeText(ChoseTermsActivity.this, "你还没有数据", Toast.LENGTH_LONG).show();
                 }
-            }
-            else{
-                Toast.makeText(ChoseTermsActivity.this,result , Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(ChoseTermsActivity.this, result, Toast.LENGTH_LONG).show();
             }
 
         }

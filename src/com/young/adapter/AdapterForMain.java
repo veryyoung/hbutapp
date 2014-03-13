@@ -11,12 +11,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.young.R;
 
-public class AdapterForMain extends MyBaseAdapter{
+public class AdapterForMain extends BaseAdapter {
 	private List<Map<String,Object>> mData;
 	private LayoutInflater inflater;
 	private Context context;

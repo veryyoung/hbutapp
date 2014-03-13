@@ -174,14 +174,13 @@ public class DatabaseHelper {
         List<Score> scores = null;
         if (db != null) {
             if (db.isOpen()) {
-            	System.out.println("id is "+id);
                 Cursor cursor = db.rawQuery(
                         "select * from score where stu_id = ? and task_no like ?",
-                        new String[] {id, term+"%"});
+                        new String[]{id, term + "%"});
                 Score score = null;
                 scores = new ArrayList<Score>();
                 cursor.moveToFirst();
-               do{
+                do {
                     score = new Score();
                     short isShowScore = cursor.getShort(cursor
                             .getColumnIndex(SQLiteHelper.IS_SHOW_SCORE));
@@ -198,7 +197,7 @@ public class DatabaseHelper {
                     score.setCourseType(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COURSE_TYPE)));
                     score.setTaskNo(cursor.getString(cursor.getColumnIndex(SQLiteHelper.TASK_NO)));
                     scores.add(score);
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
                 cursor.close();
             }
 
@@ -249,6 +248,7 @@ public class DatabaseHelper {
         }
         return listTerms;
     }
+
     /*
      * 关闭数据库
      */
@@ -281,105 +281,112 @@ public class DatabaseHelper {
         return false;
     }
 
-    // 清空数据表中数据，用于调试时使用
-    public void clearTableSchedule() {
+
+    //清空score表中数据，用于刷新分手，需要删除以前分数
+    public void clearTableScore(String id) {
         if (db != null) {
             if (db.isOpen()) {
-                String sql = "delete from schedule where _id > 0";
+                String sql = "delete from score where stu_id = ? ";
+                db.execSQL(sql, new Object[]{id});
+            }
+        }
+    }
+
+    //清空schedule表中数据，用于刷新分手，需要删除以前的课表
+    public void clearTableSchedule(String id, Boolean isLocal) {
+        if (db != null) {
+            if (db.isOpen()) {
+                String tableName = "schedule";
+                if (isLocal) {
+                    tableName = "local_schedule";
+                }
+                String sql = "delete from " + tableName + " where stu_id = ? ";
+                db.execSQL(sql, new Object[]{id});
+            }
+        }
+    }
+
+    /**
+     * 插入一个学生的信息
+     *
+     * @param stu
+     * @return
+     */
+
+    public void insertStudent(Student stu) {
+        String insetSql = " insert into student (class_name , stu_name , stu_id , id_card, " +
+                "sex , ethnic , college , major , year , " +
+                "political_status , birth_day , enter_school , leave_school ) " +
+                "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        if (db != null) {
+            if (db.isOpen()) {
+                db.execSQL(insetSql, new String[]{
+                        stu.getClassName(),
+                        stu.getStuName(),
+                        stu.getStuNum(),
+                        stu.getIDCard(),
+                        stu.getSex(),
+                        stu.getEthnic(),
+                        stu.getCollege(),
+                        stu.getMajor(),
+                        stu.getYear(),
+                        stu.getPoliticalStatus(),
+                        stu.getBirthDay(),
+                        stu.getEnterScholl(),
+                        stu.getLeftScholl()
+                });
+            }
+        }
+    }
+
+    /**
+     * 查询学生信息
+     *
+     * @param stuId
+     */
+
+    public Student getStudent(String stuId) {
+        Student stu = null;
+        if (db != null) {
+            if (db.isOpen()) {
+                Cursor cursor = db.rawQuery("select * from student where stu_id = ?",
+                        new String[]{stuId});
+                if (cursor.getColumnCount() < 1) {
+                    return null;
+                }
+                while (cursor.moveToNext()) {
+                    stu = new Student();
+                    stu.setClassName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.CLASS_NAME)));
+                    stu.setStuName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NAME)));
+                    stu.setStuNum(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NUM)));
+                    stu.setIDCard(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ID_CARD)));
+                    stu.setSex(cursor.getString(cursor.getColumnIndex(SQLiteHelper.SEX)));
+                    stu.setEthnic(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ETHNIC)));
+                    stu.setCollege(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLLEGE)));
+                    stu.setMajor(cursor.getString(cursor.getColumnIndex(SQLiteHelper.MAJOR)));
+                    stu.setYear(cursor.getString(cursor.getColumnIndex(SQLiteHelper.YEAR)));
+                    stu.setPoliticalStatus(cursor.getString(cursor.getColumnIndex(SQLiteHelper.POLITICAL_STATUS)));
+                    stu.setBirthDay(cursor.getString(cursor.getColumnIndex(SQLiteHelper.BIRTH_DAY)));
+                    stu.setEnterScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ENTER_SCHOOL)));
+                    stu.setLeftScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.LEAVE_SCHOOL)));
+                }
+            }
+        }
+        return stu;
+    }
+
+    /**
+     * 清空student数据表
+     */
+
+    public void clearTableStudent() {
+        String sql = "delete  from student where _id > 0";
+        if (db != null) {
+            if (db.isOpen()) {
                 db.execSQL(sql);
             }
         }
     }
 
-    //清空score表中数据，用于刷新分手，需要删除以前分数
-    public void clearTableScore(){
-    	if(db != null){
-    		if(db.isOpen()){
-    			String sql = "delete from score where _id > 0 ";
-    			db.execSQL(sql);
-    		}
-    	}
-    }
-    
-    /**
-     * 插入一个学生的信息
-     * @param stu
-     * @return
-     */
-    
-    public void insertStudent(Student stu){
-    	String insetSql = " insert into student (class_name , stu_name , stu_id , id_card, "+
-        		"sex , ethnic , college , major , year , "+
-        		"political_status , birth_day , enter_school , leave_school ) " +
-        		"values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    	if(db != null){
-    		if(db.isOpen()){
-    			db.execSQL(insetSql, new String[] {
-    					stu.getClassName(),
-    					stu.getStuName(),
-    					stu.getStuNum(),
-    					stu.getIDCard(),
-    					stu.getSex(),
-    					stu.getEthnic(),
-    					stu.getCollege(),
-    					stu.getMajor(),
-    					stu.getYear(),
-    					stu.getPoliticalStatus(),
-    					stu.getBirthDay(),
-    					stu.getEnterScholl(),
-    					stu.getLeftScholl()
-    			});
-    		}
-    	}
-    }
-    
-    /**
-     * 查询学生信息
-     * @param stuId
-     */
-    
-    public Student getStudent(String stuId){
-    	Student stu = null;
-    	if(db != null){
-    		if(db.isOpen()){
-    			Cursor cursor = db.rawQuery("select * from student where stu_id = ?",
-    					new String[] {stuId});
-    			if(cursor.getColumnCount() < 1){
-    				return null;
-    			}
-    			while(cursor.moveToNext()){
-    				stu = new Student();
-    				stu.setClassName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.CLASS_NAME)));
-    				stu.setStuName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NAME)));
-    				stu.setStuNum(cursor.getString(cursor.getColumnIndex(SQLiteHelper.STU_NUM)));
-    				stu.setIDCard(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ID_CARD)));
-    				stu.setSex(cursor.getString(cursor.getColumnIndex(SQLiteHelper.SEX)));
-    				stu.setEthnic(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ETHNIC)));
-    				stu.setCollege(cursor.getString(cursor.getColumnIndex(SQLiteHelper.COLLEGE)));
-    				stu.setMajor(cursor.getString(cursor.getColumnIndex(SQLiteHelper.MAJOR)));
-    				stu.setYear(cursor.getString(cursor.getColumnIndex(SQLiteHelper.YEAR)));
-    				stu.setPoliticalStatus(cursor.getString(cursor.getColumnIndex(SQLiteHelper.POLITICAL_STATUS)));
-    				stu.setBirthDay(cursor.getString(cursor.getColumnIndex(SQLiteHelper.BIRTH_DAY)));
-    				stu.setEnterScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ENTER_SCHOOL)));
-    				stu.setLeftScholl(cursor.getString(cursor.getColumnIndex(SQLiteHelper.LEAVE_SCHOOL)));
-    			}
-    		}
-    	}
-    	return stu;
-    }
-    /**
-     * 清空student数据表
-     */
-    
-    public void clearTableStudent(){
-    	String sql ="delete  from student where _id > 0";
-    	if(db != null){
-    		if(db.isOpen()){
-    			db.execSQL(sql);
-    		}
-    	}
-    }
-    
-    
 
 }

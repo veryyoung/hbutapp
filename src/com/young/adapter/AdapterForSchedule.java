@@ -9,11 +9,12 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.young.R;
 
-public class AdapterForSchedule extends MyBaseAdapter {
+public class AdapterForSchedule extends BaseAdapter {
 
 	// private Context context;
 	private LayoutInflater inflater;
