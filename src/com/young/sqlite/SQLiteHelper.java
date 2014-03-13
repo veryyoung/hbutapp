@@ -91,6 +91,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         //删除student表
         String dropStudent = " drop table if exists student ";
         db.execSQL(dropStudent);
+        //删除local_schedule
+        String dropLocalSchedule = "drop table if exists local_schedule ";
+        db.execSQL(dropLocalSchedule);
         onCreate(db);
     }
 
