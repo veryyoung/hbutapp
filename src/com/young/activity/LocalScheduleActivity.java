@@ -59,9 +59,12 @@ public class LocalScheduleActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule);
-		n = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1;
-		if (0 == n) {
-			n = 7;
+		n = getIntent().getIntExtra("DAY", 8);
+		if (8 == n) { // 修改或插入之后的退回
+			n = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+			if (0 == n) {
+				n = 7;
+			}
 		}
 		mpDialog = new ProgressDialog(LocalScheduleActivity.this);
 		mpDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);// 设置风格为圆形进度条
@@ -116,7 +119,6 @@ public class LocalScheduleActivity extends BaseActivity implements
 												stuId, true);
 										new GetSchedualFromNetWork()
 												.execute("");
-										adapter.notifyDataSetChanged();
 										listView.onRefreshComplete();
 									}
 								}).show();
@@ -175,7 +177,7 @@ public class LocalScheduleActivity extends BaseActivity implements
 			ContextMenu.ContextMenuInfo menuInfo) {
 		int i = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
 		menu.setHeaderTitle("请选择操作");
-		String id = data.get(i).get("_id");
+		String id = data.get(i - 1).get("_id");
 		menu.add(1, 1, 0, "插入课表");
 		if ((null != id) && (!id.equals(""))) { // 课表存在
 			menu.add(0, 2, 0, "修改该课表");
@@ -188,25 +190,26 @@ public class LocalScheduleActivity extends BaseActivity implements
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
-		String id = data.get(menuInfo.position).get("_id");
+		String id = data.get(menuInfo.position - 1).get("_id");
 		switch (item.getItemId()) {
-		case 1:
+		case 1: // 插入
 			Intent intent = new Intent(LocalScheduleActivity.this,
 					InsertScheduleActivity.class);
 			intent.putExtra("ISMODIFY", false);
-			intent.putExtra("DAYTIME",
-					getDaytimeByOnline(menuInfo.position + 1));
+			intent.putExtra("DAYTIME", getDaytimeByOnline(menuInfo.position));
 			intent.putExtra("DAY", n);
 			LocalScheduleActivity.this.startActivity(intent);
 			break;
-		case 2:
+		case 2: // 修改
 			Intent intentUpdate = new Intent(LocalScheduleActivity.this,
 					InsertScheduleActivity.class);
-			intentUpdate.putExtra("ID", data.get(menuInfo.position).get("_id"));
+			intentUpdate.putExtra("DAY", n);
+			intentUpdate.putExtra("ID",
+					data.get(menuInfo.position - 1).get("_id"));
 			intentUpdate.putExtra("ISMODIFY", true);
 			LocalScheduleActivity.this.startActivity(intentUpdate);
 			break;
-		case 3:
+		case 3: // 删除
 			databaseHelper.deleteSchedule(id);
 			upDateUI();
 			break;
