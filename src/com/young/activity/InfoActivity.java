@@ -50,9 +50,6 @@ public class InfoActivity extends BaseActivity {
         mpDialog.setMessage("正在玩命加载中，请稍候....");  
         mpDialog.setIndeterminate(false);//设置进度条是否为不明确  
         mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
-//        mpDialog.show();
-
-//		handler = new Handler();
 
 		name = (TextView) findViewById(R.id.info_name);
 		stuNum = (TextView) findViewById(R.id.info_stu_num);
@@ -78,28 +75,8 @@ public class InfoActivity extends BaseActivity {
 		}else{
 			setUI();
 		}
-//		new Thread(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				DatabaseHelper helper = new DatabaseHelper(InfoActivity.this);
-//				student = helper.getStudent("1110321124");
-//				if(student == null){
-//					HBUT hbut = HBUT.getInstance();
-//					try {
-//						hbut.login(username, password)
-//						student = hbut.getInfo();
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//					
-//				}
-//
-//				handler.post(runnableUi);
-//			}
-//		}).start();
 	}
-
+	//给各个TextView赋值
 	private void setUI(){
 			name.setText(student.getStuName());
 			stuNum.setText(student.getStuNum());
@@ -115,7 +92,7 @@ public class InfoActivity extends BaseActivity {
 			enterScholl.setText(student.getEnterScholl());
 			leftScholl.setText(student.getLeftScholl());
 	}
-	
+	//如果没有数据，使用异步更新
 	private class GetStudentFromNetWork extends
     AsyncTask<String, Integer, String> {
 

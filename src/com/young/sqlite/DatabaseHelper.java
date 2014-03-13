@@ -238,7 +238,7 @@ public class DatabaseHelper {
         if (db != null) {
             if (db.isOpen()) {
                 listTerms = new ArrayList<String>();
-                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? order by terms asc ";
+                String sql = " select distinct substr(task_no,0,6) as terms from score where stu_id = ? order by terms desc ";
                 Cursor cursor = db.rawQuery(sql, new String[]{stu_id});
                 int columnIndex = cursor.getColumnIndex("terms");
                 cursor.moveToFirst();

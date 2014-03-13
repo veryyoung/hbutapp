@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.young.AboutUsActivity;
 import com.young.R;
 
 import java.lang.reflect.Method;
@@ -37,13 +38,15 @@ public abstract class BaseActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about_us:
-                Toast.makeText(this, "关于我们", Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(this,AboutUsActivity.class);
+                this.startActivity(intent1);
                 break;
             case R.id.check_update:
                 Toast.makeText(this, "检查更新", Toast.LENGTH_LONG).show();
                 break;
             case R.id.exit:
-                SharedPreferences sp = this.getSharedPreferences("userInfo",
+                @SuppressWarnings("deprecation")
+				SharedPreferences sp = this.getSharedPreferences("userInfo",
                         Context.MODE_WORLD_READABLE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.remove("USER_NAME");

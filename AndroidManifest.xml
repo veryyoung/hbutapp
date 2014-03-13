@@ -3,7 +3,7 @@
     package="com.young"
     android:installLocation="preferExternal"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -13,14 +13,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".util.ContextUtil"
+        android:name="com.young.util.ContextUtil"
         android:allowBackup="true"
         android:icon="@drawable/hbut"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.young.activity.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,16 +28,25 @@
             </intent-filter>
         </activity>
         <activity android:name="com.young.activity.MainActivity" />
-        <activity android:name=".activity.ScheduleActivity" />
+        <activity android:name="com.young.activity.ScheduleActivity" />
         <activity android:name="com.young.activity.InfoActivity" />
         <activity android:name="com.young.activity.ChangeActivity" />
         <activity android:name="com.young.activity.LogoActivity" />
-        <activity android:name="com.young.activity.ChoseScheduleTypeActitity"></activity>
+        <activity android:name="com.young.activity.ChoseScheduleTypeActitity" >
+        </activity>
         <activity android:name="com.young.activity.ScoreManagementActivity" />
-        <activity android:name=".activity.LocalScheduleActivity"></activity>
-        <activity android:name=".activity.InputOtherStuIdForScheduleActivity"></activity>
-        <activity android:name=".activity.InsertScheduleActivity"></activity>
-        <activity android:name="com.young.activity.ChoseTermsActivity"></activity>
+        <activity android:name="com.young.activity.LocalScheduleActivity" >
+        </activity>
+        <activity android:name="com.young.activity.InputOtherStuIdForScheduleActivity" >
+        </activity>
+        <activity android:name="com.young.activity.InsertScheduleActivity" >
+        </activity>
+        <activity android:name="com.young.activity.ChoseTermsActivity" >
+        </activity>
+        <activity
+            android:name="com.young.AboutUsActivity"
+            android:label="@string/title_activity_about_us" >
+        </activity>
     </application>
 
 </manifest>
