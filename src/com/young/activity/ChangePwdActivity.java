@@ -9,7 +9,6 @@ import com.young.business.HBUT;
 import com.young.util.NetworkUtil;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
@@ -27,6 +26,7 @@ public class ChangePwdActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepwd);
         Button buttonCancle = (Button) findViewById(R.id.cancleButton);
+        getUserIdAndPassWord();
         buttonCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

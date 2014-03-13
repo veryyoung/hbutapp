@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.young.AboutUsActivity;
 import com.young.R;
 
 import java.lang.reflect.Method;

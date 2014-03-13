@@ -51,18 +51,33 @@ public class InfoActivity extends BaseActivity {
         mpDialog.setIndeterminate(false);//设置进度条是否为不明确  
         mpDialog.setCancelable(true);//设置进度条是否可以按退回键取消
 
+		name = (TextView) findViewById(R.id.info_name);
+		stuNum = (TextView) findViewById(R.id.info_stu_num);
+		className = (TextView) findViewById(R.id.info_class_name);
+		sex = (TextView) findViewById(R.id.info_sex);
+		IDCard = (TextView) findViewById(R.id.info_IDCard);
+		ethnic = (TextView) findViewById(R.id.info_ethnic);
+		college = (TextView) findViewById(R.id.info_college);
+		major = (TextView) findViewById(R.id.info_major);
+		year = (TextView) findViewById(R.id.info_year);
+		politicalStatus = (TextView) findViewById(R.id.info_potitical_status);
+		birthday = (TextView) findViewById(R.id.info_birthday);
+		enterScholl = (TextView) findViewById(R.id.info_enterscholl);
+		leftScholl = (TextView) findViewById(R.id.info_left_scholl);
+		
+		//获取已经登陆的用户名和密码
+		getUserIdAndPassWord();
+		helper = new DatabaseHelper(this);
+		student = helper.getStudent(stuId);
+		if(student == null){
+			mpDialog.show();
+			new GetStudentFromNetWork().execute();
+		}else{
+			setUI();
+		}
+	}
 
-        //获取已经登陆的用户名和密码
-        getUserIdAndPassWord();
-        helper = new DatabaseHelper(this);
-        student = helper.getStudent(stuId);
-        if (student == null) {
-            mpDialog.show();
-            new GetStudentFromNetWork().execute();
-        } else {
-            setUI();
-        }
-    }
+    
 
     private void setUI() {
         name.setText(student.getStuName());

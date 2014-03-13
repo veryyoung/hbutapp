@@ -44,7 +44,7 @@
         <activity android:name="com.young.activity.ChoseTermsActivity" >
         </activity>
         <activity
-            android:name="com.young.AboutUsActivity" >
+            android:name="com.young.activity.AboutUsActivity" >
         </activity>
     </application>
 
