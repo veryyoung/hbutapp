@@ -3,7 +3,7 @@ package com.young.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.young.R;
 
@@ -15,16 +15,17 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose_schedule_type);
-
-        TextView selfScheduleView = (TextView) findViewById(R.id.self_schedule);
-        selfScheduleView.setOnClickListener(new View.OnClickListener() {
+        //网络课表
+        ImageView netScheduleView = (ImageView) findViewById(R.id.net_schedule);
+        netScheduleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ChoseScheduleTypeActitity.this, ScheduleActivity.class);
                 startActivity(intent);
             }
         });
-        TextView othersScheduleView = (TextView) findViewById(R.id.others_schedule);
+        //小伙伴课表
+        ImageView othersScheduleView = (ImageView) findViewById(R.id.others_schedule);
         othersScheduleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +33,8 @@ public class ChoseScheduleTypeActitity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        TextView localScheduleView = (TextView) findViewById(R.id.local_schedule);
+        //本地课表
+        ImageView localScheduleView = (ImageView) findViewById(R.id.local_schedule);
         localScheduleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
