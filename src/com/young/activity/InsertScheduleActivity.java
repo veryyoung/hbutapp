@@ -35,6 +35,13 @@ public class InsertScheduleActivity extends BaseActivity {
         teacherView = (EditText) findViewById(R.id.insert_schedule_teacher);
         placeView = (EditText) findViewById(R.id.insert_schedule_place);
         weekView = (EditText) findViewById(R.id.insert_schedule_week);
+        Button buttonCancle = (Button) findViewById(R.id.cancleButton);
+        buttonCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         Boolean isModify = getIntent().getBooleanExtra("ISMODIFY", false);
         if (isModify) {
             titleView.setText("修改课表");
@@ -71,7 +78,7 @@ public class InsertScheduleActivity extends BaseActivity {
                     schedule.setWeek(weekView.getText().toString());
                     schedule.setTeacher(teacherView.getText().toString());
                     @SuppressWarnings("deprecation")
-					final SharedPreferences sp = InsertScheduleActivity.this.getSharedPreferences("userInfo",
+                    final SharedPreferences sp = InsertScheduleActivity.this.getSharedPreferences("userInfo",
                             Context.MODE_WORLD_READABLE);
                     schedule.setStuId(sp.getString("USER_NAME", ""));
                     databaseHelper.addSchedule(schedule, true);

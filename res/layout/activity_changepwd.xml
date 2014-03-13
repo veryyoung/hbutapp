@@ -70,10 +70,10 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_marginTop="40dp"
             android:id="@+id/changeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,6 @@
 
 
         <Button
-            android:layout_marginTop="40dp"
             android:id="@+id/cancleButton"
             android:background="@drawable/button_border"
             android:layout_width="wrap_content"
