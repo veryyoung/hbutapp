@@ -1,6 +1,5 @@
 package com.young.business;
 
-import android.util.Log;
 
 import com.young.entry.Schedule;
 import com.young.entry.Score;
@@ -110,7 +109,6 @@ public class HBUT {
         student.setBirthDay(resultElements.get(10).text());
         student.setEnterScholl(resultElements.get(11).text());
         student.setLeftScholl(resultElements.get(12).text());
-        Log.v("from HBUT",student.getEthnic());
         return student;
     }
 
@@ -202,7 +200,6 @@ public class HBUT {
         httpget.abort();
         html = html.replaceAll("\\\\", "");
         html = html.substring(html.indexOf("{"), html.lastIndexOf("}") + 1);
-        Log.d("test",html);
         JSONObject jsonObject = new JSONObject(html);
         JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
         int length = jsonArray.length();
