@@ -2,72 +2,95 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:text="@string/change_title"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
-        <TableRow>
+        <TableRow android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@string/change_oldpw"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/change_oldpw"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@string/change_newpw"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/change_newpw"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="@string/change_conpw"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/change_conpw"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:textSize="26sp" />
+                android:textSize="15sp" />
         </TableRow>
+
     </TableLayout>
 
-    <Button
-        android:id="@+id/changeButton"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/change_button" />
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:id="@+id/changeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_border"
+            android:textSize="15sp"
+            android:layout_marginRight="50dp"
+            android:text="@string/change_button" />
+
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:id="@+id/cancleButton"
+            android:background="@drawable/button_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/soft_update_cancel" />
+    </LinearLayout>
 
 </LinearLayout>
