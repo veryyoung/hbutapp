@@ -22,7 +22,7 @@
         android:id="@+id/others_schedule"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/net_schedule"
+        android:src="@drawable/others_schedule"
         android:layout_alignParentLeft="true"
         android:layout_margin="30dp"
         android:contentDescription="@string/others_schedule"
@@ -34,7 +34,7 @@
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_margin="30dp"
-        android:src="@drawable/others_schedule"
+        android:src="@drawable/net_schedule"
         android:contentDescription="@string/local_schedule"
         android:layout_below="@id/local_schedule"></ImageView>
 
