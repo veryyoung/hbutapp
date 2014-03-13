@@ -96,7 +96,6 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
 
 				databaseHelper.clearTableSchedule(stuId, false);
 				new GetSchedualFromNetWork().execute("");
-				adapter.notifyDataSetChanged();
 				listView.onRefreshComplete();
 
 			}

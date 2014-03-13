@@ -1,5 +1,6 @@
 package com.young.activity;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -70,13 +71,16 @@ public class MainActivity extends BaseActivity {
                         Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(0);
-                finish();
+//                Intent intent = new Intent(Intent.ACTION_MAIN);
+//                intent.addCategory(Intent.CATEGORY_HOME);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                android.os.Process.killProcess(android.os.Process.myPid());
+//                System.exit(0);
+//                finish();
+            	ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);  
+            	// 在2.2及以上中引入了该api来退出，但并不能退出2.2及以上的（所以只适用于2.2一下的）  
+            	manager.killBackgroundProcesses(getPackageName());
             }
 
             return true;
