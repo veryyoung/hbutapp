@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -81,16 +80,21 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         layout.setClickable(true);
         layout.setLongClickable(true);
         databaseHelper = new DatabaseHelper(ScheduleActivity.this);
+
         upDateUI();
         listView.setonRefreshListener(new DropDownListView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 databaseHelper.clearTableSchedule(stuId, false);
                 new GetSchedualFromNetWork().execute("");
-
             }
         });
+        
+        if(data.isEmpty()){
+            listView.scrollTo(0,50);
+            listView.scrollBy(0, -10);  
+            listView.scrollBy(0, -10); 
+        }
     }
 
     public void upDateUI() {

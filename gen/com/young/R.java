@@ -170,9 +170,9 @@ public final class R {
         public static final int landing=0x7f050005;
         public static final int local_schedule=0x7f05002d;
         public static final int login=0x7f050003;
-        public static final int ohers_schedule_input_hint1=0x7f050027;
-        public static final int ohers_schedule_input_hint2=0x7f050028;
         public static final int others_schedule=0x7f05002c;
+        public static final int others_schedule_input_hint1=0x7f050027;
+        public static final int others_schedule_input_hint2=0x7f050028;
         public static final int password=0x7f050002;
         public static final int public_exam_times=0x7f050024;
         public static final int public_task_college=0x7f050022;
