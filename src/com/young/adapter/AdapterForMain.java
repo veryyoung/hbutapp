@@ -69,23 +69,23 @@ public class AdapterForMain extends BaseAdapter {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("imag", R.drawable.jiaoxuekebiao_1);
-        map.put("text", "教学课表");
+        map.put("imag", R.drawable.schedule);
+        map.put("text", "      教学课表");
         list.add(map);
 
         Map<String, Object> map1 = new HashMap<String, Object>();
-        map1.put("imag", R.drawable.xuejiguanli);
-        map1.put("text", "学籍管理");
+        map1.put("imag", R.drawable.info);
+        map1.put("text", "      学籍管理");
         list.add(map1);
 
         Map<String, Object> map3 = new HashMap<String, Object>();
-        map3.put("imag", R.drawable.chengjiguanli_b);
-        map3.put("text", "成绩管理");
+        map3.put("imag", R.drawable.score);
+        map3.put("text", "      成绩管理");
         list.add(map3);
 
         Map<String, Object> map4 = new HashMap<String, Object>();
         map4.put("imag", R.drawable.gerenpeizhi);
-        map4.put("text", "修改密码");
+        map4.put("text", "      修改密码");
         list.add(map4);
 
         return list;
