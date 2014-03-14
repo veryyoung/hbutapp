@@ -89,12 +89,6 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
                 new GetSchedualFromNetWork().execute("");
             }
         });
-        
-        if(data.isEmpty()){
-            listView.scrollTo(0,50);
-            listView.scrollBy(0, -10);  
-            listView.scrollBy(0, -10); 
-        }
     }
 
     public void upDateUI() {
