@@ -74,7 +74,7 @@ public class ChoseTermsActivity extends BaseActivity {
                                     int position, long id) {
                 Intent intent = new Intent(ChoseTermsActivity.this,
                         ScoreManagementActivity.class);
-                intent.putExtra("term", data.get(position));
+                intent.putExtra("term", data.get(position-1));
                 intent.putExtra("id", stuId);
                 startActivity(intent);
             }
