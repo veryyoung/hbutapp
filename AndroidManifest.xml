@@ -31,7 +31,7 @@
         <activity android:name="com.young.activity.MainActivity" />
         <activity android:name="com.young.activity.ScheduleActivity" />
         <activity android:name="com.young.activity.InfoActivity" />
-        <activity android:name=".activity.ChangePwdActivity" />
+        <activity android:name="com.young.activity.ChangePwdActivity" />
         <activity android:name="com.young.activity.LogoActivity" />
         <activity android:name="com.young.activity.ChoseScheduleTypeActitity" >
         </activity>

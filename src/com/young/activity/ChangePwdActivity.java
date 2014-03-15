@@ -20,10 +20,10 @@ import android.widget.Toast;
 public class ChangePwdActivity extends BaseActivity {
     private String stuId;
     private String password;
-    @SuppressWarnings("deprecation")
     private SharedPreferences sp;
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepwd);
