@@ -15,14 +15,14 @@
         android:id="@+id/chose_list_hint1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ohers_schedule_input_hint1"
+        android:text="@string/others_schedule_input_hint1"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/chose_list_hint2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ohers_schedule_input_hint2"
+        android:text="@string/others_schedule_input_hint2"
         android:gravity="center" />
 
     <LinearLayout

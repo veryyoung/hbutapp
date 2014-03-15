@@ -80,14 +80,13 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
         layout.setClickable(true);
         layout.setLongClickable(true);
         databaseHelper = new DatabaseHelper(ScheduleActivity.this);
+
         upDateUI();
         listView.setonRefreshListener(new DropDownListView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
                 databaseHelper.clearTableSchedule(stuId, false);
                 new GetSchedualFromNetWork().execute("");
-
             }
         });
     }

@@ -20,12 +20,15 @@ import android.widget.Toast;
 public class ChangePwdActivity extends BaseActivity {
     private String stuId;
     private String password;
+    @SuppressWarnings("deprecation")
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepwd);
         Button buttonCancle = (Button) findViewById(R.id.cancleButton);
+        sp = ChangePwdActivity.this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
         getUserIdAndPassWord();
         buttonCancle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,9 @@ public class ChangePwdActivity extends BaseActivity {
                                 Toast.makeText(getBaseContext(), message,
                                         Toast.LENGTH_LONG).show();
                                 if ("保存成功".equals(message)) {
+                                    SharedPreferences.Editor editor = sp.edit();
+                                    editor.putString("PASSWORD", newPassword);
+                                    editor.commit();
                                     ChangePwdActivity.this.finish();
                                 }
                                 Looper.loop();
@@ -82,8 +88,6 @@ public class ChangePwdActivity extends BaseActivity {
     }
 
     private void getUserIdAndPassWord() {
-        @SuppressWarnings("deprecation")
-        SharedPreferences sp = ChangePwdActivity.this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
         stuId = sp.getString("USER_NAME", "");
         password = sp.getString("PASSWORD", "");
     }
