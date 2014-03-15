@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
