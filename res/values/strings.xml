@@ -70,6 +70,14 @@
     <color name="light_green">#37de6a</color>
     <color name="gray">#CD853F</color>
 
+        <string name="about_us_bottom_txt">"www.hgdonline.net
+Powered by Edian Studio"</string>
+    <string name="about_us_service_qq_txt">"合作QQ：4924724
+Email:admin@hgdonline.net"</string>
+    <string name="about_us_title">关于我们</string>
+    <string name="about_us_txt">\u0009\u0009 我们是一群热爱技术,更热爱生活的小伙伴！我们每一个开发者,都经过国家节操安全标准筛选,请大家放心使用此APP,不用担心密码被盗等问题。</string>
+<string name="about_us_txv_version">"H BUT
+Version 2.0"</string>
     <string name="title_activity_chose_score">选择查询方式</string>
     <string name="hello_world">Hello world!</string>
 
