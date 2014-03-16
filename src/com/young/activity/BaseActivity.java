@@ -6,16 +6,31 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.young.R;
+import com.young.util.AppUtil;
 
 import java.lang.reflect.Method;
 
 public abstract class BaseActivity extends Activity {
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        AppUtil.getInstance().addActivity(this);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppUtil.getInstance().remove(this);
+    }
 
     // 监听非MainActivity所有的返回按钮，如果返回就杀这个activity用来释放资源
     @Override
@@ -72,6 +87,8 @@ public abstract class BaseActivity extends Activity {
                                 Intent intent = new Intent(BaseActivity.this,
                                         LoginActivity.class);
                                 BaseActivity.this.startActivity(intent);
+                                AppUtil.getInstance().exit();
+
                                 Toast.makeText(BaseActivity.this, "注销成功",
                                         Toast.LENGTH_LONG).show();
 
