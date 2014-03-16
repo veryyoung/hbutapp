@@ -45,6 +45,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String BIRTH_DAY = "birth_day"; // 出生日期
     public static final String ENTER_SCHOOL = "enter_school"; // 入校日期
     public static final String LEAVE_SCHOOL = "leave_school"; // 离校日期
+    //学生成绩相关信息
+    public static final String SCORE_INFO_TABLE = "score_info";//成绩信息表
+//    public static final String STU_ID = "stu_id"; //学号
+    public static final String AVERAGE_GRADE_POINT = "average_grade_point"; // 平均绩点
+    public static final String TOTAL_GRADE_POINT = "total_grade_point"; // 总绩点
+    public static final String NAME = "name"; //姓名
+    public static final String CONTENT = "content"; //信息
+    
+    
     
     
     
@@ -80,6 +89,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         		"political_status varchar, birth_day varchar, enter_school varchar, leave_school varchar) ";
         db.execSQL(sql);
         //创建与成绩相关的个人信息表，学号，姓名，总绩点，平均绩点，班级
+        sql = "create table if not exists score_info (_id integer primary key autoincrement,"+
+        		"stu_id varchar, average_grade_point varchar, total_grade_point varchar, " +
+        		"name varchar, content varchar)";
     }
 
     @Override
