@@ -46,6 +46,7 @@
         </activity>
         <activity android:name="com.young.activity.AboutUsActivity" >
         </activity>
+        <activity android:name="com.young.activity.ChoseScheduleTypeActitity"></activity>
     </application>
 
 </manifest>

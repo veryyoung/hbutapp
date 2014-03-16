@@ -44,9 +44,9 @@
     <string name="others_schedule_input_hint2">比如：1110321229</string>
     <string name="chose_ok">确定</string>
     <string name="chose_schedule_type_title">请选择查询课表的类别</string>
-    <string name="self_schedule">个人课表</string>
+    <string name="net_schedule">网络课表</string>
     <string name="others_schedule">小伙伴课表</string>
-    <string name="local_schedule">本地课表（可编辑）</string>
+    <string name="local_schedule">本地课表</string>
     <string name="action_settings">设置</string>
     <string name="desc">图片</string>
     <string name="schedule_name">课程名</string>
