@@ -79,6 +79,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         		"sex varchar, ethnic varchar, college varchar, major varchar, year varchar, "+
         		"political_status varchar, birth_day varchar, enter_school varchar, leave_school varchar) ";
         db.execSQL(sql);
+        //创建与成绩相关的个人信息表，学号，姓名，总绩点，平均绩点，班级
     }
 
     @Override
