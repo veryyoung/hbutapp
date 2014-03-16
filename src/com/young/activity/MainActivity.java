@@ -42,7 +42,6 @@ public class MainActivity extends BaseActivity {
 
                     case 2://score
                         Intent intent3 = new Intent(MainActivity.this, ChoseTermsActivity.class);
-//						intent3.putExtra(CHOSE_MENU_MESSAGE, SCORE_MANAGEMENT);
                         MainActivity.this.startActivity(intent3);
                         break;
                     case 3://修改密码

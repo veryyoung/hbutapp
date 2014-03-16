@@ -84,7 +84,7 @@ public class AdapterForMain extends BaseAdapter {
         list.add(map3);
 
         Map<String, Object> map4 = new HashMap<String, Object>();
-        map4.put("imag", R.drawable.gerenpeizhi);
+        map4.put("imag", R.drawable.changepwd);
         map4.put("text", "      修改密码");
         list.add(map4);
 
