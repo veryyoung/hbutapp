@@ -20,7 +20,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String DAY = "day"; // 星期几
     public static final String DAY_TIME = "day_time"; // 本日第几次课
     public static final String ID = "stu_id";// 学号
-    public static final String IS_LOCAL = "is_local";// 是否为本地课表
     //成绩字段
     public static final String TABLE_SCORE = "score";//score 表名
     public static final String TASK_NO = "task_no";//课程编号
@@ -45,9 +44,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String BIRTH_DAY = "birth_day"; // 出生日期
     public static final String ENTER_SCHOOL = "enter_school"; // 入校日期
     public static final String LEAVE_SCHOOL = "leave_school"; // 离校日期
-    
-    
-    
+
+
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -65,8 +63,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sql = " create table if not exists  local_schedule (_id integer primary key autoincrement," + CUR_NAME
                 + " VARCHAR, " + TEACHER + " VARCHAR, " + PLACE + " VARCHAR ,"
                 + DAY + " INTEGER," + DAY_TIME + " INTEGER," + ID
-                + "  VARCHAR," + WEEK + " VARCHAR ," + IS_LOCAL
-                + " TINYINT default 0 ) ";
+                + "  VARCHAR," + WEEK + " VARCHAR ) ";
         db.execSQL(sql);
         //创建成绩数据表
         sql = "create table if not exists  score (_id integer primary key autoincrement," +
@@ -74,10 +71,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 "course_credit double,grade double,grade_point double,is_show_score  VARCHAR) ";
         db.execSQL(sql);
         //创建个人信息表
-        sql = "create table if not exists student (_id integer primary key autoincrement,"+
-        		"class_name varchar, stu_name varchar, stu_id varchar, id_card varchar, "+
-        		"sex varchar, ethnic varchar, college varchar, major varchar, year varchar, "+
-        		"political_status varchar, birth_day varchar, enter_school varchar, leave_school varchar) ";
+        sql = "create table if not exists student (_id integer primary key autoincrement," +
+                "class_name varchar, stu_name varchar, stu_id varchar, id_card varchar, " +
+                "sex varchar, ethnic varchar, college varchar, major varchar, year varchar, " +
+                "political_status varchar, birth_day varchar, enter_school varchar, leave_school varchar) ";
         db.execSQL(sql);
     }
 
