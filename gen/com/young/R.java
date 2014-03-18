@@ -33,34 +33,30 @@ public final class R {
         public static final int form=0x7f020004;
         public static final int hbut=0x7f020005;
         public static final int info=0x7f020006;
-        public static final int local_schedule=0x7f020007;
-        public static final int login=0x7f020008;
-        public static final int logo_pic=0x7f020009;
-        public static final int net_schedule=0x7f02000a;
-        public static final int others_schedule=0x7f02000b;
-        public static final int schedule=0x7f02000c;
-        public static final int score=0x7f02000d;
-        public static final int start_background=0x7f02000e;
+        public static final int login=0x7f020007;
+        public static final int logo_pic=0x7f020008;
+        public static final int schedule=0x7f020009;
+        public static final int score=0x7f02000a;
+        public static final int start_background=0x7f02000b;
     }
     public static final class id {
         public static final int Schedule_relative_layout=0x7f09002c;
-        public static final int about_us=0x7f090044;
+        public static final int about_us=0x7f090043;
         public static final int about_us_imgv_pic=0x7f09000a;
         public static final int about_us_txv_bottom=0x7f090007;
         public static final int about_us_txv_service_qq=0x7f090008;
         public static final int about_us_txv_version=0x7f090009;
-        public static final int action_settings=0x7f090043;
         public static final int btn_back=0x7f090029;
         public static final int cancleButton=0x7f090006;
         public static final int changeButton=0x7f09000e;
         public static final int change_conpw=0x7f09000d;
         public static final int change_newpw=0x7f09000c;
         public static final int change_oldpw=0x7f09000b;
-        public static final int check_update=0x7f090045;
+        public static final int check_update=0x7f090044;
         public static final int chose_list_hint1=0x7f090020;
         public static final int chose_list_hint2=0x7f090021;
         public static final int chose_list_title=0x7f09001f;
-        public static final int exit=0x7f090046;
+        public static final int exit=0x7f090045;
         public static final int head_contentLayout=0x7f090038;
         public static final int info_IDCard=0x7f090016;
         public static final int info_birthday=0x7f09001c;
@@ -137,9 +133,7 @@ public final class R {
         public static final int tabhost_schedule=0x7f030012;
     }
     public static final class menu {
-        public static final int about_us=0x7f080000;
-        public static final int chose_score=0x7f080001;
-        public static final int main=0x7f080002;
+        public static final int main=0x7f080000;
     }
     public static final class string {
         public static final int about_us=0x7f050036;
