@@ -210,8 +210,7 @@ public class HBUT {
     public HashMap<String,Object> getScore(String id) throws IOException,
             JSONException {
     	HashMap<String,Object> map = new HashMap<String, Object>();
-        String url = "http://run.hbut.edu.cn/StuGrade/IndexAllSemesterForJson/?id="
-                + id + "&Mobile=1";
+        String url = "http://run.hbut.edu.cn/StuGrade/IndexAllSemesterForJson/";
         HttpGet httpget = new HttpGet(url);
         HttpResponse response = getHttpClient().execute(httpget);
         HttpEntity entity = response.getEntity();
