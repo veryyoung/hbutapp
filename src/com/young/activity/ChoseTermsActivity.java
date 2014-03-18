@@ -30,6 +30,7 @@ import com.young.util.NetworkUtil;
 
 public class ChoseTermsActivity extends BaseActivity {
 
+
     private DropDownListView listView;
     private ArrayList<String> data;
     private DatabaseHelper helper;
