@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -120,13 +119,8 @@ public class ChoseTermsActivity extends BaseActivity {
 
 		@Override
 		protected void onPreExecute() {
-<<<<<<< HEAD
 			// TODO Auto-generated method stub
-			proDialog = ProgressDialog.show(ChoseTermsActivity.this, "加载中",
-					"加载中...");
-=======
         	proDialog = ProgressDialog.show(ChoseTermsActivity.this, "加载中", "玩命加载中,请稍等...");
->>>>>>> 84d49288d1248833062d9f245d75078ebe1c88f7
 			super.onPreExecute();
 		}
 
@@ -147,10 +141,8 @@ public class ChoseTermsActivity extends BaseActivity {
 					ArrayList<Score> scores = (ArrayList<Score>) map
 							.get("scores");
 					info = (ScoreInfo) map.get("score_info");
-					Log.v("-------", info.getName());
 					for (Score score : scores) {
 						helper.addScore(score);
-						Log.v("score", score.getCourseName() + score.getGrade());
 					}
 					helper.insertScoreInfo(info);
 				}

@@ -54,8 +54,14 @@ public class AdapterForScore extends BaseAdapter {
 		}
 		
 		viewItem.coureName.setText(scores.get(position).getCourseName());
-		viewItem.pointAverage.setText("绩点："+scores.get(position).getGradePoint()+"   学分："+scores.get(position).getCourseCredit());
-		viewItem.totalPoints.setText("总成绩："+scores.get(position).getGrade());
+		if(scores.get(position).isShowScore()){
+			viewItem.pointAverage.setText("绩点："+scores.get(position).getGradePoint()+"   学分："+scores.get(position).getCourseCredit());
+			viewItem.totalPoints.setText("总成绩："+scores.get(position).getGrade());
+		}else{
+			String str = "绩点：<font color=red>未公布</font> 学分：<font color=red>未公布</font>";
+			viewItem.pointAverage.setText(str);
+			viewItem.totalPoints.setText("总成绩："+"<font color=red>未公布</font>");
+		}
 		return convertView;
 	}
 

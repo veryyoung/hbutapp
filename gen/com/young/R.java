@@ -45,23 +45,23 @@ public final class R {
     }
     public static final class id {
         public static final int Schedule_relative_layout=0x7f09002d;
-        public static final int about_us=0x7f090041;
+        public static final int about_us=0x7f090045;
         public static final int about_us_imgv_pic=0x7f09000a;
         public static final int about_us_txv_bottom=0x7f090007;
         public static final int about_us_txv_service_qq=0x7f090008;
         public static final int about_us_txv_version=0x7f090009;
-        public static final int action_settings=0x7f090040;
+        public static final int action_settings=0x7f090044;
         public static final int btn_back=0x7f09002a;
         public static final int cancleButton=0x7f090006;
         public static final int changeButton=0x7f09000e;
         public static final int change_conpw=0x7f09000d;
         public static final int change_newpw=0x7f09000c;
         public static final int change_oldpw=0x7f09000b;
-        public static final int check_update=0x7f090042;
+        public static final int check_update=0x7f090046;
         public static final int chose_list_hint1=0x7f090021;
         public static final int chose_list_hint2=0x7f090022;
         public static final int chose_list_title=0x7f090020;
-        public static final int exit=0x7f090043;
+        public static final int exit=0x7f090047;
         public static final int head_contentLayout=0x7f090039;
         public static final int info_IDCard=0x7f090017;
         public static final int info_birthday=0x7f09001d;
@@ -86,12 +86,16 @@ public final class R {
         public static final int insert_schedule_week=0x7f090004;
         public static final int list_schedule_course=0x7f09002f;
         public static final int list_terms=0x7f090012;
+        public static final int local_radio_button=0x7f090041;
         public static final int login_ok=0x7f090027;
         public static final int lvHeaderArrowIv=0x7f09003a;
         public static final int lvHeaderLastUpdatedTv=0x7f09003d;
         public static final int lvHeaderProgressBar=0x7f09003b;
         public static final int lvHeaderTipsTv=0x7f09003c;
         public static final int main_list_title=0x7f09002b;
+        public static final int main_radio=0x7f090040;
+        public static final int net_radio_button=0x7f090042;
+        public static final int others_radio_button=0x7f090043;
         public static final int password=0x7f090026;
         public static final int pgBar=0x7f090028;
         public static final int progressPercent=0x7f09003e;
@@ -132,6 +136,7 @@ public final class R {
         public static final int dialog_input_stu_id=0x7f03000f;
         public static final int drop_header=0x7f030010;
         public static final int softupdate_progress=0x7f030011;
+        public static final int tabhost_schedule=0x7f030012;
     }
     public static final class menu {
         public static final int about_us=0x7f080000;
