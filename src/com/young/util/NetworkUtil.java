@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
  */
 public class NetworkUtil {
     public static boolean isOpenNetwork() {
-        ConnectivityManager connManager = (ConnectivityManager) ContextUtil.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connManager = (ConnectivityManager) AppUtil.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connManager.getActiveNetworkInfo() != null) {
             return connManager.getActiveNetworkInfo().isAvailable();
         }

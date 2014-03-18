@@ -1,6 +1,7 @@
 package com.young.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class LocalScheduleActivity extends BaseActivity implements
     private static final int FLING_MIN_DISTANCE = 100;
     private static final int FLING_MIN_VELOCITY = 0;
     private DatabaseHelper databaseHelper;
+    private ProgressDialog proDialog;
     // 用来存课表的变化
     private ArrayList<Integer> isOneLine;// = new ArrayList<Integer>();
     private List<Schedule> schedules;
@@ -327,6 +329,12 @@ public class LocalScheduleActivity extends BaseActivity implements
             AsyncTask<String, Integer, String> {
 
         @Override
+        protected void onPreExecute() {
+            proDialog = ProgressDialog.show(LocalScheduleActivity.this, "加载中", "玩命加载中,请稍等...");
+            super.onPreExecute();
+        }
+
+        @Override
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
@@ -350,14 +358,15 @@ public class LocalScheduleActivity extends BaseActivity implements
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
-                    .show();
+            proDialog.dismiss();
             if ("课表更新完毕".equals(result)) {
                 upDateUI();
                 listView.onRefreshComplete();
+            } else {
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
+                        .show();
             }
         }
-
     }
 
     private int getDaytimeByOnline(int n) {

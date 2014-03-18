@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.json.JSONException;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -50,6 +51,7 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
     private String loginStuId;
     private String password;
     private SharedPreferences sp;
+    private ProgressDialog proDialog;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -250,6 +252,12 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
             AsyncTask<String, Integer, String> {
 
         @Override
+        protected void onPreExecute() {
+            proDialog = ProgressDialog.show(ScheduleActivity.this, "加载中", "玩命加载中,请稍等...");
+            super.onPreExecute();
+        }
+
+        @Override
         protected String doInBackground(String... arg0) {
             HBUT hbut = HBUT.getInstance();
             try {
@@ -273,11 +281,13 @@ public class ScheduleActivity extends BaseActivity implements OnTouchListener,
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
-                    .show();
+            proDialog.dismiss();
             if ("课表更新完毕".equals(result)) {
                 upDateUI();
                 listView.onRefreshComplete();
+            } else {
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
+                        .show();
             }
         }
 

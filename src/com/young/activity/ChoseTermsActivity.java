@@ -120,9 +120,13 @@ public class ChoseTermsActivity extends BaseActivity {
 
 		@Override
 		protected void onPreExecute() {
+<<<<<<< HEAD
 			// TODO Auto-generated method stub
 			proDialog = ProgressDialog.show(ChoseTermsActivity.this, "加载中",
 					"加载中...");
+=======
+        	proDialog = ProgressDialog.show(ChoseTermsActivity.this, "加载中", "玩命加载中,请稍等...");
+>>>>>>> 84d49288d1248833062d9f245d75078ebe1c88f7
 			super.onPreExecute();
 		}
 
