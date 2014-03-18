@@ -32,16 +32,15 @@ public final class R {
         public static final int changepwd=0x7f020003;
         public static final int form=0x7f020004;
         public static final int hbut=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int info=0x7f020007;
-        public static final int local_schedule=0x7f020008;
-        public static final int login=0x7f020009;
-        public static final int logo_pic=0x7f02000a;
-        public static final int net_schedule=0x7f02000b;
-        public static final int others_schedule=0x7f02000c;
-        public static final int schedule=0x7f02000d;
-        public static final int score=0x7f02000e;
-        public static final int start_background=0x7f02000f;
+        public static final int info=0x7f020006;
+        public static final int local_schedule=0x7f020007;
+        public static final int login=0x7f020008;
+        public static final int logo_pic=0x7f020009;
+        public static final int net_schedule=0x7f02000a;
+        public static final int others_schedule=0x7f02000b;
+        public static final int schedule=0x7f02000c;
+        public static final int score=0x7f02000d;
+        public static final int start_background=0x7f02000e;
     }
     public static final class id {
         public static final int Schedule_relative_layout=0x7f09002d;
