@@ -3,6 +3,7 @@ package com.young.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,63 +14,60 @@ import com.young.R;
 import com.young.entry.Score;
 
 public class AdapterForScore extends BaseAdapter {
-	private List<Score> scores;
-	private LayoutInflater inflater;
-	
-	
-	public AdapterForScore(Context context,List<Score> scores){
-		this.scores = scores;
-		inflater = LayoutInflater.from(context);
-	}
+    private List<Score> scores;
+    private LayoutInflater inflater;
 
 
+    public AdapterForScore(Context context, List<Score> scores) {
+        this.scores = scores;
+        inflater = LayoutInflater.from(context);
+    }
 
-	@Override
-	public int getCount() {
-		return scores.size();
-	}
 
-	@Override
-	public Object getItem(int arg0) {
-		return arg0;
-	}
+    @Override
+    public int getCount() {
+        return scores.size();
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public Object getItem(int arg0) {
+        return arg0;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		MyViewItem viewItem;
-		if(null==convertView){
-			viewItem = new MyViewItem();
-			convertView = inflater.inflate(R.layout.activity_score_management_item, null);
-			viewItem.coureName = (TextView)convertView.findViewById(R.id.score_corese_name);
-			viewItem.pointAverage = (TextView)convertView.findViewById(R.id.score_grade_point_average);
-			viewItem.totalPoints = (TextView)convertView.findViewById(R.id.score_total_points);
-			convertView.setTag(viewItem);
-		}else{
-			viewItem = (MyViewItem) convertView.getTag();
-		}
-		
-		viewItem.coureName.setText(scores.get(position).getCourseName());
-		if(scores.get(position).isShowScore()){
-			viewItem.pointAverage.setText("绩点："+scores.get(position).getGradePoint()+"   学分："+scores.get(position).getCourseCredit());
-			viewItem.totalPoints.setText("总成绩："+scores.get(position).getGrade());
-		}else{
-			String str = "绩点：<font color=red>未公布</font> 学分：<font color=red>未公布</font>";
-			viewItem.pointAverage.setText(str);
-			viewItem.totalPoints.setText("总成绩："+"<font color=red>未公布</font>");
-		}
-		return convertView;
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-	//item of score
-	private final class MyViewItem{
-		public  TextView coureName;
-		public  TextView pointAverage;
-		public  TextView totalPoints;
-	}
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        MyViewItem viewItem;
+        if (null == convertView) {
+            viewItem = new MyViewItem();
+            convertView = inflater.inflate(R.layout.activity_score_management_item, null);
+            viewItem.coureName = (TextView) convertView.findViewById(R.id.score_corese_name);
+            viewItem.pointAverage = (TextView) convertView.findViewById(R.id.score_grade_point_average);
+            viewItem.totalPoints = (TextView) convertView.findViewById(R.id.score_total_points);
+            convertView.setTag(viewItem);
+        } else {
+            viewItem = (MyViewItem) convertView.getTag();
+        }
+
+        viewItem.coureName.setText(scores.get(position).getCourseName());
+        viewItem.pointAverage.setText("绩点：" + scores.get(position).getGradePoint() + "   学分：" + scores.get(position).getCourseCredit());
+        if (scores.get(position).isShowScore()) {
+            viewItem.totalPoints.setText("分数：" + scores.get(position).getGrade());
+        } else {
+            viewItem.totalPoints.setText(Html.fromHtml("分数：<font color=\"gray\">未公布</font>"));
+        }
+        return convertView;
+    }
+
+    //item of score
+    private final class MyViewItem {
+        public TextView coureName;
+        public TextView pointAverage;
+        public TextView totalPoints;
+    }
 
 }
