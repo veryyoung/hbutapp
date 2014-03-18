@@ -1,15 +1,16 @@
 package com.young.sqlite;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.young.entry.Schedule;
 import com.young.entry.Score;
+import com.young.entry.ScoreInfo;
 import com.young.entry.Student;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHelper {
 
@@ -387,6 +388,60 @@ public class DatabaseHelper {
             }
         }
     }
-
+    
+    /**
+     * 插入一个score_info信息
+     */
+    public void insertScoreInfo(ScoreInfo info){
+    	 String insetSql = " insert into score_info ("+
+        		"stu_id , average_grade_point , total_grade_point , " +
+        		"name , content )" +
+        		"values (?,?,?,?,?)";
+         if (db != null) {
+             if (db.isOpen()) {
+                 db.execSQL(insetSql, new String[]{
+                         info.getStuId(),
+                         info.getAverageGradePoint(),
+                         info.getTotalGradePoint(),
+                         info.getName(),
+                         info.getContent()
+                 });
+             }
+         }
+    }
+    /**
+     * 在score_info中查询一个学生信息
+     */
+    public ScoreInfo getScoreInfo(String stuId){
+    	 ScoreInfo info = null;
+         if (db != null) {
+             if (db.isOpen()) {
+                 Cursor cursor = db.rawQuery("select * from score_info where stu_id = ?",
+                         new String[]{stuId});
+                 if (cursor.getColumnCount() < 1) {
+                     return null;
+                 }
+                 while (cursor.moveToNext()) {
+                     info = new ScoreInfo();
+                     info.setAverageGradePoint(cursor.getString(cursor.getColumnIndex(SQLiteHelper.AVERAGE_GRADE_POINT)));
+                     info.setContent(cursor.getString(cursor.getColumnIndex(SQLiteHelper.CONTENT)));
+                     info.setName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.NAME)));
+                     info.setTotalGradePoint(cursor.getString(cursor.getColumnIndex(SQLiteHelper.TOTAL_GRADE_POINT)));
+                     info.setStuId(stuId);
+                 }
+             }
+         }
+         return info;
+    }
+    
+  //清空score_info表中数据，用于刷新分手，需要删除以前分数
+    public void clearTableScoreInfo(String id) {
+        if (db != null) {
+            if (db.isOpen()) {
+                String sql = "delete from score_info where stu_id = ? ";
+                db.execSQL(sql, new Object[]{id});
+            }
+        }
+    }
 
 }

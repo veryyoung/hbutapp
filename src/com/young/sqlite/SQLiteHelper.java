@@ -92,6 +92,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sql = "create table if not exists score_info (_id integer primary key autoincrement,"+
         		"stu_id varchar, average_grade_point varchar, total_grade_point varchar, " +
         		"name varchar, content varchar)";
+        db.execSQL(sql);
     }
 
     @Override
@@ -107,6 +108,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         //删除local_schedule
         String dropLocalSchedule = "drop table if exists local_schedule ";
         db.execSQL(dropLocalSchedule);
+        //删除score_info数据表
+        String dropScoreInfo = "drop table if exists score_info ";
+        db.execSQL(dropScoreInfo);
         onCreate(db);
     }
 

@@ -1,8 +1,11 @@
 package com.young.business;
 
-import com.young.entry.Schedule;
-import com.young.entry.Score;
-import com.young.entry.Student;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,12 +24,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.young.entry.Schedule;
+import com.young.entry.Score;
+import com.young.entry.ScoreInfo;
+import com.young.entry.Student;
 
 public class HBUT {
 
@@ -206,8 +207,9 @@ public class HBUT {
      * @throws IOException
      * @throws JSONException
      */
-    public ArrayList<Score> getScore(String id) throws IOException,
+    public HashMap<String,Object> getScore(String id) throws IOException,
             JSONException {
+    	HashMap<String,Object> map = new HashMap<String, Object>();
         String url = "http://run.hbut.edu.cn/StuGrade/IndexAllSemesterForJson/?id="
                 + id + "&Mobile=1";
         HttpGet httpget = new HttpGet(url);
@@ -218,6 +220,13 @@ public class HBUT {
         html = html.replaceAll("\\\\", "");
         html = html.substring(html.indexOf("{"), html.lastIndexOf("}") + 1);
         JSONObject jsonObject = new JSONObject(html);
+        ScoreInfo scoreInfo = new ScoreInfo();
+        scoreInfo.setStuId(id);
+        scoreInfo.setName(jsonObject.getString("Name"));
+        scoreInfo.setTotalGradePoint(jsonObject.getString("TotalGradePoint"));
+        scoreInfo.setAverageGradePoint(jsonObject.getString("AverageGradePoint"));
+        scoreInfo.setContent(jsonObject.getString("Title"));
+        map.put("score_info", scoreInfo);
         JSONArray jsonArray = jsonObject.getJSONArray("StuGradeList");
         int length = jsonArray.length();
         ArrayList<Score> scores = new ArrayList<Score>();
@@ -236,7 +245,8 @@ public class HBUT {
             score.setTaskNo(oj.getString("TaskNO"));
             scores.add(score);
         }
-        return scores;
+        map.put("scores", scores);
+        return map;
     }
 
 }

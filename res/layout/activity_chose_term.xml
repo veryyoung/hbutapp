@@ -5,32 +5,35 @@
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-        
+
 
         <TextView
             android:id="@+id/title_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/chose_term"
             android:textSize="18sp" />
         
-        <Button 
-            android:id="@+id/button_others_score"
-            android:layout_width="wrap_content"
+       
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:id="@+id/text_total_score"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:text="@string/others_score"
-            android:textSize="12sp"
-            android:onClick="ButtonOthersScore"
-            />
-    </RelativeLayout>
+            android:layout_weight="1"/>
+        <TextView 
+            android:id="@+id/text_average_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <com.young.util.DropDownListView
         android:id="@+id/list_terms"
