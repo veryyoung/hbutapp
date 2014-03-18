@@ -3,43 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
 
-
-        <TextView
-            android:id="@+id/title_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/chose_term"
-            android:textSize="18sp" />
-        
-       
-    
-    <LinearLayout 
+    <TextView
+        android:id="@+id/title_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView 
-            android:id="@+id/text_total_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <TextView 
-            android:id="@+id/text_average_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/chose_term"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/text_score_info"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:textColor="#ff817c6d"
+        />
 
     <com.young.util.DropDownListView
         android:id="@+id/list_terms"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:textSize="15sp" >
-    </com.young.util.DropDownListView>
+        android:textSize="15sp"></com.young.util.DropDownListView>
 
 </LinearLayout>

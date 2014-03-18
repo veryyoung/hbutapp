@@ -38,8 +38,7 @@ public class ChoseTermsActivity extends BaseActivity {
     private String password;
     private ProgressDialog proDialog;
     // 绩点
-    private TextView textTotalGrade;
-    private TextView textAverageGrade;
+    private TextView scoreInfoView;
     private TextView titleName;
     private ScoreInfo info = null;
 
@@ -48,8 +47,7 @@ public class ChoseTermsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose_term);
         listView = (DropDownListView) findViewById(R.id.list_terms);
-        textTotalGrade = (TextView) findViewById(R.id.text_total_score);
-        textAverageGrade = (TextView) findViewById(R.id.text_average_score);
+        scoreInfoView = (TextView) findViewById(R.id.text_score_info);
         titleName = (TextView) findViewById(R.id.title_name);
         helper = new DatabaseHelper(this);
         // 得到登陆学号和密码
@@ -106,8 +104,7 @@ public class ChoseTermsActivity extends BaseActivity {
                     ChoseTermsActivity.this,
                     android.R.layout.simple_list_item_1, myData));
             if (info != null) {
-                textAverageGrade.setText("平均绩点：" + info.getAverageGradePoint());
-                textTotalGrade.setText("总绩点：" + info.getTotalGradePoint());
+                scoreInfoView.setText("平均绩点：" + info.getAverageGradePoint() + "，总绩点：" + info.getTotalGradePoint());
                 titleName.setText(info.getName());
             }
         }
@@ -119,10 +116,7 @@ public class ChoseTermsActivity extends BaseActivity {
 
         @Override
         protected void onPreExecute() {
-
-
             proDialog = ProgressDialog.show(ChoseTermsActivity.this, "加载中", "玩命加载中,请稍等...");
-
             super.onPreExecute();
         }
 
@@ -174,10 +168,7 @@ public class ChoseTermsActivity extends BaseActivity {
                             ChoseTermsActivity.this,
                             android.R.layout.simple_list_item_1, myData));
                     if (info != null) {
-                        textAverageGrade.setText("平均绩点："
-                                + info.getAverageGradePoint());
-                        textTotalGrade.setText("总绩点："
-                                + info.getTotalGradePoint());
+                        scoreInfoView.setText("平均绩点：" + info.getAverageGradePoint() + "，总绩点：" + info.getTotalGradePoint());
                         titleName.setText(info.getName());
                     }
                 } else {
